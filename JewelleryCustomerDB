@@ -1,0 +1,168 @@
+package com.ntj.db;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.DecimalFormat;
+import java.util.HashMap;
+
+import com.ntj.model.JewelleryCustomerModel; 
+import com.ntj.util.DBConnection;
+import com.ntj.util.IdGenerator;
+
+public class JewelleryCustomerDB {
+	Connection connection = DBConnection.getDBConnection();
+	public Statement statement = null;
+	public ResultSet resultSet = null;
+	public PreparedStatement preparedStatement = null;
+	IdGenerator idGenerator = new IdGenerator();
+	DecimalFormat decimalFormat = new DecimalFormat("#.###");
+	JewelleryCustomerModel jewelleryCustomerModel = new JewelleryCustomerModel();
+	
+	String customer_insert = "insert into customer(custCNo,custDate,custName,custMobile,custAddress1,custAddress2,custCity,custState,custGSTNo,custPANNo,custCommand,custOldMbal,custOldCbal,custMbal,custCbal,custMode,custTime)values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'OLD',now())";
+	String customer_update = "UPDATE customer SET  custCNo=?,custDate=?,custName=?,custMobile=?,custAddress1=?,custAddress2=?,custCity=?,custState=?,custGSTNo=?,custPANNo=?,custCommand=?,custOldMbal=?,custOldCbal=?,custMbal=?,custCbal=?,custTime=now() WHERE custCNo='";
+	String customer_editSearchPrint = "select custCNo,custDate,custName,custMobile,custAddress1,custAddress2,custCity,custState,custGSTNo,custPANNo,custCommand,custOldMbal,custOldCbal,custMbal,custCbal,custMode,custTime from customer";
+	String customer_cno = "select max(custCNo) from customer"; 
+	String customer_delete = "delete from customer where custCNo='"; 
+	
+	public boolean getJewelleryCustomerInsertUpdate(JewelleryCustomerModel jewelleryCustomerModel) {
+		try {
+			System.out.println("tEST  :"+jewelleryCustomerModel.getCustMode()+" "+jewelleryCustomerModel.getCustName());
+			if (jewelleryCustomerModel.getCustMode().equalsIgnoreCase("NEW")) {
+				preparedStatement = connection.prepareStatement(customer_insert);
+			
+			} else {
+				preparedStatement = connection.prepareStatement(customer_update + jewelleryCustomerModel.getCustCNo()+"'");
+				
+			}
+			preparedStatement.setString(1, jewelleryCustomerModel.getCustCNo());
+			preparedStatement.setString(2, jewelleryCustomerModel.getCustDate());
+			preparedStatement.setString(3, jewelleryCustomerModel.getCustName());
+			preparedStatement.setString(4, jewelleryCustomerModel.getCustMobile());
+			preparedStatement.setString(5, jewelleryCustomerModel.getCustAddress1());
+			preparedStatement.setString(6, jewelleryCustomerModel.getCustAddress2());
+			preparedStatement.setString(7, jewelleryCustomerModel.getCustCity());
+			preparedStatement.setString(8, jewelleryCustomerModel.getCustState());
+			preparedStatement.setString(9, jewelleryCustomerModel.getCustGSTNo());
+			preparedStatement.setString(10, jewelleryCustomerModel.getCustPANNo());
+			preparedStatement.setString(11, jewelleryCustomerModel.getCustCommand());
+			preparedStatement.setString(12, decimalFormat.format(Double.parseDouble(jewelleryCustomerModel.getCustOldMbal().toString())));
+			preparedStatement.setString(13, decimalFormat.format(Double.parseDouble(jewelleryCustomerModel.getCustOldCbal().toString())));
+			preparedStatement.setString(14, decimalFormat.format(Double.parseDouble(jewelleryCustomerModel.getCustMbal().toString())));
+			preparedStatement.setString(15, decimalFormat.format(Double.parseDouble(jewelleryCustomerModel.getCustCbal().toString())));
+			preparedStatement.executeUpdate(); 
+
+		} catch (SQLException e) { 
+
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+
+		}
+
+		return true;
+
+	}
+
+	public JewelleryCustomerModel getJewelleryCustomerCno() {
+
+		try {
+			statement = connection.createStatement();
+
+			resultSet = statement.executeQuery(customer_cno);
+			while (resultSet.next()) {
+			
+				
+				jewelleryCustomerModel = new JewelleryCustomerModel(idGenerator.getId(resultSet.getString(1)).toString(),"","","","","","","","","","","","","","","NEW","");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace(); 
+		} 
+		return jewelleryCustomerModel;
+
+	} 
+
+	public JewelleryCustomerModel getJewelleryCustomerEditSearchPrint(JewelleryCustomerModel jewelleryCustomerModel) {
+
+		try {
+
+			statement = connection.createStatement();
+			resultSet = statement.executeQuery(customer_editSearchPrint+" where custCNo='"+jewelleryCustomerModel.getCustCNo()+"' order by custCNo asc");
+
+			while (resultSet.next()) {
+
+				jewelleryCustomerModel = new JewelleryCustomerModel(
+						resultSet.getString(1),
+						resultSet.getString(2),
+						resultSet.getString(3),
+						resultSet.getString(4),
+						resultSet.getString(5),
+						resultSet.getString(6),
+						resultSet.getString(7),
+						resultSet.getString(8),
+						resultSet.getString(9),
+						resultSet.getString(10),
+						resultSet.getString(11),
+						resultSet.getString(12),
+						resultSet.getString(13),
+						resultSet.getString(14),
+						resultSet.getString(15),
+						resultSet.getString(16),
+						resultSet.getString(17));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jewelleryCustomerModel;
+	}
+
+	public HashMap<Integer, JewelleryCustomerModel> getJewelleryCustAllData() {
+		HashMap<Integer, JewelleryCustomerModel> jewelleryCustomerModelMap = new HashMap<Integer, JewelleryCustomerModel>();
+		try {
+			statement = connection.createStatement();
+			int flagValue = 0;
+			resultSet = statement.executeQuery(customer_editSearchPrint);
+			while (resultSet.next()) {
+				flagValue++;
+				jewelleryCustomerModelMap.put(flagValue, new JewelleryCustomerModel(
+						resultSet.getString(1),
+						resultSet.getString(2),
+						resultSet.getString(3),
+						resultSet.getString(4),
+						resultSet.getString(5),
+						resultSet.getString(6),
+						resultSet.getString(7),
+						resultSet.getString(8),
+						resultSet.getString(9),
+						resultSet.getString(10),
+						resultSet.getString(11),
+						resultSet.getString(12),
+						resultSet.getString(13),
+						resultSet.getString(14),
+						resultSet.getString(15),
+						resultSet.getString(16),
+						resultSet.getString(17)
+						));
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return jewelleryCustomerModelMap;
+	}
+	  
+	public boolean getJewelleryCustCNoDelete(JewelleryCustomerModel jewelleryCustomerModel) {
+		try {
+			preparedStatement = connection.prepareStatement(customer_delete+ jewelleryCustomerModel.getCustCNo()+"'");
+			preparedStatement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+}
