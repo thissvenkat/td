@@ -1,0 +1,129 @@
+package com.ntj.controller;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet; 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.ntj.model.JewellerySalesModel;
+import com.ntj.util.DBConnection;
+import java.io.PrintWriter;
+import java.sql.Connection; 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+
+@WebServlet("/JewellerySalesAjaxController")
+public class JewellerySalesAjaxController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	
+    public JewellerySalesAjaxController() { 
+        super();
+         
+        
+    }
+
+	
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request,response);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    
+        String salesBillName = request.getParameter("salesBillName");
+
+        PrintWriter out = response.getWriter();
+        response.setContentType("text/html"); 
+        response.setHeader("Cache-control", "no-cache, no-store");
+        response.setHeader("Pragma", "no-cache");
+        response.setHeader("Expires", "-1");
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST");
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type");
+        response.setHeader("Access-Control-Max-Age", "86400");
+
+        Gson gson = new Gson(); 
+        JsonObject myObj = new JsonObject();
+
+        JewellerySalesModel jewellerySalesModel = getSalesAjaxInfo(salesBillName); 
+        JsonElement jewellerySalesObj = gson.toJsonTree(jewellerySalesModel);
+        if(jewellerySalesModel.getSalesBillName() == null){
+            myObj.addProperty("success", false);
+        }
+        else {
+            myObj.addProperty("success", true);
+        }
+        myObj.add("jewellerySalesModelInfo", jewellerySalesObj);
+        out.println(myObj.toString());
+
+        out.close();
+
+    } 
+   
+    //Get Country Information
+    private JewellerySalesModel getSalesAjaxInfo(String salesBillName) {
+
+    	JewellerySalesModel jewellerySalesModel  = new JewellerySalesModel();
+        Connection connnection = null;            
+        PreparedStatement stmt = null;     
+        String sql = null;
+
+        try {    	
+        	connnection=DBConnection.getDBConnection();
+            sql = "Select salesBillName,salesBillNo from jewellery_sales where salesBillName = ?"; 
+        
+            stmt = connnection.prepareStatement(sql);
+            stmt.setString(1, salesBillName.trim());
+            ResultSet rs = stmt.executeQuery(); 
+
+            while(rs.next()){ 
+            
+            	jewellerySalesModel.setSalesBillName(rs.getString("salesBillName").trim());
+            	jewellerySalesModel.setSalesBillNo(rs.getString("salesBillNo").trim());
+                     }                                                                         
+
+            rs.close();                                                               
+            stmt.close();                                                             
+            stmt = null;                                                              
+
+
+            connnection.close();                                                             
+            connnection = null;                                                   
+
+        }                                                               
+        catch(Exception e){System.out.println(e);}                      
+
+        finally {                                                       
+ 
+            if (stmt != null) {                                            
+                try {                                                         
+                    stmt.close();                                                
+                } catch (SQLException sqlex) {                                
+                    // ignore -- as we can't do anything about it here           
+                }                                                             
+
+                stmt = null;                                            
+            }                                                        
+
+            if (connnection != null) {                                      
+                try {                                                   
+                	connnection.close();                                          
+                } catch (SQLException sqlex) {                          
+                    // ignore -- as we can't do anything about it here     
+                }                                                       
+
+                connnection = null;                                            
+            }                                                        
+        }              
+
+        return jewellerySalesModel;
+
+    }   
+
+}
