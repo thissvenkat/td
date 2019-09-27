@@ -1,0 +1,144 @@
+package com.ntj.db;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashMap;
+
+
+import com.ntj.model.JewelleryAssetsModel;
+import com.ntj.util.DBConnection;
+import com.ntj.util.IdGenerator;
+
+public class JewelleryAssetsDB {
+	Connection connection = DBConnection.getDBConnection();
+	public Statement statement = null;
+	public ResultSet resultSet = null;
+	public PreparedStatement preparedStatement = null;
+	IdGenerator idGenerator = new IdGenerator();
+	JewelleryAssetsModel jewelleryAssetsModel = new JewelleryAssetsModel();
+	
+		
+	String jewellery_assets_insert = "insert into jewellery_assets(assetAno,assetDate,assetName,assetPrice,assetCompany,assetPurchaseBy,assetCommand,assetMode,assetTime)values(?,?,?,?,?,?,?,'OLD',now())";
+	String jewellery_assets_update = "UPDATE jewellery_assets SET  assetAno=?,assetDate=?,assetName=?,assetPrice=?,assetCompany=?,assetPurchaseBy=?,assetCommand=?,assetTime=now() WHERE assetAno='";
+	String jewellery_assets_editSearchPrint = "select assetAno,assetDate,assetName,assetPrice,assetCompany,assetPurchaseBy,assetCommand,assetMode,assetTime from jewellery_assets";
+	String jewellery_assets_ano = "select max(assetAno) from jewellery_assets";
+	String jewellery_assets_delete = "delete from jewellery_assets where assetAno='"; 
+
+	public boolean getJewelleryAssetsInsertUpdate(JewelleryAssetsModel jewelleryAssetsModel) {
+		try {
+			
+			if (jewelleryAssetsModel.getAssetMode().equalsIgnoreCase("NEW")) {
+				preparedStatement = connection.prepareStatement(jewellery_assets_insert);
+			
+			} else {
+				preparedStatement = connection.prepareStatement(jewellery_assets_update + jewelleryAssetsModel.getAssetAno()+"'");
+			
+			}
+			preparedStatement.setString(1, jewelleryAssetsModel.getAssetAno());
+			preparedStatement.setString(2, jewelleryAssetsModel.getAssetDate());
+			preparedStatement.setString(3, jewelleryAssetsModel.getAssetName());
+			preparedStatement.setString(4, jewelleryAssetsModel.getAssetPrice());
+			preparedStatement.setString(5, jewelleryAssetsModel.getAssetCompany());
+			preparedStatement.setString(6, jewelleryAssetsModel.getAssetPurchaseBy());
+			preparedStatement.setString(7, jewelleryAssetsModel.getAssetCommand());  
+			
+			preparedStatement.executeUpdate(); 
+
+		} catch (SQLException e) { 
+
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+
+		}
+
+		return true;
+
+	}
+
+	public JewelleryAssetsModel getJewelleryAssetAno() {
+
+		try {
+			statement = connection.createStatement();
+
+			resultSet = statement.executeQuery(jewellery_assets_ano);
+			while (resultSet.next()) {
+			
+				
+				jewelleryAssetsModel = new JewelleryAssetsModel(idGenerator.getId(resultSet.getString(1)).toString(),"","","","","","","NEW","");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace(); 
+		} 
+		return jewelleryAssetsModel;
+
+	} 
+	public JewelleryAssetsModel getJewelleryAssetEditSearchPrint(JewelleryAssetsModel jewelleryAssetsModel) {
+
+		try {
+
+			statement = connection.createStatement();
+
+			resultSet = statement.executeQuery(jewellery_assets_editSearchPrint+" where assetAno='"+jewelleryAssetsModel.getAssetAno()+"' order by assetAno asc");
+
+			while (resultSet.next()) {
+
+				jewelleryAssetsModel = new JewelleryAssetsModel(
+						resultSet.getString(1),
+						resultSet.getString(2),
+						resultSet.getString(3),
+						resultSet.getString(4),
+						resultSet.getString(5),
+						resultSet.getString(6),
+						resultSet.getString(7),
+						resultSet.getString(8),
+						resultSet.getString(9));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jewelleryAssetsModel;
+	}
+	
+	public HashMap<Integer, JewelleryAssetsModel> getJewelleryAssetAllData() {
+		HashMap<Integer, JewelleryAssetsModel> jewelleryAssetsModelMap = new HashMap<Integer, JewelleryAssetsModel>();
+		try {
+			statement = connection.createStatement();
+			int flagValue = 0;
+			resultSet = statement.executeQuery(jewellery_assets_editSearchPrint);
+			while (resultSet.next()) {
+				flagValue++;
+				jewelleryAssetsModelMap.put(flagValue, new JewelleryAssetsModel(
+						resultSet.getString(1),
+						resultSet.getString(2),
+						resultSet.getString(3),
+						resultSet.getString(4),
+						resultSet.getString(5),
+						resultSet.getString(6),
+						resultSet.getString(7),
+						resultSet.getString(8),
+						resultSet.getString(9)));
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return jewelleryAssetsModelMap;
+	}
+	  
+	public boolean getJewelleryAssetANoDelete(JewelleryAssetsModel jewelleryAssetsModel) {
+		try {
+			preparedStatement = connection.prepareStatement(jewellery_assets_delete+ jewelleryAssetsModel.getAssetAno()+"'");
+			preparedStatement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+}
