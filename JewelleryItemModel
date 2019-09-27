@@ -1,0 +1,108 @@
+package com.ntj.model;
+
+public class JewelleryItemModel {
+
+
+	String itemIno,itemDate,itemType,itemPurchase,itemSelling,itemPStone,itemSStone,itemCommand,itemMode,itemTime;
+
+	public JewelleryItemModel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public JewelleryItemModel(String itemIno, String itemDate, String itemType, String itemPurchase, String itemSelling,
+			String itemPStone, String itemSStone, String itemCommand, String itemMode, String itemTime) {
+		super();
+		this.itemIno = itemIno;
+		this.itemDate = itemDate;
+		this.itemType = itemType;
+		this.itemPurchase = itemPurchase;
+		this.itemSelling = itemSelling;
+		this.itemPStone = itemPStone;
+		this.itemSStone = itemSStone;
+		this.itemCommand = itemCommand;
+		this.itemMode = itemMode;
+		this.itemTime = itemTime;
+	}
+
+	public String getItemIno() {
+		return itemIno;
+	}
+
+	public void setItemIno(String itemIno) {
+		this.itemIno = itemIno;
+	}
+
+	public String getItemDate() {
+		return itemDate;
+	}
+
+	public void setItemDate(String itemDate) {
+		this.itemDate = itemDate;
+	}
+
+	public String getItemType() {
+		return itemType;
+	}
+
+	public void setItemType(String itemType) {
+		this.itemType = itemType;
+	}
+
+	public String getItemPurchase() {
+		return itemPurchase;
+	}
+
+	public void setItemPurchase(String itemPurchase) {
+		this.itemPurchase = itemPurchase;
+	}
+
+	public String getItemSelling() {
+		return itemSelling;
+	}
+
+	public void setItemSelling(String itemSelling) {
+		this.itemSelling = itemSelling;
+	}
+
+	public String getItemPStone() {
+		return itemPStone;
+	}
+
+	public void setItemPStone(String itemPStone) {
+		this.itemPStone = itemPStone;
+	}
+
+	public String getItemSStone() {
+		return itemSStone;
+	}
+
+	public void setItemSStone(String itemSStone) {
+		this.itemSStone = itemSStone;
+	}
+
+	public String getItemCommand() {
+		return itemCommand;
+	}
+
+	public void setItemCommand(String itemCommand) {
+		this.itemCommand = itemCommand;
+	}
+
+	public String getItemMode() {
+		return itemMode;
+	}
+
+	public void setItemMode(String itemMode) {
+		this.itemMode = itemMode;
+	}
+
+	public String getItemTime() {
+		return itemTime;
+	}
+
+	public void setItemTime(String itemTime) {
+		this.itemTime = itemTime;
+	}
+
+}
