@@ -1,0 +1,59 @@
+package com.ntj.controller;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.ntj.db.JewelleryCustomerDB;
+import com.ntj.model.JewelleryCustomerModel;
+import com.ntj.util.IdGenerator;
+
+@WebServlet("/JewelleryCustomerController")
+public class JewelleryCustomerController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	JewelleryCustomerModel jewelleryCustomerModel= new JewelleryCustomerModel();
+	JewelleryCustomerDB jewelleryCustomerDB=new JewelleryCustomerDB();
+	IdGenerator idGenerator = new IdGenerator(); 
+   
+    public JewelleryCustomerController() {
+        super();
+       
+    }
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
+		}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+	
+		jewelleryCustomerModel.setCustCNo(idGenerator.getEmptyForNull(request.getParameter("custCNo")));
+		jewelleryCustomerModel.setCustDate(idGenerator.getEmptyForNull(request.getParameter("custDate")));
+		jewelleryCustomerModel.setCustName(idGenerator.getEmptyForNull(request.getParameter("custName")));
+		jewelleryCustomerModel.setCustMobile(idGenerator.getEmptyForNull(request.getParameter("custMobile")));
+		jewelleryCustomerModel.setCustAddress1(idGenerator.getEmptyForNull(request.getParameter("custAddress1")));
+		jewelleryCustomerModel.setCustAddress2(idGenerator.getEmptyForNull(request.getParameter("custAddress2")));
+		jewelleryCustomerModel.setCustCity(idGenerator.getEmptyForNull(request.getParameter("custCity")));
+		jewelleryCustomerModel.setCustState(idGenerator.getEmptyForNull(request.getParameter("custState")));
+		jewelleryCustomerModel.setCustGSTNo(idGenerator.getEmptyForNull(request.getParameter("custGSTNo")));
+		jewelleryCustomerModel.setCustPANNo(idGenerator.getEmptyForNull(request.getParameter("custPANNo")));
+		jewelleryCustomerModel.setCustCommand(idGenerator.getEmptyForNull(request.getParameter("custCommand")));
+		jewelleryCustomerModel.setCustOldMbal(idGenerator.getEmptyForNull(request.getParameter("custOldMbal")));
+		jewelleryCustomerModel.setCustOldCbal(idGenerator.getEmptyForNull(request.getParameter("custOldCbal")));
+		jewelleryCustomerModel.setCustMbal(idGenerator.getEmptyForNull(request.getParameter("custMbal")));
+		jewelleryCustomerModel.setCustCbal(idGenerator.getEmptyForNull(request.getParameter("custCbal")));
+		jewelleryCustomerModel.setCustMode(idGenerator.getEmptyForNull(request.getParameter("custMode")));
+
+		if (request.getParameter("submit").toString().equalsIgnoreCase("SAVE")) { 
+			jewelleryCustomerDB.getJewelleryCustomerInsertUpdate(jewelleryCustomerModel);
+				response.sendRedirect("JewelleryCustomerPage.jsp");	
+		}
+				
+	} 
+
+}
