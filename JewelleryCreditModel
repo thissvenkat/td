@@ -1,0 +1,91 @@
+package com.ntj.model;
+
+public class JewelleryCreditModel {
+
+
+	String creditCno,creditDate,creditName,creditWeight,creditAmount,creditCommand,creditMode,creditTime;
+
+	public JewelleryCreditModel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public JewelleryCreditModel(String creditCno, String creditDate, String creditName, String creditWeight,
+			String creditAmount, String creditCommand, String creditMode, String creditTime) {
+		super();
+		this.creditCno = creditCno;
+		this.creditDate = creditDate;
+		this.creditName = creditName;
+		this.creditWeight = creditWeight;
+		this.creditAmount = creditAmount;
+		this.creditCommand = creditCommand;
+		this.creditMode = creditMode;
+		this.creditTime = creditTime;
+	}
+
+	public String getCreditCno() {
+		return creditCno;
+	}
+
+	public void setCreditCno(String creditCno) {
+		this.creditCno = creditCno;
+	}
+
+	public String getCreditDate() {
+		return creditDate;
+	}
+
+	public void setCreditDate(String creditDate) {
+		this.creditDate = creditDate;
+	}
+
+	public String getCreditName() {
+		return creditName;
+	}
+
+	public void setCreditName(String creditName) {
+		this.creditName = creditName;
+	}
+
+	public String getCreditWeight() {
+		return creditWeight;
+	}
+
+	public void setCreditWeight(String creditWeight) {
+		this.creditWeight = creditWeight;
+	}
+
+	public String getCreditAmount() {
+		return creditAmount;
+	}
+
+	public void setCreditAmount(String creditAmount) {
+		this.creditAmount = creditAmount;
+	}
+
+	public String getCreditCommand() {
+		return creditCommand;
+	}
+
+	public void setCreditCommand(String creditCommand) {
+		this.creditCommand = creditCommand;
+	}
+
+	public String getCreditMode() {
+		return creditMode;
+	}
+
+	public void setCreditMode(String creditMode) {
+		this.creditMode = creditMode;
+	}
+
+	public String getCreditTime() {
+		return creditTime;
+	}
+
+	public void setCreditTime(String creditTime) {
+		this.creditTime = creditTime;
+	}
+	
+	
+}
