@@ -1,0 +1,146 @@
+package com.ntj.db;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashMap;
+
+
+import com.ntj.model.JewelleryExpenseModel;
+import com.ntj.util.DBConnection;
+import com.ntj.util.IdGenerator;
+
+public class JewelleryExpenseDB {
+	Connection connection = DBConnection.getDBConnection();
+	public Statement statement = null;
+	public ResultSet resultSet = null;
+	public PreparedStatement preparedStatement = null;
+	IdGenerator idGenerator = new IdGenerator();
+	JewelleryExpenseModel jewelleryExpenseModel = new JewelleryExpenseModel();
+	
+		
+	String jewellery_expense_insert = "insert into jewellery_expense(expenseEno,expenseDate,expenseType,expenseATime,expenseParticular,expenseAmount,expenseMetal,expenseCommand,expenseMode,expenseTime)values(?,?,?,?,?,?,?,?,'OLD',now())";
+	String jewellery_expense_update = "UPDATE jewellery_expense SET  expenseEno=?,expenseDate=?,expenseType=?,expenseATime=?,expenseParticular=?,expenseAmount=?,expenseMetal=?,expenseCommand=?,expenseTime=now() WHERE expenseEno='";
+	String jewellery_expense_editSearchPrint = "select expenseEno,expenseDate,expenseType,expenseATime,expenseParticular,expenseAmount,expenseMetal,expenseCommand,expenseMode,expenseTime from jewellery_expense";
+	String jewellery_expense_eno = "select max(expenseEno) from jewellery_expense";
+	String jewellery_expense_delete = "delete from jewellery_expense where expenseEno='"; 
+
+	public boolean getJewelleryExpenseInsertUpdate(JewelleryExpenseModel jewelleryExpenseModel) {
+		try {
+			
+			if (jewelleryExpenseModel.getExpenseMode().equalsIgnoreCase("NEW")) {
+				preparedStatement = connection.prepareStatement(jewellery_expense_insert);
+			
+			} else {
+				preparedStatement = connection.prepareStatement(jewellery_expense_update + jewelleryExpenseModel.getExpenseEno()+"'");
+			
+			}
+			preparedStatement.setString(1, jewelleryExpenseModel.getExpenseEno());
+			preparedStatement.setString(2, jewelleryExpenseModel.getExpenseDate());
+			preparedStatement.setString(3, jewelleryExpenseModel.getExpenseType());
+			preparedStatement.setString(4, jewelleryExpenseModel.getExpenseATime());
+			preparedStatement.setString(5, jewelleryExpenseModel.getExpenseParticular());
+			preparedStatement.setString(6, jewelleryExpenseModel.getExpenseAmount());
+			preparedStatement.setString(7, jewelleryExpenseModel.getExpenseMetal());
+			preparedStatement.setString(8, jewelleryExpenseModel.getExpenseCommand());  
+			preparedStatement.executeUpdate(); 
+
+		} catch (SQLException e) { 
+
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+
+		}
+
+		return true;
+
+	}
+
+	public JewelleryExpenseModel getJewelleryExpenseEno() {
+
+		try {
+			statement = connection.createStatement();
+
+			resultSet = statement.executeQuery(jewellery_expense_eno);
+			while (resultSet.next()) {
+			
+				
+				jewelleryExpenseModel = new JewelleryExpenseModel(idGenerator.getId(resultSet.getString(1)).toString(),"","","","","","","","NEW","");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace(); 
+		} 
+		return jewelleryExpenseModel;
+
+	} 
+	public JewelleryExpenseModel getJewelleryExpenseEditSearchPrint(JewelleryExpenseModel jewelleryExpenseModel) {
+
+		try {
+
+			statement = connection.createStatement();
+
+			resultSet = statement.executeQuery(jewellery_expense_editSearchPrint+" where expenseEno='"+jewelleryExpenseModel.getExpenseEno()+"' order by expenseEno asc");
+
+			while (resultSet.next()) {
+
+				jewelleryExpenseModel = new JewelleryExpenseModel(
+						resultSet.getString(1),
+						resultSet.getString(2),
+						resultSet.getString(3),
+						resultSet.getString(4),
+						resultSet.getString(5),
+						resultSet.getString(6),
+						resultSet.getString(7),
+						resultSet.getString(8),
+						resultSet.getString(9),
+						resultSet.getString(10));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jewelleryExpenseModel;
+	}
+	
+	public HashMap<Integer, JewelleryExpenseModel> getJewelleryExpenseModelAllData() {
+		HashMap<Integer, JewelleryExpenseModel> jewelleryExpenseModelMap = new HashMap<Integer, JewelleryExpenseModel>();
+		try {
+			statement = connection.createStatement();
+			int flagValue = 0;
+			resultSet = statement.executeQuery(jewellery_expense_editSearchPrint);
+			while (resultSet.next()) {
+				flagValue++;
+				jewelleryExpenseModelMap.put(flagValue, new JewelleryExpenseModel(
+						resultSet.getString(1),
+						resultSet.getString(2),
+						resultSet.getString(3),
+						resultSet.getString(4),
+						resultSet.getString(5),
+						resultSet.getString(6),
+						resultSet.getString(7),
+						resultSet.getString(8),
+						resultSet.getString(9),
+						resultSet.getString(10)));
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return jewelleryExpenseModelMap;
+	}
+	  
+	public boolean getJewelleryExpenseENoDelete(JewelleryExpenseModel jewelleryExpenseModel) {
+		try {
+			preparedStatement = connection.prepareStatement(jewellery_expense_delete+ jewelleryExpenseModel.getExpenseEno()+"'");
+			preparedStatement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+}
