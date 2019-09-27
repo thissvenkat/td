@@ -1,0 +1,155 @@
+package com.ntj.model;
+
+public class JewelleryCustomerModel {
+
+	String custCNo,custDate,custName,custMobile,custAddress1,custAddress2,custCity,custState,custGSTNo,custPANNo,custCommand,custOldMbal,custOldCbal,custMbal,custCbal,custMode,custTime;
+	String custCNoNext; 
+	public JewelleryCustomerModel() {
+		super();
+	}
+	public JewelleryCustomerModel(String custCNo, String custDate, String custName, String custMobile,
+			String custAddress1, String custAddress2, String custCity, String custState, String custGSTNo,
+			String custPANNo, String custCommand,String custOldMbal,String custOldCbal, String custMbal, String custCbal, String custMode, String custTime) {
+		super();
+		this.custCNo = custCNo;
+		this.custDate = custDate;
+		this.custName = custName;
+		this.custMobile = custMobile;
+		this.custAddress1 = custAddress1;
+		this.custAddress2 = custAddress2;
+		this.custCity = custCity;
+		this.custState = custState;
+		this.custGSTNo = custGSTNo;
+		this.custPANNo = custPANNo;
+		this.custCommand = custCommand;
+		this.custOldMbal=custOldMbal;
+		this.custOldCbal=custOldCbal;
+		this.custMbal = custMbal;
+		this.custCbal = custCbal;
+		this.custMode = custMode;
+		this.custTime = custTime;
+	}
+	
+	
+	public JewelleryCustomerModel(String custCNo, String custDate, String custName, String custMobile, String custMbal,
+			String custCbal, String custMode, String custTime) {
+		super();
+		this.custCNo = custCNo;
+		this.custDate = custDate;
+		this.custName = custName;
+		this.custMobile = custMobile;
+		this.custMbal = custMbal;
+		this.custCbal = custCbal;
+		this.custMode = custMode;
+		this.custTime = custTime;
+	}
+	public String getCustCNo() {
+		return custCNo;
+	}
+	public void setCustCNo(String custCNo) {
+		this.custCNo = custCNo;
+	}
+	public String getCustDate() {
+		return custDate;
+	}
+	public void setCustDate(String custDate) {
+		this.custDate = custDate;
+	}
+	public String getCustName() {
+		return custName;
+	}
+	public void setCustName(String custName) {
+		this.custName = custName;
+	}
+	public String getCustMobile() {
+		return custMobile;
+	}
+	public void setCustMobile(String custMobile) {
+		this.custMobile = custMobile;
+	}
+	public String getCustAddress1() {
+		return custAddress1;
+	}
+	public void setCustAddress1(String custAddress1) {
+		this.custAddress1 = custAddress1;
+	}
+	public String getCustAddress2() {
+		return custAddress2;
+	}
+	public void setCustAddress2(String custAddress2) {
+		this.custAddress2 = custAddress2;
+	}
+	public String getCustCity() {
+		return custCity;
+	}
+	public void setCustCity(String custCity) {
+		this.custCity = custCity;
+	}
+	public String getCustState() {
+		return custState;
+	}
+	public void setCustState(String custState) {
+		this.custState = custState;
+	}
+	public String getCustGSTNo() {
+		return custGSTNo;
+	}
+	public void setCustGSTNo(String custGSTNo) {
+		this.custGSTNo = custGSTNo;
+	}
+	public String getCustPANNo() {
+		return custPANNo;
+	}
+	public void setCustPANNo(String custPANNo) {
+		this.custPANNo = custPANNo;
+	}
+	public String getCustCommand() {
+		return custCommand;
+	}
+	public void setCustCommand(String custCommand) {
+		this.custCommand = custCommand;
+	}
+	public String getCustMbal() {
+		return custMbal;
+	}
+	public void setCustMbal(String custMbal) {
+		this.custMbal = custMbal;
+	}
+	public String getCustCbal() {
+		return custCbal;
+	}
+	public void setCustCbal(String custCbal) {
+		this.custCbal = custCbal;
+	}
+	public String getCustMode() {
+		return custMode;
+	}
+	public void setCustMode(String custMode) {
+		this.custMode = custMode;
+	}
+	public String getCustTime() {
+		return custTime;
+	}
+	public void setCustTime(String custTime) {
+		this.custTime = custTime;
+	}
+	public String getCustCNoNext() {
+		return custCNoNext;
+	}
+	public void setCustCNoNext(String custCNoNext) {
+		this.custCNoNext = custCNoNext;
+	}
+	public String getCustOldMbal() {
+		return custOldMbal;
+	}
+	public void setCustOldMbal(String custOldMbal) {
+		this.custOldMbal = custOldMbal;
+	}
+	public String getCustOldCbal() {
+		return custOldCbal;
+	}
+	public void setCustOldCbal(String custOldCbal) {
+		this.custOldCbal = custOldCbal;
+	}
+	
+	}
