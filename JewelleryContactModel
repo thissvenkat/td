@@ -1,0 +1,110 @@
+package com.ntj.model;
+
+public class JewelleryContactModel {
+
+
+	String contactCno,contactDate,contactType,contactName,contactAddress,contactMobile,contactCommand,contactBalance,contactMode,contactTime;
+
+	public JewelleryContactModel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public JewelleryContactModel(String contactCno, String contactDate, String contactType, String contactName,
+			String contactAddress, String contactMobile, String contactCommand, String contactBalance,
+			String contactMode, String contactTime) {
+		super();
+		this.contactCno = contactCno;
+		this.contactDate = contactDate;
+		this.contactType = contactType;
+		this.contactName = contactName;
+		this.contactAddress = contactAddress;
+		this.contactMobile = contactMobile;
+		this.contactCommand = contactCommand;
+		this.contactBalance = contactBalance;
+		this.contactMode = contactMode;
+		this.contactTime = contactTime;
+	}
+
+	public String getContactCno() {
+		return contactCno;
+	}
+
+	public void setContactCno(String contactCno) {
+		this.contactCno = contactCno;
+	}
+
+	public String getContactDate() {
+		return contactDate;
+	}
+
+	public void setContactDate(String contactDate) {
+		this.contactDate = contactDate;
+	}
+
+	public String getContactType() {
+		return contactType;
+	}
+
+	public void setContactType(String contactType) {
+		this.contactType = contactType;
+	}
+
+	public String getContactName() {
+		return contactName;
+	}
+
+	public void setContactName(String contactName) {
+		this.contactName = contactName;
+	}
+
+	public String getContactAddress() {
+		return contactAddress;
+	}
+
+	public void setContactAddress(String contactAddress) {
+		this.contactAddress = contactAddress;
+	}
+
+	public String getContactMobile() {
+		return contactMobile;
+	}
+
+	public void setContactMobile(String contactMobile) {
+		this.contactMobile = contactMobile;
+	}
+
+	public String getContactCommand() {
+		return contactCommand;
+	}
+
+	public void setContactCommand(String contactCommand) {
+		this.contactCommand = contactCommand;
+	}
+
+	public String getContactBalance() {
+		return contactBalance;
+	}
+
+	public void setContactBalance(String contactBalance) {
+		this.contactBalance = contactBalance;
+	}
+
+	public String getContactMode() {
+		return contactMode;
+	}
+
+	public void setContactMode(String contactMode) {
+		this.contactMode = contactMode;
+	}
+
+	public String getContactTime() {
+		return contactTime;
+	}
+
+	public void setContactTime(String contactTime) {
+		this.contactTime = contactTime;
+	}
+
+	
+}
