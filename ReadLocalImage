@@ -1,0 +1,34 @@
+package com.ntj.util;
+
+
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.xml.bind.DatatypeConverter;
+
+public class ReadLocalImage{
+	
+	 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+	 String outputImageString=null;
+	  
+	public String getImageOutput(String imageFileLocation){
+		try{
+	
+		      BufferedImage bImage = ImageIO.read(new File(imageFileLocation));//give the path of an image
+		        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		        ImageIO.write( bImage, "jpg", baos );
+		        baos.flush();
+		        byte[] imageInByteArray = baos.toByteArray();
+		        baos.close();                                   
+		        outputImageString = DatatypeConverter.printBase64Binary(imageInByteArray);
+		     
+		    }catch(IOException e){
+		      System.out.println("Error: "+e);
+		    }
+		
+		return outputImageString;  
+	
+}}
