@@ -1,0 +1,52 @@
+package com.ntj.controller;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.ntj.db.JewelleryMetalDB;
+import com.ntj.model.JewelleryMetalModel;
+import com.ntj.util.IdGenerator;
+
+
+@WebServlet("/JewelleryMetalController")
+public class JewelleryMetalController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	JewelleryMetalModel jewelleryMetalModel = new JewelleryMetalModel();
+	JewelleryMetalDB jewelleryMetalDB = new JewelleryMetalDB();
+	IdGenerator idGenerator = new IdGenerator(); 
+   
+    public JewelleryMetalController() {
+        super();
+       
+    }
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);	
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		jewelleryMetalModel.setMetalMNo(idGenerator.getEmptyForNull(request.getParameter("metalMNo")));
+		jewelleryMetalModel.setMetalDate(idGenerator.getEmptyForNull(request.getParameter("metalDate")));
+		jewelleryMetalModel.setMetalPRate(idGenerator.getZeroForNull(request.getParameter("metalPRate")));
+		jewelleryMetalModel.setMetalSRate(idGenerator.getZeroForNull(request.getParameter("metalSRate")));
+		jewelleryMetalModel.setMetalType(idGenerator.getEmptyForNull(request.getParameter("metalType")));
+		jewelleryMetalModel.setMetalName(idGenerator.getEmptyForNull(request.getParameter("metalName")));
+		jewelleryMetalModel.setMetalWeight(idGenerator.getZeroForNull(request.getParameter("metalWeight")));
+		jewelleryMetalModel.setMetalResult(idGenerator.getZeroForNull(request.getParameter("metalResult")));
+		jewelleryMetalModel.setMetalPure(idGenerator.getZeroForNull(request.getParameter("metalPure")));
+		jewelleryMetalModel.setMetalAmount(idGenerator.getZeroForNull(request.getParameter("metalAmount")));
+		jewelleryMetalModel.setMetalMode(idGenerator.getEmptyForNull(request.getParameter("metalMode")));
+		jewelleryMetalModel.setMetalTime(idGenerator.getEmptyForNull(request.getParameter("metalTime")));
+	
+		if (request.getParameter("submit").toString().equalsIgnoreCase("SAVE")) { 
+			jewelleryMetalDB.getJewelleryMetalInsertUpdate(jewelleryMetalModel);
+			response.sendRedirect("JewelleryMetalPage.jsp");
+	}
+	} 
+}
