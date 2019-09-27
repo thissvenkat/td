@@ -1,0 +1,50 @@
+package com.ntj.controller;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.ntj.db.JewelleryCreditDB;
+import com.ntj.model.JewelleryCreditModel;
+import com.ntj.util.IdGenerator;
+
+
+@WebServlet("/JewelleryCreditController")
+public class JewelleryCreditController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	JewelleryCreditModel jewelleryCreditModel = new JewelleryCreditModel();
+	JewelleryCreditDB jewelleryCreditDB = new JewelleryCreditDB();
+	IdGenerator idGenerator = new IdGenerator(); 
+	
+    public JewelleryCreditController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		jewelleryCreditModel.setCreditCno(idGenerator.getEmptyForNull(request.getParameter("creditCno")));
+		jewelleryCreditModel.setCreditDate(idGenerator.getEmptyForNull(request.getParameter("creditDate")));
+		jewelleryCreditModel.setCreditName(idGenerator.getEmptyForNull(request.getParameter("creditName")));
+		jewelleryCreditModel.setCreditWeight(idGenerator.getEmptyForNull(request.getParameter("creditWeight")));
+		jewelleryCreditModel.setCreditAmount(idGenerator.getEmptyForNull(request.getParameter("creditAmount")));
+		jewelleryCreditModel.setCreditCommand(idGenerator.getEmptyForNull(request.getParameter("creditCommand")));
+		jewelleryCreditModel.setCreditMode(idGenerator.getEmptyForNull(request.getParameter("creditMode")));
+		jewelleryCreditModel.setCreditTime(idGenerator.getEmptyForNull(request.getParameter("creditTime")));
+		
+		if (request.getParameter("submit").toString().equalsIgnoreCase("SAVE")) { 
+			jewelleryCreditDB.getJewelleryCreditInsertUpdate(jewelleryCreditModel);
+				response.sendRedirect("JewelleryCreditPage.jsp");
+			
+		}
+	}
+
+}
