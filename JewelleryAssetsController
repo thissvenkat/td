@@ -1,0 +1,49 @@
+package com.ntj.controller;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.ntj.db.JewelleryAssetsDB;
+import com.ntj.model.JewelleryAssetsModel;
+import com.ntj.util.IdGenerator;
+
+@WebServlet("/JewelleryAssetsController")
+public class JewelleryAssetsController extends HttpServlet { 
+	private static final long serialVersionUID = 1L;
+	JewelleryAssetsModel jewelleryAssetsModel = new JewelleryAssetsModel();
+	JewelleryAssetsDB jewelleryAssetsDB = new JewelleryAssetsDB();
+	IdGenerator idGenerator = new IdGenerator();     
+ 
+    public JewelleryAssetsController() {
+        super();
+     
+    }
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
+	}
+ 
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		jewelleryAssetsModel.setAssetAno(idGenerator.getEmptyForNull(request.getParameter("assetAno")));
+		jewelleryAssetsModel.setAssetDate(idGenerator.getEmptyForNull(request.getParameter("assetDate")));
+		jewelleryAssetsModel.setAssetName(idGenerator.getEmptyForNull(request.getParameter("assetName")));
+		jewelleryAssetsModel.setAssetPrice(idGenerator.getEmptyForNull(request.getParameter("assetPrice")));
+		jewelleryAssetsModel.setAssetCompany(idGenerator.getEmptyForNull(request.getParameter("assetCompany")));
+		jewelleryAssetsModel.setAssetPurchaseBy(idGenerator.getEmptyForNull(request.getParameter("assetPurchaseBy")));
+		jewelleryAssetsModel.setAssetCommand(idGenerator.getEmptyForNull(request.getParameter("assetCommand")));
+		jewelleryAssetsModel.setAssetMode(idGenerator.getEmptyForNull(request.getParameter("assetMode")));
+		jewelleryAssetsModel.setAssetTime(idGenerator.getEmptyForNull(request.getParameter("assetTime")));
+				
+if (request.getParameter("submit").toString().equalsIgnoreCase("SAVE")) { 
+	
+	jewelleryAssetsDB.getJewelleryAssetsInsertUpdate(jewelleryAssetsModel);
+			response.sendRedirect("JewelleryAssetsPage.jsp");	
+	}
+
+}}
