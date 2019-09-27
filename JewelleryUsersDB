@@ -1,0 +1,165 @@
+package com.ntj.db;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashMap;
+
+
+
+import com.ntj.model.JewelleryUsersModel;
+import com.ntj.util.DBConnection;
+import com.ntj.util.IdGenerator;
+
+public class JewelleryUsersDB {
+	Connection connection = DBConnection.getDBConnection();
+	public Statement statement = null;
+	public ResultSet resultSet = null;
+	public PreparedStatement preparedStatement = null;
+	boolean status=false;
+	IdGenerator idGenerator = new IdGenerator();
+	JewelleryUsersModel jewelleryUsersModel = new JewelleryUsersModel();
+	
+		
+	String jewellery_users_insert = "insert into jewellery_users(userUno,userDate,userName,userPassword,userCommand,userMode,userTime)values(?,?,?,?,?,'OLD',now())";
+	String jewellery_users_update = "UPDATE jewellery_users SET  userUno=?,userDate=?,userName=?,userPassword=?,userCommand=? WHERE userUno='";
+	String jewellery_users_editSearchPrint = "select userUno,userDate,userName,userPassword,userCommand,userMode,userTime from jewellery_users";
+	String jewellery_users_uno = "select max(userUno) from jewellery_users";
+	String jewellery_users_delete = "delete from jewellery_users where userUno='";
+	String jewellery_users_validation="select * from jewellery_users where userName=? and userPassword=?";
+
+	public boolean getJewelleryUsersInsertUpdate(JewelleryUsersModel jewelleryUsersModel) {
+		try {
+			
+			if (jewelleryUsersModel.getUserMode().equalsIgnoreCase("NEW")) {
+				preparedStatement = connection.prepareStatement(jewellery_users_insert);
+			
+			} else {
+				preparedStatement = connection.prepareStatement(jewellery_users_update + jewelleryUsersModel.getUserUno()+"'");
+			
+			}
+			preparedStatement.setString(1, jewelleryUsersModel.getUserUno());
+			preparedStatement.setString(2, jewelleryUsersModel.getUserDate());
+			preparedStatement.setString(3, jewelleryUsersModel.getUserName());
+			preparedStatement.setString(4, jewelleryUsersModel.getUserPassword());
+			preparedStatement.setString(5, jewelleryUsersModel.getUserCommand());
+			preparedStatement.executeUpdate(); 
+
+		} catch (SQLException e) { 
+
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+
+		}
+
+		return true;
+
+	}
+
+	public JewelleryUsersModel getJewelleryUserUno() {
+
+		try {
+			statement = connection.createStatement();
+
+			resultSet = statement.executeQuery(jewellery_users_uno);
+			while (resultSet.next()) {
+			
+				
+				jewelleryUsersModel = new JewelleryUsersModel(idGenerator.getId(resultSet.getString(1)).toString(),"","","","","NEW","");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace(); 
+		} 
+		return jewelleryUsersModel;
+
+	} 
+	public JewelleryUsersModel getJewelleryUserEditSearchPrint(JewelleryUsersModel jewelleryUsersModel) {
+
+		try {
+
+			statement = connection.createStatement();
+
+			resultSet = statement.executeQuery(jewellery_users_editSearchPrint+" where userUno='"+jewelleryUsersModel.getUserUno()+"' order by userUno asc");
+
+			while (resultSet.next()) {
+
+				jewelleryUsersModel = new JewelleryUsersModel(
+						resultSet.getString(1),
+						resultSet.getString(2),
+						resultSet.getString(3),
+						resultSet.getString(4),
+						resultSet.getString(5),
+						resultSet.getString(6),
+						resultSet.getString(7));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jewelleryUsersModel;
+	}
+	
+	public HashMap<Integer, JewelleryUsersModel> getJewelleryUserAllData() {
+		HashMap<Integer, JewelleryUsersModel> jewelleryUsersModelMap = new HashMap<Integer, JewelleryUsersModel>();
+		try {
+			statement = connection.createStatement();
+			int flagValue = 0;
+			resultSet = statement.executeQuery(jewellery_users_editSearchPrint);
+			while (resultSet.next()) {
+				flagValue++;
+				jewelleryUsersModelMap.put(flagValue, new JewelleryUsersModel(
+						resultSet.getString(1),
+						resultSet.getString(2),
+						resultSet.getString(3),
+						resultSet.getString(4),
+						resultSet.getString(5),
+						resultSet.getString(6),
+						resultSet.getString(7)));
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return jewelleryUsersModelMap;
+	}
+	  
+	public boolean getJewelleryUsersUNoDelete(JewelleryUsersModel jewelleryUsersModel) {
+		try {
+			preparedStatement = connection.prepareStatement(jewellery_users_delete+ jewelleryUsersModel.getUserUno()+"'");
+			preparedStatement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+	
+	public boolean getJewelleryUserValidation(JewelleryUsersModel jewelleryUsersModel){
+		try {
+		preparedStatement = connection.prepareStatement(jewellery_users_validation);  
+			  
+		preparedStatement.setString(1, jewelleryUsersModel.getUserName());
+		preparedStatement.setString(2, jewelleryUsersModel.getUserPassword());
+			              
+		resultSet=preparedStatement.executeQuery();
+			status=resultSet.next();  
+		} catch (SQLException e) { 
+
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+
+		}
+			return status;  
+			  
+
+			
+	}
+		
+}
+	
+
