@@ -1,0 +1,518 @@
+package com.ntj.model;
+
+public class JewellerySalesItemModel {
+
+	String salesItemBNo,salesItemBDate,salesItemCNo,salesItemBBRate,salesItemBSRate,salesItemCname,
+	salesItemCmobile,salesItemOldMbal,salesItemOldCbal,salesItemMbal,salesItemCbal,salesItemSNoTot,salesItemSCountTot,salesItemSNetWeightTot,salesItemSPureTot,
+	salesItemRNoTot,salesItemRWeightTot,salesItemRPureTot,salesItemBMode,salesItemCMode,salesItemBTime;
+	String salesItemSSNo,salesItemSNo,salesItemSType,salesItemSCount,salesItemSWeight,salesItemSMinus,salesItemSNetWeight,salesItemSWastage,salesItemSPure,salesItemSMode,salesItemSTime;
+	String salesItemRRNo,salesItemRNo,salesItemRWeight,salesItemRResult,salesItemRCalc,salesItemRPure,salesItemRMode,salesItemRTime;
+	String salesItemCHNo,salesItemCHCash,salesItemCHRate,salesItemCHPure,salesItemCHMode,salesItemCHTime;
+	String salesItemSearchDateFrom,salesItemSearchDateTo,salesItemSearchBillNo,salesItemSearchCustNo,salesItemSearchCustName;
+	public JewellerySalesItemModel() {
+		super(); 
+		}
+
+public JewellerySalesItemModel(String salesItemBNo, String salesItemBDate, String salesItemCNo, String salesItemBBRate,
+		String salesItemBSRate, String salesItemCname, String salesItemCmobile, 
+		String salesItemOldMbal,String salesItemOldCbal,String salesItemMbal,
+		String salesItemCbal, String salesItemSNoTot, String salesItemSCountTot, String salesItemSNetWeightTot,
+		String salesItemSPureTot, String salesItemRNoTot, String salesItemRWeightTot, String salesItemRPureTot,
+		String salesItemBMode, String salesItemCMode, String salesItemBTime, String salesItemSSNo, String salesItemSNo,
+		String salesItemSType, String salesItemSCount, String salesItemSWeight, String salesItemSMinus,
+		String salesItemSNetWeight, String salesItemSWastage, String salesItemSPure, String salesItemSMode,
+		String salesItemSTime, String salesItemRRNo, String salesItemRNo, String salesItemRWeight,
+		String salesItemRResult, String salesItemRCalc, String salesItemRPure, String salesItemRMode,
+		String salesItemRTime, String salesItemCHNo, String salesItemCHCash, String salesItemCHRate,
+		String salesItemCHPure, String salesItemCHMode, String salesItemCHTime) {
+	super();
+	this.salesItemBNo = salesItemBNo;
+	this.salesItemBDate = salesItemBDate;
+	this.salesItemCNo = salesItemCNo;
+	this.salesItemBBRate = salesItemBBRate;
+	this.salesItemBSRate = salesItemBSRate;
+	this.salesItemCname = salesItemCname;
+	this.salesItemCmobile = salesItemCmobile;
+	this.salesItemOldMbal=salesItemOldMbal;
+	this.salesItemOldCbal=salesItemOldCbal;
+	this.salesItemMbal = salesItemMbal;
+	this.salesItemCbal = salesItemCbal;
+	this.salesItemSNoTot = salesItemSNoTot;
+	this.salesItemSCountTot = salesItemSCountTot;
+	this.salesItemSNetWeightTot = salesItemSNetWeightTot;
+	this.salesItemSPureTot = salesItemSPureTot;
+	this.salesItemRNoTot = salesItemRNoTot;
+	this.salesItemRWeightTot = salesItemRWeightTot;
+	this.salesItemRPureTot = salesItemRPureTot;
+	this.salesItemBMode = salesItemBMode;
+	this.salesItemCMode = salesItemCMode;
+	this.salesItemBTime = salesItemBTime;
+	this.salesItemSSNo = salesItemSSNo;
+	this.salesItemSNo = salesItemSNo;
+	this.salesItemSType = salesItemSType;
+	this.salesItemSCount = salesItemSCount;
+	this.salesItemSWeight = salesItemSWeight;
+	this.salesItemSMinus = salesItemSMinus;
+	this.salesItemSNetWeight = salesItemSNetWeight;
+	this.salesItemSWastage = salesItemSWastage;
+	this.salesItemSPure = salesItemSPure;
+	this.salesItemSMode = salesItemSMode;
+	this.salesItemSTime = salesItemSTime;
+	this.salesItemRRNo = salesItemRRNo;
+	this.salesItemRNo = salesItemRNo;
+	this.salesItemRWeight = salesItemRWeight;
+	this.salesItemRResult = salesItemRResult;
+	this.salesItemRCalc = salesItemRCalc;
+	this.salesItemRPure = salesItemRPure;
+	this.salesItemRMode = salesItemRMode;
+	this.salesItemRTime = salesItemRTime;
+	this.salesItemCHNo = salesItemCHNo;
+	this.salesItemCHCash = salesItemCHCash;
+	this.salesItemCHRate = salesItemCHRate;
+	this.salesItemCHPure = salesItemCHPure;
+	this.salesItemCHMode = salesItemCHMode;
+	this.salesItemCHTime = salesItemCHTime;
+}
+
+public JewellerySalesItemModel(String salesItemBNo, String salesItemBDate, 
+		String salesItemCNo,String salesItemBBRate,String salesItemBSRate,String salesItemCname,
+		String salesItemCmobile,String salesItemOldMbal, String salesItemOldCbal, String salesItemMbal, String salesItemCbal, String salesItemSNoTot,
+		String salesItemSCountTot, String salesItemSNetWeightTot, String salesItemSPureTot, String salesItemRNoTot,
+		String salesItemRWeightTot, String salesItemRPureTot,String salesItemCPure,String salesItemBMode, String salesItemCMode,String salesItemCHMode,String salesItemBTime) {
+	super();
+	this.salesItemBNo = salesItemBNo;
+	this.salesItemBDate = salesItemBDate;
+	this.salesItemCNo = salesItemCNo;
+	this.salesItemBBRate=salesItemBBRate;
+	this.salesItemBSRate=salesItemBSRate;
+	this.salesItemCname = salesItemCname;
+	this.salesItemCmobile = salesItemCmobile;
+	this.salesItemOldMbal=salesItemOldMbal;
+	this.salesItemOldCbal=salesItemOldCbal;
+	this.salesItemMbal = salesItemMbal;
+	this.salesItemCbal = salesItemCbal;
+	this.salesItemSNoTot = salesItemSNoTot;
+	this.salesItemSCountTot = salesItemSCountTot;
+	this.salesItemSNetWeightTot = salesItemSNetWeightTot;
+	this.salesItemSPureTot = salesItemSPureTot;
+	this.salesItemRNoTot = salesItemRNoTot;
+	this.salesItemRWeightTot = salesItemRWeightTot;
+	this.salesItemRPureTot = salesItemRPureTot;
+	this.salesItemCHPure=salesItemCPure;
+	this.salesItemBMode = salesItemBMode;
+	this.salesItemCMode = salesItemCMode;
+	this.salesItemCHMode = salesItemCHMode;
+	this.salesItemBTime=salesItemBTime;
+}
+public JewellerySalesItemModel(String salesItemBNo, String salesItemBDate, 
+		String salesItemCNo,String salesItemCname,
+		String salesItemCmobile,String salesItemOldMbal, String salesItemOldCbal, String salesItemMbal, String salesItemCbal, String salesItemSNoTot,
+		String salesItemSCountTot, String salesItemSNetWeightTot, String salesItemSPureTot, String salesItemRNoTot,
+		String salesItemRWeightTot, String salesItemRPureTot,String salesItemCPure,String salesItemBMode, String salesItemCMode,String salesItemCHMode,String salesItemBTime) {
+	super();
+	this.salesItemBNo = salesItemBNo;
+	this.salesItemBDate = salesItemBDate;
+	this.salesItemCNo = salesItemCNo;
+	this.salesItemCname = salesItemCname;
+	this.salesItemCmobile = salesItemCmobile;
+	this.salesItemOldMbal=salesItemOldMbal;
+	this.salesItemOldCbal=salesItemOldCbal;
+	this.salesItemMbal = salesItemMbal;
+	this.salesItemCbal = salesItemCbal;
+	this.salesItemSNoTot = salesItemSNoTot;
+	this.salesItemSCountTot = salesItemSCountTot;
+	this.salesItemSNetWeightTot = salesItemSNetWeightTot;
+	this.salesItemSPureTot = salesItemSPureTot;
+	this.salesItemRNoTot = salesItemRNoTot;
+	this.salesItemRWeightTot = salesItemRWeightTot;
+	this.salesItemRPureTot = salesItemRPureTot;
+	this.salesItemCHPure=salesItemCPure;
+	this.salesItemBMode = salesItemBMode;
+	this.salesItemCMode = salesItemCMode;
+	this.salesItemCHMode = salesItemCHMode;
+	this.salesItemBTime=salesItemBTime;
+}
+
+
+public JewellerySalesItemModel(String salesItemBNo,String salesItemCNo, String salesItemCname, String salesItemSSNo,String salesItemSNo, String salesItemSType, String salesItemSCount,
+		String salesItemSWeight, String salesItemSMinus, String salesItemSNetWeight, String salesItemSWastage,
+		String salesItemSPure,String salesItemSMode,String salesItemSTime) {
+	super();
+	this.salesItemBNo = salesItemBNo;
+	this.salesItemCNo = salesItemCNo;
+	this.salesItemCname=salesItemCname;
+	this.salesItemSSNo=salesItemSSNo;
+	this.salesItemSNo = salesItemSNo;
+	this.salesItemSType = salesItemSType;
+	this.salesItemSCount = salesItemSCount;
+	this.salesItemSWeight = salesItemSWeight;
+	this.salesItemSMinus = salesItemSMinus;
+	this.salesItemSNetWeight = salesItemSNetWeight;
+	this.salesItemSWastage = salesItemSWastage;
+	this.salesItemSPure = salesItemSPure;
+	this.salesItemSMode=salesItemSMode;
+	this.salesItemSTime=salesItemSTime;
+}
+public JewellerySalesItemModel(String salesItemBNo,String salesItemCNo, String salesItemCname,String salesItemRRNo,String salesItemRNo, String salesItemRWeight, String salesItemRResult,
+		String salesItemRCalc, String salesItemRPure,String salesItemRMode,String salesItemRTime) {
+	super();
+	this.salesItemBNo = salesItemBNo;
+	this.salesItemCNo = salesItemCNo;
+	this.salesItemCname=salesItemCname;
+	this.salesItemRRNo = salesItemRRNo;
+	this.salesItemRNo = salesItemRNo;
+	this.salesItemRWeight = salesItemRWeight;
+	this.salesItemRResult = salesItemRResult;
+	this.salesItemRCalc = salesItemRCalc;
+	this.salesItemRPure = salesItemRPure;
+	this.salesItemRMode=salesItemRMode;
+	this.salesItemRTime=salesItemRTime;
+}
+public JewellerySalesItemModel(String salesItemBNo, String salesItemCNo,String salesItemCname,String salesItemCHNo, String salesItemCHCash, String salesItemCHRate,
+		String salesItemCHPure,String salesItemCHMode,String salesItemCHTime) {
+	
+	super();
+	this.salesItemBNo = salesItemBNo;
+	this.salesItemCNo = salesItemCNo;
+	this.salesItemCname=salesItemCname;
+	this.salesItemCHNo=salesItemCHNo;
+	this.salesItemCHCash = salesItemCHCash;
+	this.salesItemCHRate = salesItemCHRate;
+	this.salesItemCHPure = salesItemCHPure;
+	this.salesItemCHMode=salesItemCHMode;
+	this.salesItemCHTime =salesItemCHTime;
+}
+public String getSalesItemBNo() {
+	return salesItemBNo;
+}
+public void setSalesItemBNo(String salesItemBNo) {
+	this.salesItemBNo = salesItemBNo;
+}
+public String getSalesItemBDate() {
+	return salesItemBDate;
+}
+public void setSalesItemBDate(String salesItemBDate) {
+	this.salesItemBDate = salesItemBDate;
+}
+public String getSalesItemBMode() {
+	return salesItemBMode;
+}
+public void setSalesItemBMode(String salesItemBMode) {
+	this.salesItemBMode = salesItemBMode;
+}
+public String getSalesItemCMode() {
+	return salesItemCMode;
+}
+public void setSalesItemCMode(String salesItemCMode) {
+	this.salesItemCMode = salesItemCMode;
+}
+public String getSalesItemCNo() {
+	return salesItemCNo;
+}
+public void setSalesItemCNo(String salesItemCNo) {
+	this.salesItemCNo = salesItemCNo;
+}
+public String getSalesItemBBRate() {
+	return salesItemBBRate;
+}
+public void setSalesItemBBRate(String salesItemBBRate) {
+	this.salesItemBBRate = salesItemBBRate;
+}
+public String getSalesItemBSRate() {
+	return salesItemBSRate;
+}
+public void setSalesItemBSRate(String salesItemBSRate) {
+	this.salesItemBSRate = salesItemBSRate;
+}
+public String getSalesItemCname() {
+	return salesItemCname;
+}
+public void setSalesItemCname(String salesItemCname) {
+	this.salesItemCname = salesItemCname;
+}
+public String getSalesItemCmobile() {
+	return salesItemCmobile;
+}
+public void setSalesItemCmobile(String salesItemCmobile) {
+	this.salesItemCmobile = salesItemCmobile;
+}
+public String getSalesItemMbal() {
+	return salesItemMbal;
+}
+public void setSalesItemMbal(String salesItemMbal) {
+	this.salesItemMbal = salesItemMbal;
+}
+public String getSalesItemCbal() {
+	return salesItemCbal;
+}
+public void setSalesItemCbal(String salesItemCbal) {
+	this.salesItemCbal = salesItemCbal;
+}
+public String getSalesItemSNoTot() {
+	return salesItemSNoTot;
+}
+public void setSalesItemSNoTot(String salesItemSNoTot) {
+	this.salesItemSNoTot = salesItemSNoTot;
+}
+public String getSalesItemSCountTot() {
+	return salesItemSCountTot;
+}
+public void setSalesItemSCountTot(String salesItemSCountTot) {
+	this.salesItemSCountTot = salesItemSCountTot;
+}
+public String getSalesItemSNetWeightTot() {
+	return salesItemSNetWeightTot;
+}
+public void setSalesItemSNetWeightTot(String salesItemSNetWeightTot) {
+	this.salesItemSNetWeightTot = salesItemSNetWeightTot;
+}
+public String getSalesItemSPureTot() {
+	return salesItemSPureTot;
+}
+public void setSalesItemSPureTot(String salesItemSPureTot) {
+	this.salesItemSPureTot = salesItemSPureTot;
+}
+public String getSalesItemRNoTot() {
+	return salesItemRNoTot;
+}
+public void setSalesItemRNoTot(String salesItemRNoTot) {
+	this.salesItemRNoTot = salesItemRNoTot;
+}
+public String getSalesItemRWeightTot() {
+	return salesItemRWeightTot;
+}
+public void setSalesItemRWeightTot(String salesItemRWeightTot) {
+	this.salesItemRWeightTot = salesItemRWeightTot;
+}
+public String getSalesItemRPureTot() {
+	return salesItemRPureTot;
+}
+public void setSalesItemRPureTot(String salesItemRPureTot) {
+	this.salesItemRPureTot = salesItemRPureTot;
+}
+public String getSalesItemBTime() {
+	return salesItemBTime;
+}
+public void setSalesItemBTime(String salesItemBTime) {
+	this.salesItemBTime = salesItemBTime;
+}
+public String getSalesItemSNo() {
+	return salesItemSNo;
+}
+public void setSalesItemSNo(String salesItemSNo) {
+	this.salesItemSNo = salesItemSNo;
+}
+public String getSalesItemSType() {
+	return salesItemSType;
+}
+public void setSalesItemSType(String salesItemSType) {
+	this.salesItemSType = salesItemSType;
+}
+public String getSalesItemSCount() {
+	return salesItemSCount;
+}
+public void setSalesItemSCount(String salesItemSCount) {
+	this.salesItemSCount = salesItemSCount;
+}
+public String getSalesItemSWeight() {
+	return salesItemSWeight;
+}
+public void setSalesItemSWeight(String salesItemSWeight) {
+	this.salesItemSWeight = salesItemSWeight;
+}
+public String getSalesItemSMinus() {
+	return salesItemSMinus;
+}
+public void setSalesItemSMinus(String salesItemSMinus) {
+	this.salesItemSMinus = salesItemSMinus;
+}
+public String getSalesItemSNetWeight() {
+	return salesItemSNetWeight;
+}
+public void setSalesItemSNetWeight(String salesItemSNetWeight) {
+	this.salesItemSNetWeight = salesItemSNetWeight;
+}
+public String getSalesItemSWastage() {
+	return salesItemSWastage;
+}
+public void setSalesItemSWastage(String salesItemSWastage) {
+	this.salesItemSWastage = salesItemSWastage;
+}
+public String getSalesItemSPure() {
+	return salesItemSPure;
+}
+public void setSalesItemSPure(String salesItemSPure) {
+	this.salesItemSPure = salesItemSPure;
+}
+public String getSalesItemSTime() {
+	return salesItemSTime;
+}
+public void setSalesItemSTime(String salesItemSTime) {
+	this.salesItemSTime = salesItemSTime;
+}
+public String getSalesItemRNo() {
+	return salesItemRNo;
+}
+public void setSalesItemRNo(String salesItemRNo) {
+	this.salesItemRNo = salesItemRNo;
+}
+public String getSalesItemRWeight() {
+	return salesItemRWeight;
+}
+public void setSalesItemRWeight(String salesItemRWeight) {
+	this.salesItemRWeight = salesItemRWeight;
+}
+public String getSalesItemRResult() {
+	return salesItemRResult;
+}
+public void setSalesItemRResult(String salesItemRResult) {
+	this.salesItemRResult = salesItemRResult;
+}
+public String getSalesItemRCalc() {
+	return salesItemRCalc;
+}
+public void setSalesItemRCalc(String salesItemRCalc) {
+	this.salesItemRCalc = salesItemRCalc;
+}
+public String getSalesItemRPure() {
+	return salesItemRPure;
+}
+public void setSalesItemRPure(String salesItemRPure) {
+	this.salesItemRPure = salesItemRPure;
+}
+public String getSalesItemRTime() {
+	return salesItemRTime;
+}
+public void setSalesItemRTime(String salesItemRTime) {
+	this.salesItemRTime = salesItemRTime;
+}
+public String getSalesItemSSNo() {
+	return salesItemSSNo;
+}
+public void setSalesItemSSNo(String salesItemSSNo) {
+	this.salesItemSSNo = salesItemSSNo;
+}
+public String getSalesItemSMode() {
+	return salesItemSMode;
+}
+public void setSalesItemSMode(String salesItemSMode) {
+	this.salesItemSMode = salesItemSMode;
+}
+public String getSalesItemRRNo() {
+	return salesItemRRNo;
+}
+public void setSalesItemRRNo(String salesItemRRNo) {
+	this.salesItemRRNo = salesItemRRNo;
+}
+public String getSalesItemRMode() {
+	return salesItemRMode;
+}
+public void setSalesItemRMode(String salesItemRMode) {
+	this.salesItemRMode = salesItemRMode;
+}
+
+public String getSalesItemCHNo() {
+	return salesItemCHNo;
+}
+
+public void setSalesItemCHNo(String salesItemCHNo) {
+	this.salesItemCHNo = salesItemCHNo;
+}
+
+public String getSalesItemCHCash() {
+	return salesItemCHCash;
+}
+
+public void setSalesItemCHCash(String salesItemCHCash) {
+	this.salesItemCHCash = salesItemCHCash;
+}
+
+public String getSalesItemCHRate() {
+	return salesItemCHRate;
+}
+
+public void setSalesItemCHRate(String salesItemCHRate) {
+	this.salesItemCHRate = salesItemCHRate;
+}
+
+public String getSalesItemOldMbal() {
+	return salesItemOldMbal;
+}
+
+public void setSalesItemOldMbal(String salesItemOldMbal) {
+	this.salesItemOldMbal = salesItemOldMbal;
+}
+
+public String getSalesItemOldCbal() {
+	return salesItemOldCbal;
+}
+
+public void setSalesItemOldCbal(String salesItemOldCbal) {
+	this.salesItemOldCbal = salesItemOldCbal;
+}
+
+public String getSalesItemCHPure() {
+	return salesItemCHPure;
+}
+
+public void setSalesItemCHPure(String salesItemCHPure) {
+	this.salesItemCHPure = salesItemCHPure;
+}
+
+public String getSalesItemCHMode() {
+	return salesItemCHMode;
+}
+
+public void setSalesItemCHMode(String salesItemCHMode) {
+	this.salesItemCHMode = salesItemCHMode;
+}
+
+public String getSalesItemCHTime() {
+	return salesItemCHTime;
+}
+
+public void setSalesItemCHTime(String salesItemCHTime) {
+	this.salesItemCHTime = salesItemCHTime;
+}
+
+public String getSalesItemSearchDateFrom() {
+	return salesItemSearchDateFrom;
+}
+
+public void setSalesItemSearchDateFrom(String salesItemSearchDateFrom) {
+	this.salesItemSearchDateFrom = salesItemSearchDateFrom;
+}
+
+public String getSalesItemSearchDateTo() {
+	return salesItemSearchDateTo;
+}
+
+public void setSalesItemSearchDateTo(String salesItemSearchDateTo) {
+	this.salesItemSearchDateTo = salesItemSearchDateTo;
+}
+
+public String getSalesItemSearchBillNo() {
+	return salesItemSearchBillNo;
+}
+
+public void setSalesItemSearchBillNo(String salesItemSearchBillNo) {
+	this.salesItemSearchBillNo = salesItemSearchBillNo;
+}
+
+public String getSalesItemSearchCustNo() {
+	return salesItemSearchCustNo;
+}
+
+public void setSalesItemSearchCustNo(String salesItemSearchCustNo) {
+	this.salesItemSearchCustNo = salesItemSearchCustNo;
+}
+
+public String getSalesItemSearchCustName() {
+	return salesItemSearchCustName;
+}
+
+public void setSalesItemSearchCustName(String salesItemSearchCustName) {
+	this.salesItemSearchCustName = salesItemSearchCustName;
+}
+
+}
