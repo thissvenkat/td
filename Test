@@ -1,0 +1,51 @@
+package com.ntj.model;
+
+public class Test {
+	String name,mbl,mbal,cbal;
+
+	public Test(String name, String mbl, String mbal, String cbal) {
+		super();
+		this.name = name;
+		this.mbl = mbl;
+		this.mbal = mbal;
+		this.cbal = cbal;
+	}
+
+	public Test() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getMbl() {
+		return mbl;
+	}
+
+	public void setMbl(String mbl) {
+		this.mbl = mbl;
+	}
+
+	public String getMbal() {
+		return mbal;
+	}
+
+	public void setMbal(String mbal) {
+		this.mbal = mbal;
+	}
+
+	public String getCbal() {
+		return cbal;
+	}
+
+	public void setCbal(String cbal) {
+		this.cbal = cbal;
+	}
+	
+}
