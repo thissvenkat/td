@@ -1,0 +1,52 @@
+package com.ntj.model;
+
+public class JewelleryGoldRateModel {
+
+	String GoldGno,GoldBRate,GoldSRate,GoldTime;
+
+	public JewelleryGoldRateModel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public JewelleryGoldRateModel(String goldGno, String goldBRate, String goldSRate, String goldTime) {
+		super();
+		GoldGno = goldGno;
+		GoldBRate = goldBRate;
+		GoldSRate = goldSRate;
+		GoldTime = goldTime;
+	}
+
+	public String getGoldGno() {
+		return GoldGno;
+	}
+
+	public void setGoldGno(String goldGno) {
+		GoldGno = goldGno;
+	}
+
+	public String getGoldBRate() {
+		return GoldBRate;
+	}
+
+	public void setGoldBRate(String goldBRate) {
+		GoldBRate = goldBRate;
+	}
+
+	public String getGoldSRate() {
+		return GoldSRate;
+	}
+
+	public void setGoldSRate(String goldSRate) {
+		GoldSRate = goldSRate;
+	}
+
+	public String getGoldTime() {
+		return GoldTime;
+	}
+
+	public void setGoldTime(String goldTime) {
+		GoldTime = goldTime;
+	}
+
+}	
