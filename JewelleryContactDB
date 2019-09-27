@@ -1,0 +1,147 @@
+package com.ntj.db;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashMap;
+
+
+import com.ntj.model.JewelleryContactModel;
+import com.ntj.util.DBConnection;
+import com.ntj.util.IdGenerator;
+
+public class JewelleryContactDB {
+	Connection connection = DBConnection.getDBConnection();
+	public Statement statement = null;
+	public ResultSet resultSet = null;
+	public PreparedStatement preparedStatement = null;
+	IdGenerator idGenerator = new IdGenerator();
+	JewelleryContactModel jewelleryContactModel = new JewelleryContactModel();
+	
+		
+	String jewellery_contact_insert = "insert into jewellery_contact(contactCno,contactDate,contactType,contactName,contactAddress,contactMobile,contactCommand,contactBalance,contactMode,contactTime)values(?,?,?,?,?,?,?,?,'OLD',now())";
+	String jewellery_contact_update = "UPDATE jewellery_contact SET  contactCno=?,contactDate=?,contactType=?,contactName=?,contactAddress=?,contactMobile=?,contactCommand=?,contactBalance=?,contactTime=now() WHERE contactCno='";
+	String jewellery_contact_editSearchPrint = "select contactCno,contactDate,contactType,contactName,contactAddress,contactMobile,contactCommand,contactBalance,contactMode,contactTime from jewellery_contact";
+	String jewellery_contact_Cno = "select max(contactCno) from jewellery_contact";
+	String jewellery_contact_delete = "delete from jewellery_contact where contactCno='"; 
+
+	public boolean getJewelleryContactInsertUpdate(JewelleryContactModel jewelleryContactModel) {
+		try {
+			
+			if (jewelleryContactModel.getContactMode().equalsIgnoreCase("NEW")) {
+				preparedStatement = connection.prepareStatement(jewellery_contact_insert);
+			
+			} else {
+				preparedStatement = connection.prepareStatement(jewellery_contact_update + jewelleryContactModel.getContactCno()+"'");
+			
+			}
+			preparedStatement.setString(1, jewelleryContactModel.getContactCno());
+			preparedStatement.setString(2, jewelleryContactModel.getContactDate());
+			preparedStatement.setString(3, jewelleryContactModel.getContactType());
+			preparedStatement.setString(4, jewelleryContactModel.getContactName());
+			preparedStatement.setString(5, jewelleryContactModel.getContactAddress());
+			preparedStatement.setString(6, jewelleryContactModel.getContactMobile());
+			preparedStatement.setString(7, jewelleryContactModel.getContactCommand());
+			preparedStatement.setString(8, jewelleryContactModel.getContactBalance());  
+			
+			preparedStatement.executeUpdate(); 
+
+		} catch (SQLException e) { 
+
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+
+		}
+
+		return true;
+
+	}
+
+	public JewelleryContactModel getJewelleryContactCno() {
+
+		try {
+			statement = connection.createStatement();
+
+			resultSet = statement.executeQuery(jewellery_contact_Cno);
+			while (resultSet.next()) {
+			
+				
+				jewelleryContactModel = new JewelleryContactModel(idGenerator.getId(resultSet.getString(1)).toString(),"","","","","","","","NEW","");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace(); 
+		} 
+		return jewelleryContactModel;
+
+	} 
+	public JewelleryContactModel getJewelleryContactEditSearchPrint(JewelleryContactModel jewelleryContactModel) {
+
+		try {
+
+			statement = connection.createStatement();
+
+			resultSet = statement.executeQuery(jewellery_contact_editSearchPrint+" where contactCno='"+jewelleryContactModel.getContactCno()+"' order by contactCno asc");
+
+			while (resultSet.next()) {
+
+				jewelleryContactModel = new JewelleryContactModel(
+						resultSet.getString(1),
+						resultSet.getString(2),
+						resultSet.getString(3),
+						resultSet.getString(4),
+						resultSet.getString(5),
+						resultSet.getString(6),
+						resultSet.getString(7),
+						resultSet.getString(8),
+						resultSet.getString(9),
+						resultSet.getString(10));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jewelleryContactModel;
+	}
+	
+	public HashMap<Integer, JewelleryContactModel> getJewelleryContactAllData() {
+		HashMap<Integer, JewelleryContactModel> jewelleryContactModelMap = new HashMap<Integer, JewelleryContactModel>();
+		try {
+			statement = connection.createStatement();
+			int flagValue = 0;
+			resultSet = statement.executeQuery(jewellery_contact_editSearchPrint);
+			while (resultSet.next()) {
+				flagValue++;
+				jewelleryContactModelMap.put(flagValue, new JewelleryContactModel(
+						resultSet.getString(1),
+						resultSet.getString(2),
+						resultSet.getString(3),
+						resultSet.getString(4),
+						resultSet.getString(5),
+						resultSet.getString(6),
+						resultSet.getString(7),
+						resultSet.getString(8),
+						resultSet.getString(9),
+						resultSet.getString(10)));
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return jewelleryContactModelMap;
+	}
+	  
+	public boolean getJewelleryContactCNoDelete(JewelleryContactModel jewelleryContactModel) {
+		try {
+			preparedStatement = connection.prepareStatement(jewellery_contact_delete+ jewelleryContactModel.getContactCno()+"'");
+			preparedStatement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+}
