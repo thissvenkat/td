@@ -1,0 +1,150 @@
+package com.ntj.db;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashMap;
+
+
+import com.ntj.model.JewelleryPartnersModel;
+import com.ntj.util.DBConnection;
+import com.ntj.util.IdGenerator;
+
+public class JewelleryPartnersDB {
+	Connection connection = DBConnection.getDBConnection();
+	public Statement statement = null;
+	public ResultSet resultSet = null;
+	public PreparedStatement preparedStatement = null;
+	IdGenerator idGenerator = new IdGenerator();
+	JewelleryPartnersModel jewelleryPartnersModel = new JewelleryPartnersModel();
+	
+		
+	String jewellery_partners_insert = "insert into jewellery_partners(partnerPNo,partnerDate,partnerName,partnerAmount,partnerMetal,partnerShareValue,partnerSharePercent,partnerDesigination,partnerCommand,partnerMode,partnerTime)values(?,?,?,?,?,?,?,?,?,'OLD',now())";
+	String jewellery_partners_update = "UPDATE jewellery_partners SET  partnerPNo=?,partnerDate=?,partnerName=?,partnerAmount=?,partnerMetal=?,partnerShareValue=?,partnerSharePercent=?,partnerDesigination=?,partnerCommand=?,partnerTime=now() WHERE partnerPNo='";
+	String jewellery_partners_editSearchPrint = "select partnerPNo,partnerDate,partnerName,partnerAmount,partnerMetal,partnerShareValue,partnerSharePercent,partnerDesigination,partnerCommand,partnerMode,partnerTime from jewellery_partners";
+	String jewellery_partners_pno = "select max(partnerPNo) from jewellery_partners";
+	String jewellery_partners_delete = "delete from jewellery_partners where partnerPNo='"; 
+
+	public boolean getJewelleryPartnersInsertUpdate(JewelleryPartnersModel jewelleryPartnersModel) {
+		try {
+			
+			if (jewelleryPartnersModel.getPartnerMode().equalsIgnoreCase("NEW")) {
+				preparedStatement = connection.prepareStatement(jewellery_partners_insert);
+			
+			} else {
+				preparedStatement = connection.prepareStatement(jewellery_partners_update + jewelleryPartnersModel.getPartnerPNo()+"'");
+			
+			}
+			preparedStatement.setString(1, jewelleryPartnersModel.getPartnerPNo());
+			preparedStatement.setString(2, jewelleryPartnersModel.getPartnerDate());
+			preparedStatement.setString(3, jewelleryPartnersModel.getPartnerName());
+			preparedStatement.setString(4, jewelleryPartnersModel.getPartnerAmount());
+			preparedStatement.setString(5, jewelleryPartnersModel.getPartnerMetal());
+			preparedStatement.setString(6, jewelleryPartnersModel.getPartnerShareValue());
+			preparedStatement.setString(7, jewelleryPartnersModel.getPartnerSharePercent());
+			preparedStatement.setString(8, jewelleryPartnersModel.getPartnerDesigination());
+			preparedStatement.setString(9, jewelleryPartnersModel.getPartnerCommand());
+			
+			preparedStatement.executeUpdate(); 
+
+		} catch (SQLException e) { 
+
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+
+		}
+
+		return true;
+
+	}
+
+	public JewelleryPartnersModel getJewelleryPartnersPno() {
+
+		try {
+			statement = connection.createStatement();
+
+			resultSet = statement.executeQuery(jewellery_partners_pno);
+			while (resultSet.next()) {
+			
+				
+				jewelleryPartnersModel = new JewelleryPartnersModel(idGenerator.getId(resultSet.getString(1)).toString(),"","","","","","","","","NEW","");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace(); 
+		} 
+		return jewelleryPartnersModel;
+
+	} 
+	public JewelleryPartnersModel getJewelleryPartnersEditSearchPrint(JewelleryPartnersModel jewelleryPartnersModel) {
+
+		try {
+
+			statement = connection.createStatement();
+			System.out.println(jewellery_partners_editSearchPrint+" where partnerPNo='"+jewelleryPartnersModel.getPartnerPNo()+"' order by partnerPNo asc");
+			resultSet = statement.executeQuery(jewellery_partners_editSearchPrint+" where partnerPNo='"+jewelleryPartnersModel.getPartnerPNo()+"' order by partnerPNo asc");
+
+			while (resultSet.next()) {
+
+				jewelleryPartnersModel = new JewelleryPartnersModel(
+						resultSet.getString(1),
+						resultSet.getString(2),
+						resultSet.getString(3),
+						resultSet.getString(4),
+						resultSet.getString(5),
+						resultSet.getString(6),
+						resultSet.getString(7),
+						resultSet.getString(8),
+						resultSet.getString(9),
+						resultSet.getString(10),
+						resultSet.getString(11));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jewelleryPartnersModel;
+	}
+	
+	public HashMap<Integer, JewelleryPartnersModel> getJewelleryPartnersAllData() {
+		HashMap<Integer, JewelleryPartnersModel> jewelleryPartnersModelMap = new HashMap<Integer, JewelleryPartnersModel>();
+		try {
+			statement = connection.createStatement();
+			int flagValue = 0;
+			resultSet = statement.executeQuery(jewellery_partners_editSearchPrint);
+			while (resultSet.next()) {
+				flagValue++;
+				jewelleryPartnersModelMap.put(flagValue, new JewelleryPartnersModel(
+						resultSet.getString(1),
+						resultSet.getString(2),
+						resultSet.getString(3),
+						resultSet.getString(4),
+						resultSet.getString(5),
+						resultSet.getString(6),
+						resultSet.getString(7),
+						resultSet.getString(8),
+						resultSet.getString(9),
+						resultSet.getString(10),
+						resultSet.getString(11)));
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return jewelleryPartnersModelMap;
+	}
+	  
+	public boolean getJewelleryPartnerPNoDelete(JewelleryPartnersModel jewelleryPartnersModel) {
+		try {
+			preparedStatement = connection.prepareStatement(jewellery_partners_delete+ jewelleryPartnersModel.getPartnerPNo()+"'");
+			preparedStatement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+}
