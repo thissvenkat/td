@@ -1,0 +1,61 @@
+package com.ntj.controller;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.ntj.db.JewelleryPurchaseDB;
+import com.ntj.model.JewelleryPurchaseModel;
+import com.ntj.util.IdGenerator;
+
+@WebServlet("/JewelleryPurchaseController")
+public class JewelleryPurchaseController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	
+	JewelleryPurchaseModel jewelleryPurchaseModel = new JewelleryPurchaseModel();
+	JewelleryPurchaseDB jewelleryPurchaseDB = new JewelleryPurchaseDB();
+	
+	IdGenerator idGenerator = new IdGenerator();
+
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public JewelleryPurchaseController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
+	
+		jewelleryPurchaseModel.setPurchasePno(idGenerator.getEmptyForNull(request.getParameter("purchasePno")));
+		jewelleryPurchaseModel.setPurchaseDate(idGenerator.getEmptyForNull(request.getParameter("purchaseDate")));
+		jewelleryPurchaseModel.setPurchaseFrom(idGenerator.getEmptyForNull(request.getParameter("purchaseFrom")));
+		jewelleryPurchaseModel.setPurchaseType(idGenerator.getEmptyForNull(request.getParameter("purchaseType")));
+		jewelleryPurchaseModel.setPurchaseMelting(idGenerator.getEmptyForNull(request.getParameter("purchaseMelting")));
+		jewelleryPurchaseModel.setPurchaseWeight(idGenerator.getEmptyForNull(request.getParameter("purchaseWeight")));
+		jewelleryPurchaseModel.setPurchaseWastage(idGenerator.getEmptyForNull(request.getParameter("purchaseWastage")));
+		jewelleryPurchaseModel.setPurchaseKWastage(idGenerator.getEmptyForNull(request.getParameter("purchaseKWastage")));
+		jewelleryPurchaseModel.setPurchaseCount(idGenerator.getEmptyForNull(request.getParameter("purchaseCount")));
+		jewelleryPurchaseModel.setPurchasePure(idGenerator.getEmptyForNull(request.getParameter("purchasePure")));
+		jewelleryPurchaseModel.setPurchaseSettle(idGenerator.getEmptyForNull(request.getParameter("purchaseSettle")));
+		jewelleryPurchaseModel.setPurchaseLess(idGenerator.getEmptyForNull(request.getParameter("purchaseLess")));
+		jewelleryPurchaseModel.setPurchaseCommand(idGenerator.getEmptyForNull(request.getParameter("purchaseCommand")));
+		jewelleryPurchaseModel.setPurchaseMode(idGenerator.getEmptyForNull(request.getParameter("purchaseMode")));
+		jewelleryPurchaseModel.setPurchaseTime(idGenerator.getEmptyForNull(request.getParameter("purchaseTime")));
+
+		if (request.getParameter("submit").toString().equalsIgnoreCase("SAVE")) { 
+		
+		jewelleryPurchaseDB.getJewelleryPurchaseInsertUpdate(jewelleryPurchaseModel);
+		response.sendRedirect("JewelleryPurchasePage.jsp");	
+	}}
+}
