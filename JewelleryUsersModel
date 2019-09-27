@@ -1,0 +1,82 @@
+package com.ntj.model;
+
+public class JewelleryUsersModel {
+
+
+	String userUno,userDate,userName,userPassword,userCommand,userMode,userTime;
+
+	public JewelleryUsersModel(String userUno, String userDate, String userName, String userPassword,
+			String userCommand, String userMode, String userTime) {
+		super();
+		this.userUno = userUno;
+		this.userDate = userDate;
+		this.userName = userName;
+		this.userPassword = userPassword;
+		this.userCommand = userCommand;
+		this.userMode = userMode;
+		this.userTime = userTime;
+	}
+
+	public JewelleryUsersModel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getUserUno() {
+		return userUno;
+	}
+
+	public void setUserUno(String userUno) {
+		this.userUno = userUno;
+	}
+
+	public String getUserDate() {
+		return userDate;
+	}
+
+	public void setUserDate(String userDate) {
+		this.userDate = userDate;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getUserPassword() {
+		return userPassword;
+	}
+
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
+	}
+
+	public String getUserCommand() {
+		return userCommand;
+	}
+
+	public void setUserCommand(String userCommand) {
+		this.userCommand = userCommand;
+	}
+
+	public String getUserMode() {
+		return userMode;
+	}
+
+	public void setUserMode(String userMode) {
+		this.userMode = userMode;
+	}
+
+	public String getUserTime() {
+		return userTime;
+	}
+
+	public void setUserTime(String userTime) {
+		this.userTime = userTime;
+	}
+
+		
+}
