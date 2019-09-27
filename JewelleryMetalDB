@@ -1,0 +1,152 @@
+package com.ntj.db;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashMap;
+
+
+import com.ntj.model.JewelleryMetalModel;
+import com.ntj.util.DBConnection;
+import com.ntj.util.IdGenerator;
+
+public class JewelleryMetalDB {
+	Connection connection = DBConnection.getDBConnection();
+	public Statement statement = null;
+	public ResultSet resultSet = null;
+	public PreparedStatement preparedStatement = null;
+	IdGenerator idGenerator = new IdGenerator();
+	JewelleryMetalModel jewelleryMetalModel = new JewelleryMetalModel();
+	
+		
+	String jewellery_metal_purchase_insert = "insert into jewellery_metal_purchase(metalMNo,metalDate,metalPRate,metalSRate,metalType,metalName,metalWeight,metalResult,metalPure,metalAmount,metalMode,metalTime)values(?,?,?,?,?,?,?,?,?,?,'OLD',now())";
+	String jewellery_metal_purchase_update = "UPDATE jewellery_metal_purchase SET  metalMNo=?,metalDate=?,metalPRate=?,metalSRate=?,metalType=?,metalName=?,metalWeight=?,metalResult=?,metalPure=?,metalAmount=? WHERE metalMNo='";
+	String jewellery_metal_purchase_editSearchPrint = "select metalMNo,metalDate,metalPRate,metalSRate,metalType,metalName,metalWeight,metalResult,metalPure,metalAmount,metalMode,metalTime from jewellery_metal_purchase";
+	String jewellery_metal_purchase_mno = "select max(metalMNo) from jewellery_metal_purchase";
+	String jewellery_metal_purchase_delete = "delete from jewellery_metal_purchase where metalMNo='"; 
+
+	public boolean getJewelleryMetalInsertUpdate(JewelleryMetalModel jewelleryMetalModel) {
+		try {
+			
+			if (jewelleryMetalModel.getMetalMode().equalsIgnoreCase("NEW")) {
+				preparedStatement = connection.prepareStatement(jewellery_metal_purchase_insert);
+			
+			} else {
+				preparedStatement = connection.prepareStatement(jewellery_metal_purchase_update + jewelleryMetalModel.getMetalMNo()+"'");
+			
+			}
+			preparedStatement.setString(1, jewelleryMetalModel.getMetalMNo());
+			preparedStatement.setString(2, jewelleryMetalModel.getMetalDate());
+			preparedStatement.setString(3, jewelleryMetalModel.getMetalPRate());
+			preparedStatement.setString(4, jewelleryMetalModel.getMetalSRate());
+			preparedStatement.setString(5, jewelleryMetalModel.getMetalType());
+			preparedStatement.setString(6, jewelleryMetalModel.getMetalName());
+			preparedStatement.setString(7, jewelleryMetalModel.getMetalWeight());
+			preparedStatement.setString(8, jewelleryMetalModel.getMetalResult());
+			preparedStatement.setString(9, jewelleryMetalModel.getMetalPure());
+			preparedStatement.setString(10, jewelleryMetalModel.getMetalAmount());
+			
+			preparedStatement.executeUpdate(); 
+
+		} catch (SQLException e) { 
+
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+
+		}
+
+		return true;
+
+	}
+
+	public JewelleryMetalModel getJewelleryMetalMno() {
+
+		try {
+			statement = connection.createStatement();
+
+			resultSet = statement.executeQuery(jewellery_metal_purchase_mno);
+			while (resultSet.next()) {
+			
+				
+				jewelleryMetalModel = new JewelleryMetalModel(idGenerator.getId(resultSet.getString(1)).toString(),"","","","","","","","","","NEW","");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace(); 
+		} 
+		return jewelleryMetalModel;
+
+	} 
+	public JewelleryMetalModel getJewelleryMetalEditSearchPrint(JewelleryMetalModel jewelleryMetalModel) {
+
+		try {
+
+			statement = connection.createStatement();
+			resultSet = statement.executeQuery(jewellery_metal_purchase_editSearchPrint+" where metalMNo='"+jewelleryMetalModel.getMetalMNo()+"' order by metalMNo asc");
+
+			while (resultSet.next()) {
+
+				jewelleryMetalModel = new JewelleryMetalModel(
+						resultSet.getString(1),
+						resultSet.getString(2),
+						resultSet.getString(3),
+						resultSet.getString(4),
+						resultSet.getString(5),
+						resultSet.getString(6),
+						resultSet.getString(7),
+						resultSet.getString(8),
+						resultSet.getString(9),
+						resultSet.getString(10),
+						resultSet.getString(11),
+						resultSet.getString(12));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jewelleryMetalModel;
+	}
+	
+	public HashMap<Integer, JewelleryMetalModel> getJewelleryMetalAllData() {
+		HashMap<Integer, JewelleryMetalModel> jewelleryMetalModelMap = new HashMap<Integer, JewelleryMetalModel>();
+		try {
+			statement = connection.createStatement();
+			int flagValue = 0;
+			resultSet = statement.executeQuery(jewellery_metal_purchase_editSearchPrint);
+			while (resultSet.next()) {
+				flagValue++;
+				jewelleryMetalModelMap.put(flagValue, new JewelleryMetalModel(
+						resultSet.getString(1),
+						resultSet.getString(2),
+						resultSet.getString(3),
+						resultSet.getString(4),
+						resultSet.getString(5),
+						resultSet.getString(6),
+						resultSet.getString(7),
+						resultSet.getString(8),
+						resultSet.getString(9),
+						resultSet.getString(10),
+						resultSet.getString(11),
+						resultSet.getString(12)));
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return jewelleryMetalModelMap;
+	}
+	  
+	public boolean getJewelleryMetalMNoDelete(JewelleryMetalModel jewelleryMetalModel) {
+		try {
+			preparedStatement = connection.prepareStatement(jewellery_metal_purchase_delete+ jewelleryMetalModel.getMetalMNo()+"'");
+			preparedStatement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+}
