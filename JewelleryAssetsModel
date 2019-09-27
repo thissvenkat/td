@@ -1,0 +1,100 @@
+package com.ntj.model;
+
+public class JewelleryAssetsModel {
+
+
+	String assetAno,assetDate,assetName,assetPrice,assetCompany,assetPurchaseBy,assetCommand,assetMode,assetTime;
+
+	public JewelleryAssetsModel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public JewelleryAssetsModel(String assetAno, String assetDate, String assetName, String assetPrice,
+			String assetCompany, String assetPurchaseBy, String assetCommand, String assetMode, String assetTime) {
+		super();
+		this.assetAno = assetAno;
+		this.assetDate = assetDate;
+		this.assetName = assetName;
+		this.assetPrice = assetPrice;
+		this.assetCompany = assetCompany;
+		this.assetPurchaseBy = assetPurchaseBy;
+		this.assetCommand = assetCommand;
+		this.assetMode = assetMode;
+		this.assetTime = assetTime;
+	}
+
+	public String getAssetAno() {
+		return assetAno;
+	}
+
+	public void setAssetAno(String assetAno) {
+		this.assetAno = assetAno;
+	}
+
+	public String getAssetDate() {
+		return assetDate;
+	}
+
+	public void setAssetDate(String assetDate) {
+		this.assetDate = assetDate;
+	}
+
+	public String getAssetName() {
+		return assetName;
+	}
+
+	public void setAssetName(String assetName) {
+		this.assetName = assetName;
+	}
+
+	public String getAssetPrice() {
+		return assetPrice;
+	}
+
+	public void setAssetPrice(String assetPrice) {
+		this.assetPrice = assetPrice;
+	}
+
+	public String getAssetCompany() {
+		return assetCompany;
+	}
+
+	public void setAssetCompany(String assetCompany) {
+		this.assetCompany = assetCompany;
+	}
+
+	public String getAssetPurchaseBy() {
+		return assetPurchaseBy;
+	}
+
+	public void setAssetPurchaseBy(String assetPurchaseBy) {
+		this.assetPurchaseBy = assetPurchaseBy;
+	}
+
+	public String getAssetCommand() {
+		return assetCommand;
+	}
+
+	public void setAssetCommand(String assetCommand) {
+		this.assetCommand = assetCommand;
+	}
+
+	public String getAssetMode() {
+		return assetMode;
+	}
+
+	public void setAssetMode(String assetMode) {
+		this.assetMode = assetMode;
+	}
+
+	public String getAssetTime() {
+		return assetTime;
+	}
+
+	public void setAssetTime(String assetTime) {
+		this.assetTime = assetTime;
+	}
+
+	
+}
