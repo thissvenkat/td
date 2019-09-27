@@ -1,0 +1,333 @@
+  *{
+padding : 0;
+margin : 0;
+border : 0;
+text-transform: uppercase; 
+}
+
+body{
+background-attachment : fixed;
+background-size : 100% auto;
+font-weight: bold;
+font-size: 20px;
+ 
+}
+
+.pageContentdiv{
+float : center; 
+clear : none;
+height : 800px;  
+width : 100%;
+margin-left: auto; margin-right: auto;
+margin-top: 5px;
+}
+
+.pageFirstdiv{
+float : left; 
+clear : none;
+height : 15%;
+width : 100%; 
+border-radius: 12px;
+}    
+
+.pageFirstLeftdiv{
+float : left; 
+clear : none;
+height : 100%;
+width : 20%; 
+border-radius: 12px;
+-webkit-box-shadow: 0 0 4px 3px cyan inset;	
+}
+.pageFirstCentrediv{
+float : left; 
+clear : none;
+height : 100%;
+width : 55%; 
+border-radius: 12px;
+-webkit-box-shadow: 0 0 4px 3px cyan inset;	
+}
+.pageFirstCentreTopdiv{
+	float : left; 
+clear : none;
+height : 50%;
+width : 100%; 
+border-radius: 12px;
+-webkit-box-shadow: 0 0 4px 3px cyan inset;	
+}
+.pageFirstCentreBottomdiv{
+	float : left; 
+clear : none;
+height : 35%;
+width : 100%; 
+border-radius: 12px;
+-webkit-box-shadow: 0 0 4px 3px cyan inset;	
+}
+.pageFirstRightdiv{
+float : left; 
+clear : none;
+height : 100%;
+width : 25%; 
+border-radius: 12px;
+-webkit-box-shadow: 0 0 4px 3px cyan inset;	
+}
+.pageSeconddiv{
+float : left;
+clear : none;
+height : 75%; 
+width : 40%;
+border-radius: 12px;
+-webkit-box-shadow: 0 0 4px 3px rgba(48,244,68,1) inset;
+}
+.pageSecondSalesItemSearchdiv{
+float : left;
+clear : none;
+height : 80%;
+width : 100%; 
+border-radius: 12px; 
+-webkit-box-shadow: 0 0 4px 3px rgba(48,244,68,1) inset; 
+}
+.pageSecondSalesItemSearchHeaddiv{
+float : left;
+clear : none;
+height : 20%;
+width : 100%; 
+border-radius: 12px; 
+-webkit-box-shadow: 0 0 4px 3px rgba(48,244,68,1) inset; 
+}
+.pageSecondSalesItemSearchFirstdiv{
+float : left;
+clear : none;
+height : 80%; 
+width : 50%; 
+border-radius: 12px; 
+-webkit-box-shadow: 0 0 4px 3px rgba(48,244,68,1) inset; 	
+overflow-y: scroll;
+}
+.pageSecondSalesItemSearchSeconddiv{
+	float : left;
+clear : none;
+height : 80%; 
+width : 50%;
+border-radius: 12px; 
+-webkit-box-shadow: 0 0 4px 3px rgba(48,244,68,1) inset; 	
+overflow-y: scroll;
+}
+.pageSecondSalesItemSearchThirddiv{
+float : left;
+clear : none;
+height : 80%;
+width : 25%; 
+border-radius: 12px; 
+-webkit-box-shadow: 0 0 4px 3px rgba(48,244,68,1) inset; 	
+}
+.pageSecondSalesItemSearchFourthdiv{ 
+float : left; 
+clear : none;
+height : 80%; 
+width : 25%;
+border-radius: 12px; 
+-webkit-box-shadow: 0 0 4px 3px rgba(48,244,68,1) inset;
+} 
+.pageThirddiv{
+float : left; 
+clear : none;  
+height :70%;
+width : 40%; 
+border-radius: 12px;
+overflow-y: scroll;
+-webkit-box-shadow: 0 0 4px 3px rgba(48,244,68,1) inset;
+} 
+.pageSecondPurchasediv{
+float : left;
+clear : none;
+height : 75%; 
+width : 35%;
+border-radius: 12px; 
+-webkit-box-shadow: 0 0 4px 3px rgba(48,244,68,1) inset;
+}
+
+
+.pageThirdPurchasediv{
+	float : left; 
+clear : none;
+height :75%; 
+width : 65%;
+border-radius: 12px;
+overflow-y: scroll;
+font-size:15PX;
+-webkit-box-shadow: 0 0 4px 3px rgba(48,244,68,1) inset;
+}
+.pageFourthdiv{
+float : left; 
+clear : none;
+height :75%;
+width : 20%;
+overflow-y: scroll;
+border-radius: 12px;
+-webkit-box-shadow: 0 0 4px 3px rgba(48,244,68,1) inset;
+}
+.pageFifthdiv{
+float : left; 
+clear : none;
+height :5%;	
+width : 100%;
+border-radius: 12px;
+-webkit-box-shadow: 0 0 4px 3px rgba(48,244,68,1) inset;
+}
+.pageSecondInvoicediv{
+float : left;
+clear : none;
+height : 75%; 
+width : 50%;
+border-radius: 12px; 
+-webkit-box-shadow: 0 0 4px 3px rgba(48,244,68,1) inset;
+}
+.pageThirdInvoicediv{
+float : left; 
+clear : none;
+height :75%; 
+width : 35%;
+border-radius: 12px;
+overflow-y: scroll;
+font-size:15PX;
+-webkit-box-shadow: 0 0 4px 3px rgba(48,244,68,1) inset;
+	
+}
+.pageThirdSubInvoicediv{
+float : left;
+background-color:gray; 
+clear : none;
+height :40%; 
+width : 100%;
+border-radius: 12px;
+overflow-y: scroll;
+font-size:15PX;
+-webkit-box-shadow: 0 0 4px 3px rgba(48,244,68,1) inset;
+	
+}
+.pageFourthInvoicediv{
+		float : left; 
+clear : none;
+height :75%; 
+width : 15%;
+border-radius: 12px; 
+overflow-y: scroll;
+font-size:15PX;
+-webkit-box-shadow: 0 0 4px 3px rgba(48,244,68,1) inset;
+}
+.pageFifthInvoicediv{
+		float : left; 
+clear : none;
+height :5%;	
+width : 100%;
+border-radius: 12px;
+-webkit-box-shadow: 0 0 4px 3px rgba(48,244,68,1) inset;
+	
+}
+
+.pageSecondSalesItemdiv{
+float : left; 
+clear : none;
+height :80%;  
+width : 60%;
+border-radius: 12px;
+overflow-y: scroll;
+font-size:15PX;
+-webkit-box-shadow: 0 0 4px 3px rgba(48,244,68,1) inset;
+	
+}
+.pageThirdSalesItemdiv{
+float : left; 
+clear : none;
+height :80%; 
+width : 40%;
+border-radius: 12px;
+overflow-y: scroll;
+font-size:15PX;
+-webkit-box-shadow: 0 0 4px 3px rgba(48,244,68,1) inset;
+	
+}
+.pageSecondSalesFirstItemdiv{
+float : left 
+clear : none;
+height :40%; 
+width : 90%;
+border-radius: 12px;
+background-color:gray;
+overflow-x: scroll;
+overflow-y: scroll;
+font-size:15PX;
+-webkit-box-shadow: 0 0 4px 3px rgba(48,244,68,1) inset;
+
+}
+.pageSecondSalesSecondItemdiv{
+float : left 
+clear : none;
+height :25%; 
+width : 90%;
+border-radius: 12px;
+background-color:gray;
+overflow-x: scroll;
+overflow-y: scroll;
+font-size:15PX;
+-webkit-box-shadow: 0 0 4px 3px rgba(48,244,68,1) inset;
+}
+
+.pageSecondSalesThirdItemdiv{
+float : left 
+clear : none;
+height :15%; 
+width : 90%;
+border-radius: 12px;
+background-color:gray;
+overflow-x: scroll;
+overflow-y: scroll;
+font-size:15PX;
+-webkit-box-shadow: 0 0 4px 3px rgba(48,244,68,1) inset;
+}
+.pageSecondSalesFourthItemdiv{
+float : left 
+clear : none;
+height :15%; 
+width : 90%;
+border-radius: 12px;
+background-color:gray;
+overflow-x: scroll;
+overflow-y: scroll;
+font-size:15PX;
+-webkit-box-shadow: 0 0 4px 3px rgba(48,244,68,1) inset;
+	
+}
+
+.pageSecondInvoicediv{
+float : left;
+clear : none;
+height : 75%; 
+width : 75%;
+border-radius: 12px; 
+-webkit-box-shadow: 0 0 4px 3px rgba(48,244,68,1) inset;
+}
+
+.pageThirdInvoicediv{
+	float : left; 
+clear : none;
+height :75%; 
+width : 25%;
+border-radius: 12px;
+overflow-y: scroll;
+font-size:15PX;
+-webkit-box-shadow: 0 0 4px 3px rgba(48,244,68,1) inset;
+}
+.resultTable{
+text-align: center;
+}
+ table.resultTable { 
+    border-collapse: collapse; 
+  }
+  table.resultTable th{
+  color: #FF1493;
+  }
+ .resultTable td,  table.resultTable th { 
+   border-bottom: 1px solid #EE82EE;
+  }
+   
