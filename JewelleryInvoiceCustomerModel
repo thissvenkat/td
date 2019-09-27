@@ -1,0 +1,523 @@
+package com.ntj.model;
+
+public class JewelleryInvoiceCustomerModel {
+
+	String invoiceCBillNo,invoiceCDate,invoiceCHSNCode,invoiceCName,invoiceCMobile,invoiceCAddress1,invoiceCAddress2,invoiceCAddress3,invoiceCGST,
+	invoiceCSNo1,invoiceCParticular1,invoiceCWeight1,invoiceCLess1,invoiceCGWeight1,invoiceCWastage1,invoiceCNWeight1,invoiceCRate1,invoiceCAmount1,
+	invoiceCSNo2,invoiceCParticular2,invoiceCWeight2,invoiceCLess2,invoiceCGWeight2,invoiceCWastage2,invoiceCNWeight2,invoiceCRate2,invoiceCAmount2,
+	invoiceCSNo3,invoiceCParticular3,invoiceCWeight3,invoiceCLess3,invoiceCGWeight3,invoiceCWastage3,invoiceCNWeight3,invoiceCRate3,invoiceCAmount3,
+	invoiceCSNo4,invoiceCParticular4,invoiceCWeight4,invoiceCLess4,invoiceCGWeight4,invoiceCWastage4,invoiceCNWeight4,invoiceCRate4,invoiceCAmount4,
+	invoiceCHMCharges,invoiceCSubTotal,invoiceCSGST,invoiceCCGST,invoiceCRoundOff,invoiceCTotal,invoiceCPayMode,invoiceCMode,invoiceCTime;
+
+	
+	public JewelleryInvoiceCustomerModel(String invoiceCBillNo, String invoiceCDate, String invoiceCHSNCode,
+			String invoiceCName, String invoiceCMobile, String invoiceCAddress1, String invoiceCAddress2,
+			String invoiceCAddress3, String invoiceCGST, String invoiceCSNo1, String invoiceCParticular1,
+			String invoiceCWeight1, String invoiceCLess1, String invoiceCGWeight1, String invoiceCWastage1,
+			String invoiceCNWeight1, String invoiceCRate1, String invoiceCAmount1, String invoiceCSNo2,
+			String invoiceCParticular2, String invoiceCWeight2, String invoiceCLess2, String invoiceCGWeight2,
+			String invoiceCWastage2, String invoiceCNWeight2, String invoiceCRate2, String invoiceCAmount2,
+			String invoiceCSNo3, String invoiceCParticular3, String invoiceCWeight3, String invoiceCLess3,
+			String invoiceCGWeight3, String invoiceCWastage3, String invoiceCNWeight3, String invoiceCRate3,
+			String invoiceCAmount3, String invoiceCSNo4, String invoiceCParticular4, String invoiceCWeight4,
+			String invoiceCLess4, String invoiceCGWeight4, String invoiceCWastage4, String invoiceCNWeight4,
+			String invoiceCRate4, String invoiceCAmount4, String invoiceCHMCharges, String invoiceCSubTotal,
+			String invoiceCSGST, String invoiceCCGST, String invoiceCRoundOff, String invoiceCTotal,
+			String invoiceCPayMode, String invoiceCMode, String invoiceCTime) {
+		super();
+		this.invoiceCBillNo = invoiceCBillNo;
+		this.invoiceCDate = invoiceCDate;
+		this.invoiceCHSNCode = invoiceCHSNCode;
+		this.invoiceCName = invoiceCName;
+		this.invoiceCMobile = invoiceCMobile;
+		this.invoiceCAddress1 = invoiceCAddress1;
+		this.invoiceCAddress2 = invoiceCAddress2;
+		this.invoiceCAddress3 = invoiceCAddress3;
+		this.invoiceCGST = invoiceCGST;
+		this.invoiceCSNo1 = invoiceCSNo1;
+		this.invoiceCParticular1 = invoiceCParticular1;
+		this.invoiceCWeight1 = invoiceCWeight1;
+		this.invoiceCLess1 = invoiceCLess1;
+		this.invoiceCGWeight1 = invoiceCGWeight1;
+		this.invoiceCWastage1 = invoiceCWastage1;
+		this.invoiceCNWeight1 = invoiceCNWeight1;
+		this.invoiceCRate1 = invoiceCRate1;
+		this.invoiceCAmount1 = invoiceCAmount1;
+		this.invoiceCSNo2 = invoiceCSNo2;
+		this.invoiceCParticular2 = invoiceCParticular2;
+		this.invoiceCWeight2 = invoiceCWeight2;
+		this.invoiceCLess2 = invoiceCLess2;
+		this.invoiceCGWeight2 = invoiceCGWeight2;
+		this.invoiceCWastage2 = invoiceCWastage2;
+		this.invoiceCNWeight2 = invoiceCNWeight2;
+		this.invoiceCRate2 = invoiceCRate2;
+		this.invoiceCAmount2 = invoiceCAmount2;
+		this.invoiceCSNo3 = invoiceCSNo3;
+		this.invoiceCParticular3 = invoiceCParticular3;
+		this.invoiceCWeight3 = invoiceCWeight3;
+		this.invoiceCLess3 = invoiceCLess3;
+		this.invoiceCGWeight3 = invoiceCGWeight3;
+		this.invoiceCWastage3 = invoiceCWastage3;
+		this.invoiceCNWeight3 = invoiceCNWeight3;
+		this.invoiceCRate3 = invoiceCRate3;
+		this.invoiceCAmount3 = invoiceCAmount3;
+		this.invoiceCSNo4 = invoiceCSNo4;
+		this.invoiceCParticular4 = invoiceCParticular4;
+		this.invoiceCWeight4 = invoiceCWeight4;
+		this.invoiceCLess4 = invoiceCLess4;
+		this.invoiceCGWeight4 = invoiceCGWeight4;
+		this.invoiceCWastage4 = invoiceCWastage4;
+		this.invoiceCNWeight4 = invoiceCNWeight4;
+		this.invoiceCRate4 = invoiceCRate4;
+		this.invoiceCAmount4 = invoiceCAmount4;
+		this.invoiceCHMCharges = invoiceCHMCharges;
+		this.invoiceCSubTotal = invoiceCSubTotal;
+		this.invoiceCSGST = invoiceCSGST;
+		this.invoiceCCGST = invoiceCCGST;
+		this.invoiceCRoundOff = invoiceCRoundOff;
+		this.invoiceCTotal = invoiceCTotal;
+		this.invoiceCPayMode = invoiceCPayMode;
+		this.invoiceCMode = invoiceCMode;
+		this.invoiceCTime = invoiceCTime;
+	}
+
+	public JewelleryInvoiceCustomerModel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public String getInvoiceCBillNo() {
+		return invoiceCBillNo;
+	}
+
+	public void setInvoiceCBillNo(String invoiceCBillNo) {
+		this.invoiceCBillNo = invoiceCBillNo;
+	}
+
+	public String getInvoiceCDate() {
+		return invoiceCDate;
+	}
+
+	public void setInvoiceCDate(String invoiceCDate) {
+		this.invoiceCDate = invoiceCDate;
+	}
+
+	public String getInvoiceCHSNCode() {
+		return invoiceCHSNCode;
+	}
+
+	public void setInvoiceCHSNCode(String invoiceCHSNCode) {
+		this.invoiceCHSNCode = invoiceCHSNCode;
+	}
+
+	public String getInvoiceCName() {
+		return invoiceCName;
+	}
+
+	public void setInvoiceCName(String invoiceCName) {
+		this.invoiceCName = invoiceCName;
+	}
+
+	public String getInvoiceCMobile() {
+		return invoiceCMobile;
+	}
+
+	public void setInvoiceCMobile(String invoiceCMobile) {
+		this.invoiceCMobile = invoiceCMobile;
+	}
+
+	public String getInvoiceCAddress1() {
+		return invoiceCAddress1;
+	}
+
+	public void setInvoiceCAddress1(String invoiceCAddress1) {
+		this.invoiceCAddress1 = invoiceCAddress1;
+	}
+
+	public String getInvoiceCAddress2() {
+		return invoiceCAddress2;
+	}
+
+	public void setInvoiceCAddress2(String invoiceCAddress2) {
+		this.invoiceCAddress2 = invoiceCAddress2;
+	}
+
+	public String getInvoiceCAddress3() {
+		return invoiceCAddress3;
+	}
+
+	public void setInvoiceCAddress3(String invoiceCAddress3) {
+		this.invoiceCAddress3 = invoiceCAddress3;
+	}
+
+	public String getInvoiceCGST() {
+		return invoiceCGST;
+	}
+
+	public void setInvoiceCGST(String invoiceCGST) {
+		this.invoiceCGST = invoiceCGST;
+	}
+
+	public String getInvoiceCSNo1() {
+		return invoiceCSNo1;
+	}
+
+	public void setInvoiceCSNo1(String invoiceCSNo1) {
+		this.invoiceCSNo1 = invoiceCSNo1;
+	}
+
+	public String getInvoiceCParticular1() {
+		return invoiceCParticular1;
+	}
+
+	public void setInvoiceCParticular1(String invoiceCParticular1) {
+		this.invoiceCParticular1 = invoiceCParticular1;
+	}
+
+	public String getInvoiceCWeight1() {
+		return invoiceCWeight1;
+	}
+
+	public void setInvoiceCWeight1(String invoiceCWeight1) {
+		this.invoiceCWeight1 = invoiceCWeight1;
+	}
+
+	public String getInvoiceCLess1() {
+		return invoiceCLess1;
+	}
+
+	public void setInvoiceCLess1(String invoiceCLess1) {
+		this.invoiceCLess1 = invoiceCLess1;
+	}
+
+	public String getInvoiceCGWeight1() {
+		return invoiceCGWeight1;
+	}
+
+	public void setInvoiceCGWeight1(String invoiceCGWeight1) {
+		this.invoiceCGWeight1 = invoiceCGWeight1;
+	}
+
+	public String getInvoiceCWastage1() {
+		return invoiceCWastage1;
+	}
+
+	public void setInvoiceCWastage1(String invoiceCWastage1) {
+		this.invoiceCWastage1 = invoiceCWastage1;
+	}
+
+	public String getInvoiceCNWeight1() {
+		return invoiceCNWeight1;
+	}
+
+	public void setInvoiceCNWeight1(String invoiceCNWeight1) {
+		this.invoiceCNWeight1 = invoiceCNWeight1;
+	}
+
+	public String getInvoiceCRate1() {
+		return invoiceCRate1;
+	}
+
+	public void setInvoiceCRate1(String invoiceCRate1) {
+		this.invoiceCRate1 = invoiceCRate1;
+	}
+
+	public String getInvoiceCAmount1() {
+		return invoiceCAmount1;
+	}
+
+	public void setInvoiceCAmount1(String invoiceCAmount1) {
+		this.invoiceCAmount1 = invoiceCAmount1;
+	}
+
+	public String getInvoiceCSNo2() {
+		return invoiceCSNo2;
+	}
+
+	public void setInvoiceCSNo2(String invoiceCSNo2) {
+		this.invoiceCSNo2 = invoiceCSNo2;
+	}
+
+	public String getInvoiceCParticular2() {
+		return invoiceCParticular2;
+	}
+
+	public void setInvoiceCParticular2(String invoiceCParticular2) {
+		this.invoiceCParticular2 = invoiceCParticular2;
+	}
+
+	public String getInvoiceCWeight2() {
+		return invoiceCWeight2;
+	}
+
+	public void setInvoiceCWeight2(String invoiceCWeight2) {
+		this.invoiceCWeight2 = invoiceCWeight2;
+	}
+
+	public String getInvoiceCLess2() {
+		return invoiceCLess2;
+	}
+
+	public void setInvoiceCLess2(String invoiceCLess2) {
+		this.invoiceCLess2 = invoiceCLess2;
+	}
+
+	public String getInvoiceCGWeight2() {
+		return invoiceCGWeight2;
+	}
+
+	public void setInvoiceCGWeight2(String invoiceCGWeight2) {
+		this.invoiceCGWeight2 = invoiceCGWeight2;
+	}
+
+	public String getInvoiceCWastage2() {
+		return invoiceCWastage2;
+	}
+
+	public void setInvoiceCWastage2(String invoiceCWastage2) {
+		this.invoiceCWastage2 = invoiceCWastage2;
+	}
+
+	public String getInvoiceCNWeight2() {
+		return invoiceCNWeight2;
+	}
+
+	public void setInvoiceCNWeight2(String invoiceCNWeight2) {
+		this.invoiceCNWeight2 = invoiceCNWeight2;
+	}
+
+	public String getInvoiceCRate2() {
+		return invoiceCRate2;
+	}
+
+	public void setInvoiceCRate2(String invoiceCRate2) {
+		this.invoiceCRate2 = invoiceCRate2;
+	}
+
+	public String getInvoiceCAmount2() {
+		return invoiceCAmount2;
+	}
+
+	public void setInvoiceCAmount2(String invoiceCAmount2) {
+		this.invoiceCAmount2 = invoiceCAmount2;
+	}
+
+	public String getInvoiceCSNo3() {
+		return invoiceCSNo3;
+	}
+
+	public void setInvoiceCSNo3(String invoiceCSNo3) {
+		this.invoiceCSNo3 = invoiceCSNo3;
+	}
+
+	public String getInvoiceCParticular3() {
+		return invoiceCParticular3;
+	}
+
+	public void setInvoiceCParticular3(String invoiceCParticular3) {
+		this.invoiceCParticular3 = invoiceCParticular3;
+	}
+
+	public String getInvoiceCWeight3() {
+		return invoiceCWeight3;
+	}
+
+	public void setInvoiceCWeight3(String invoiceCWeight3) {
+		this.invoiceCWeight3 = invoiceCWeight3;
+	}
+
+	public String getInvoiceCLess3() {
+		return invoiceCLess3;
+	}
+
+	public void setInvoiceCLess3(String invoiceCLess3) {
+		this.invoiceCLess3 = invoiceCLess3;
+	}
+
+	public String getInvoiceCGWeight3() {
+		return invoiceCGWeight3;
+	}
+
+	public void setInvoiceCGWeight3(String invoiceCGWeight3) {
+		this.invoiceCGWeight3 = invoiceCGWeight3;
+	}
+
+	public String getInvoiceCWastage3() {
+		return invoiceCWastage3;
+	}
+
+	public void setInvoiceCWastage3(String invoiceCWastage3) {
+		this.invoiceCWastage3 = invoiceCWastage3;
+	}
+
+	public String getInvoiceCNWeight3() {
+		return invoiceCNWeight3;
+	}
+
+	public void setInvoiceCNWeight3(String invoiceCNWeight3) {
+		this.invoiceCNWeight3 = invoiceCNWeight3;
+	}
+
+	public String getInvoiceCRate3() {
+		return invoiceCRate3;
+	}
+
+	public void setInvoiceCRate3(String invoiceCRate3) {
+		this.invoiceCRate3 = invoiceCRate3;
+	}
+
+	public String getInvoiceCAmount3() {
+		return invoiceCAmount3;
+	}
+
+	public void setInvoiceCAmount3(String invoiceCAmount3) {
+		this.invoiceCAmount3 = invoiceCAmount3;
+	}
+
+	public String getInvoiceCSNo4() {
+		return invoiceCSNo4;
+	}
+
+	public void setInvoiceCSNo4(String invoiceCSNo4) {
+		this.invoiceCSNo4 = invoiceCSNo4;
+	}
+
+	public String getInvoiceCParticular4() {
+		return invoiceCParticular4;
+	}
+
+	public void setInvoiceCParticular4(String invoiceCParticular4) {
+		this.invoiceCParticular4 = invoiceCParticular4;
+	}
+
+	public String getInvoiceCWeight4() {
+		return invoiceCWeight4;
+	}
+
+	public void setInvoiceCWeight4(String invoiceCWeight4) {
+		this.invoiceCWeight4 = invoiceCWeight4;
+	}
+
+	public String getInvoiceCLess4() {
+		return invoiceCLess4;
+	}
+
+	public void setInvoiceCLess4(String invoiceCLess4) {
+		this.invoiceCLess4 = invoiceCLess4;
+	}
+
+	public String getInvoiceCGWeight4() {
+		return invoiceCGWeight4;
+	}
+
+	public void setInvoiceCGWeight4(String invoiceCGWeight4) {
+		this.invoiceCGWeight4 = invoiceCGWeight4;
+	}
+
+	public String getInvoiceCWastage4() {
+		return invoiceCWastage4;
+	}
+
+	public void setInvoiceCWastage4(String invoiceCWastage4) {
+		this.invoiceCWastage4 = invoiceCWastage4;
+	}
+
+	public String getInvoiceCNWeight4() {
+		return invoiceCNWeight4;
+	}
+
+	public void setInvoiceCNWeight4(String invoiceCNWeight4) {
+		this.invoiceCNWeight4 = invoiceCNWeight4;
+	}
+
+	public String getInvoiceCRate4() {
+		return invoiceCRate4;
+	}
+
+	public void setInvoiceCRate4(String invoiceCRate4) {
+		this.invoiceCRate4 = invoiceCRate4;
+	}
+
+	public String getInvoiceCAmount4() {
+		return invoiceCAmount4;
+	}
+
+	public void setInvoiceCAmount4(String invoiceCAmount4) {
+		this.invoiceCAmount4 = invoiceCAmount4;
+	}
+
+	public String getInvoiceCHMCharges() {
+		return invoiceCHMCharges;
+	}
+
+	public void setInvoiceCHMCharges(String invoiceCHMCharges) {
+		this.invoiceCHMCharges = invoiceCHMCharges;
+	}
+
+	public String getInvoiceCSubTotal() {
+		return invoiceCSubTotal;
+	}
+
+	public void setInvoiceCSubTotal(String invoiceCSubTotal) {
+		this.invoiceCSubTotal = invoiceCSubTotal;
+	}
+
+	public String getInvoiceCSGST() {
+		return invoiceCSGST;
+	}
+
+	public void setInvoiceCSGST(String invoiceCSGST) {
+		this.invoiceCSGST = invoiceCSGST;
+	}
+
+	public String getInvoiceCCGST() {
+		return invoiceCCGST;
+	}
+
+	public void setInvoiceCCGST(String invoiceCCGST) {
+		this.invoiceCCGST = invoiceCCGST;
+	}
+
+	public String getInvoiceCRoundOff() {
+		return invoiceCRoundOff;
+	}
+
+	public void setInvoiceCRoundOff(String invoiceCRoundOff) {
+		this.invoiceCRoundOff = invoiceCRoundOff;
+	}
+
+	public String getInvoiceCTotal() {
+		return invoiceCTotal;
+	}
+
+	public void setInvoiceCTotal(String invoiceCTotal) {
+		this.invoiceCTotal = invoiceCTotal;
+	}
+
+	public String getInvoiceCPayMode() {
+		return invoiceCPayMode;
+	}
+
+	public void setInvoiceCPayMode(String invoiceCPayMode) {
+		this.invoiceCPayMode = invoiceCPayMode;
+	}
+
+	public String getInvoiceCMode() {
+		return invoiceCMode;
+	}
+
+	public void setInvoiceCMode(String invoiceCMode) {
+		this.invoiceCMode = invoiceCMode;
+	}
+
+	public String getInvoiceCTime() {
+		return invoiceCTime;
+	}
+
+	public void setInvoiceCTime(String invoiceCTime) {
+		this.invoiceCTime = invoiceCTime;
+	}
+	
+	
+	
+}
