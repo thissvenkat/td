@@ -1,0 +1,54 @@
+package com.ntj.controller;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.ntj.db.JewelleryContactDB;
+import com.ntj.model.JewelleryContactModel;
+import com.ntj.util.IdGenerator;
+
+/**
+ * Servlet implementation class JewelleryContactController
+ */
+@WebServlet("/JewelleryContactController")
+public class JewelleryContactController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	JewelleryContactModel jewelleryContactModel = new JewelleryContactModel();
+	JewelleryContactDB jewelleryContactDB = new JewelleryContactDB();
+	IdGenerator idGenerator = new IdGenerator();
+	
+    public JewelleryContactController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		jewelleryContactModel.setContactCno(idGenerator.getEmptyForNull(request.getParameter("contactCno")));
+		jewelleryContactModel.setContactDate(idGenerator.getEmptyForNull(request.getParameter("contactDate")));
+		jewelleryContactModel.setContactType(idGenerator.getEmptyForNull(request.getParameter("contactType")));
+		jewelleryContactModel.setContactName(idGenerator.getEmptyForNull(request.getParameter("contactName")));
+		jewelleryContactModel.setContactAddress(idGenerator.getEmptyForNull(request.getParameter("contactAddress")));
+		jewelleryContactModel.setContactMobile(idGenerator.getEmptyForNull(request.getParameter("contactMobile")));
+		jewelleryContactModel.setContactCommand(idGenerator.getEmptyForNull(request.getParameter("contactCommand")));
+		jewelleryContactModel.setContactBalance(idGenerator.getEmptyForNull(request.getParameter("contactBalance")));
+		jewelleryContactModel.setContactMode(idGenerator.getEmptyForNull(request.getParameter("contactMode")));
+		jewelleryContactModel.setContactTime(idGenerator.getEmptyForNull(request.getParameter("contactTime")));
+
+		if (request.getParameter("submit").toString().equalsIgnoreCase("SAVE")) { 
+			
+			jewelleryContactDB.getJewelleryContactInsertUpdate(jewelleryContactModel);
+			response.sendRedirect("JewelleryContactPage.jsp");	
+		
+	}}
+
+}
