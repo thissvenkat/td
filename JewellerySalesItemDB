@@ -1,0 +1,435 @@
+package com.ntj.db;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+
+import com.ntj.model.JewelleryGoldRateModel;
+import com.ntj.model.JewellerySalesItemModel;
+import com.ntj.util.DBConnection;
+import com.ntj.util.IdGenerator;
+
+
+
+public class JewellerySalesItemDB {
+	Connection connection = DBConnection.getDBConnection();
+	public Statement statement = null;
+	public ResultSet resultSet = null;
+	public PreparedStatement preparedStatement = null;
+	IdGenerator idGenerator = new IdGenerator();
+	 DecimalFormat decimalFormat = new DecimalFormat("#.###");
+	ArrayList<JewellerySalesItemModel> arrayListSales=new ArrayList<JewellerySalesItemModel>(); 
+	JewellerySalesItemModel jewellerySalesItemModel=new JewellerySalesItemModel();
+	
+	static final String sales_bill_insert = "insert into sales_bill(salesItemBNo,salesItemBDate,salesItemCNo,salesItemCname,salesItemCmobile,salesItemOldMbal,salesItemOldCbal,salesItemMbal,salesItemCbal,salesItemSNoTot,salesItemSCountTot,salesItemSNetWeightTot,salesItemSPureTot,salesItemRNoTot,salesItemRWeightTot,salesItemRPureTot,salesItemCHPure,salesItemBMode,salesItemCMode,salesItemCHMode,salesItemBTime)values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,'OLD','OLD','OLD',now())";
+	String sales_bill_update="Update sales_bill set salesItemBNo=?,salesItemBDate=?,salesItemCNo=?,salesItemCname,salesItemCmobile=?,salesItemOldMbal=?,salesItemOldCbal=?,salesItemMbal=?,salesItemCbal=?,salesItemSNoTot=?,salesItemSCountTot=?,salesItemSNetWeightTot=?,salesItemSPureTot,salesItemRNoTot=?,salesItemRWeightTot=?,salesItemRPureTot=?,salesItemCHPure=?,salesItemCMode=?,salesItemCHMode=?,salesItemBTime=now() where salesItemBNo='";
+	String sales_bill_editSearchPrint = "select salesItemBNo,salesItemBDate,salesItemCNo,salesItemCname,salesItemCmobile,salesItemOldMbal,salesItemOldCbal,salesItemMbal,salesItemCbal,salesItemSNoTot,salesItemSCountTot,salesItemSNetWeightTot,salesItemSPureTot,salesItemRNoTot,salesItemRWeightTot,salesItemRPureTot,salesItemCHPure,salesItemBMode,salesItemCMode,salesItemCHMode,salesItemBTime from sales_bill";
+	String sales_bill_delete="delete from sales_bill where salesItemBNo='";
+    String sales_bill_Bno_Cno_New="select (select max(salesItemBNo) from sales_bill), (select max(custCNo) from customer),(select goldBRate from gold_rate order by goldGno desc limit 1),(select goldSRate from gold_rate order by goldGno desc limit 1)"; 
+  
+    
+    static String sales_item_insert="insert into sales_item(salesItemBNo,salesItemCNo,salesItemCname,salesItemSNo, salesItemSType, salesItemSCount,salesItemSWeight,salesItemSMinus,salesItemSNetWeight,salesItemSWastage,salesItemSPure,salesItemSMode,salesItemSTime) values";
+    String sales_item_editSearchPrint = "select salesItemBNo,salesItemCNo,salesItemCname,salesItemSSNo,salesItemSNo, salesItemSType, salesItemSCount,salesItemSWeight,salesItemSMinus,salesItemSNetWeight,salesItemSWastage,salesItemSPure,salesItemSMode,salesItemSTime from sales_item";
+    String sales_item_delete="delete from sales_item where salesItemBNo='";
+    
+    static String sales_receive_insert="insert into sales_receive(salesItemBNo,salesItemCNo,salesItemCname,salesItemRNo,salesItemRWeight,salesItemRResult,salesItemRCalc,salesItemRPure,salesItemRMode,salesItemRTime) values ";
+    String sales_receive_editSearchPrint = "select salesItemBNo,salesItemCNo,salesItemCname,salesItemRRNo,salesItemRNo,salesItemRWeight,salesItemRResult,salesItemRCalc,salesItemRPure,salesItemRMode,salesItemRTime from sales_receive";
+    
+    static String sales_cash_insert = "insert into sales_cash(salesItemBNo,salesItemCNo,salesItemCname,salesItemCHNo,salesItemCHCash,salesItemCHRate,salesItemCHPure,salesItemCHMode,salesItemCHTime)values(?,?,?,?,?,?,?,'OLD',now())";
+	String sales_cash_update="Update sales_cash set salesItemBNo=?,salesItemCNo=?,salesItemCname=?,salesItemCHNo=?,salesItemCHCash=?,salesItemCHRate=?,salesItemCHPure=?,salesItemCHTime=now() where salesItemCHNo='";
+	String sales_cash_editSearchPrint = "select salesItemBNo,salesItemCNo,salesItemCname,salesItemCHNo,salesItemCHCash,salesItemCHRate,salesItemCHPure,salesItemCHMode,salesItemCHTime from sales_cash";
+	String sales_cash_delete="delete from sales_cash where salesItemCHNo='";
+  
+	static final String gold_rate_insert = "insert into gold_rate(GoldBRate,GoldSRate,GoldTime)values(?,?,now())";
+    
+    public boolean getJewellerySalesItemInsert(JewellerySalesItemModel jewellerySalesItemModel) {
+		try { 
+			 
+			if (jewellerySalesItemModel.getSalesItemBMode().equalsIgnoreCase("NEW")) {
+				
+				preparedStatement = connection.prepareStatement(sales_bill_insert);
+			} else {
+				preparedStatement = connection.prepareStatement(sales_bill_update + jewellerySalesItemModel.getSalesItemBNo()+"'");
+				
+			} 
+			
+			preparedStatement.setString(1,jewellerySalesItemModel.getSalesItemBNo());
+			preparedStatement.setString(2,jewellerySalesItemModel.getSalesItemBDate());
+			preparedStatement.setString(3,jewellerySalesItemModel.getSalesItemCNo());
+			preparedStatement.setString(4,jewellerySalesItemModel.getSalesItemCname());
+			preparedStatement.setString(5,jewellerySalesItemModel.getSalesItemCmobile());
+			
+			preparedStatement.setString(6,decimalFormat.format(Double.parseDouble(jewellerySalesItemModel.getSalesItemOldMbal().toString())));
+			
+			preparedStatement.setString(7,decimalFormat.format(Double.parseDouble(jewellerySalesItemModel.getSalesItemOldCbal().toString()))); 			
+			
+			preparedStatement.setString(8,decimalFormat.format(Double.parseDouble(jewellerySalesItemModel.getSalesItemMbal().toString())));
+			preparedStatement.setString(9,decimalFormat.format(Double.parseDouble(jewellerySalesItemModel.getSalesItemCbal().toString()))); 
+			preparedStatement.setString(10,jewellerySalesItemModel.getSalesItemSNoTot());
+			preparedStatement.setString(11,jewellerySalesItemModel.getSalesItemSCountTot());
+			preparedStatement.setString(12,decimalFormat.format(Double.parseDouble(jewellerySalesItemModel.getSalesItemSNetWeightTot().toString())));
+			preparedStatement.setString(13,decimalFormat.format(Double.parseDouble(jewellerySalesItemModel.getSalesItemSPureTot().toString())));
+			preparedStatement.setString(14,jewellerySalesItemModel.getSalesItemRNoTot());
+			preparedStatement.setString(15,decimalFormat.format(Double.parseDouble(jewellerySalesItemModel.getSalesItemRWeightTot().toString()))); 
+			preparedStatement.setString(16,decimalFormat.format(Double.parseDouble(jewellerySalesItemModel.getSalesItemRPureTot().toString())));
+			preparedStatement.setString(17,decimalFormat.format(Double.parseDouble(jewellerySalesItemModel.getSalesItemCHPure().toString())));
+			preparedStatement.executeUpdate();
+			
+		} catch (SQLException e) {
+		e.printStackTrace();
+		}
+
+		return true;
+
+	}
+	
+	public JewellerySalesItemModel getJewellerySalesItemEditBillNo(JewellerySalesItemModel jewellerySalesItemModel) {
+		try {
+
+			statement = connection.createStatement();
+					resultSet = statement.executeQuery(sales_bill_editSearchPrint + " Where salesItemBNo='" + jewellerySalesItemModel.getSalesItemBNo()+"'");
+		
+			while (resultSet.next()) {
+				jewellerySalesItemModel = new JewellerySalesItemModel(resultSet.getString(1), resultSet.getString(2),
+						resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6),
+						resultSet.getString(7), resultSet.getString(8), resultSet.getString(9),resultSet.getString(10),
+						resultSet.getString(11),resultSet.getString(12),resultSet.getString(13),resultSet.getString(14),
+						resultSet.getString(15),resultSet.getString(16),resultSet.getString(17),resultSet.getString(18),resultSet.getString(19),resultSet.getString(20),resultSet.getString(21));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jewellerySalesItemModel;
+	}
+	
+
+	public JewellerySalesItemModel getJewellerySalesItemNewBnoCno() {
+
+		try {
+			statement = connection.createStatement();
+
+			resultSet = statement.executeQuery(sales_bill_Bno_Cno_New);
+			while (resultSet.next()) {
+				jewellerySalesItemModel = new JewellerySalesItemModel(idGenerator.getId(resultSet.getString(1)).toString(),"",idGenerator.getId(resultSet.getString(2)).toString(),resultSet.getString(3).toString(),resultSet.getString(4).toString(),"","","0","0","0","0","","","","","","","","","NEW","NEW","NEW","");
+			 
+			}
+	
+		} catch (SQLException e) { 
+			// TODO Auto-generated catch block
+			e.printStackTrace(); 
+		} 
+		return jewellerySalesItemModel;
+
+	} 
+	
+	public boolean getJewellerySalesItemBNoDelete(JewellerySalesItemModel jewellerySalesItemModel) {
+		try {
+			preparedStatement = connection.prepareStatement(sales_bill_delete+ jewellerySalesItemModel.getSalesItemBNo()+"'");
+			preparedStatement.execute(); 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+	
+	public HashMap<Integer, JewellerySalesItemModel> getJewellerySalesBillAllData(JewellerySalesItemModel jewellerySalesItemModel) {
+		HashMap<Integer, JewellerySalesItemModel> jewellerySalesItemModelMap = new HashMap<Integer, JewellerySalesItemModel>();
+		try {
+			statement = connection.createStatement();
+			int flagValue = 0;
+			resultSet = statement.executeQuery(sales_bill_editSearchPrint+" where salesItemBDate between '"+jewellerySalesItemModel.getSalesItemSearchDateFrom()+" 00:00:00' and '"+jewellerySalesItemModel.getSalesItemSearchDateTo()+" 23:59:59' and salesItemBNo like'%"+idGenerator.getEmptyForNull(jewellerySalesItemModel.getSalesItemSearchBillNo())+"%' and salesItemCNo like '%"+idGenerator.getEmptyForNull(jewellerySalesItemModel.getSalesItemSearchCustNo())+"%' and salesItemCname like '%"+idGenerator.getEmptyForNull(jewellerySalesItemModel.getSalesItemSearchCustName())+"%'");
+			while (resultSet.next()) {
+				flagValue++;
+				jewellerySalesItemModelMap.put(flagValue, new JewellerySalesItemModel(
+						resultSet.getString(1),
+						resultSet.getString(2),
+						resultSet.getString(3),
+						resultSet.getString(4), 
+						resultSet.getString(5),
+						resultSet.getString(6),
+						resultSet.getString(7),
+						resultSet.getString(8),
+						resultSet.getString(9),
+						resultSet.getString(10),
+						resultSet.getString(11),
+						resultSet.getString(12),
+						resultSet.getString(13),
+						resultSet.getString(14),
+						resultSet.getString(15), 
+						resultSet.getString(16),
+						resultSet.getString(17),
+						resultSet.getString(18),
+						resultSet.getString(19),
+						resultSet.getString(20),
+						resultSet.getString(21)));
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return jewellerySalesItemModelMap;
+	} 
+
+	
+	public HashMap<Integer, JewellerySalesItemModel> getJewellerySalesBillsLastFew() {
+		HashMap<Integer, JewellerySalesItemModel> jewellerySalesItemModelMap = new HashMap<Integer, JewellerySalesItemModel>();
+		try {
+			statement = connection.createStatement();
+			int flagValue = 0; 
+			resultSet = statement.executeQuery(sales_bill_editSearchPrint+" limit 20" ); 
+			while (resultSet.next()) {
+				flagValue++;
+				jewellerySalesItemModelMap.put(flagValue, new JewellerySalesItemModel(
+						resultSet.getString(1),
+						resultSet.getString(2),
+						resultSet.getString(3),
+						resultSet.getString(4), 
+						resultSet.getString(5),
+						resultSet.getString(6),
+						resultSet.getString(7),
+						resultSet.getString(8),
+						resultSet.getString(9),
+						resultSet.getString(10),
+						resultSet.getString(11),
+						resultSet.getString(12),
+						resultSet.getString(13),
+						resultSet.getString(14),
+						resultSet.getString(15), 
+						resultSet.getString(16),
+						resultSet.getString(17),
+						resultSet.getString(18),
+						resultSet.getString(19),
+						resultSet.getString(20),
+						resultSet.getString(21)));
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return jewellerySalesItemModelMap;
+	} 
+	
+public boolean getSalesItemInsert(ArrayList arrayListSales){
+	sales_item_insert="insert into sales_item(salesItemBNo,salesItemCNo,salesItemCname,salesItemSNo, salesItemSType, salesItemSCount,salesItemSWeight,salesItemSMinus,salesItemSNetWeight,salesItemSWastage,salesItemSPure,salesItemSMode,salesItemSTime) values";
+	Iterator itr=arrayListSales.iterator();  
+	
+	  //traversing elements of ArrayList object  
+	  while(itr.hasNext()){  
+		  JewellerySalesItemModel jewellerySalesItemModel=(JewellerySalesItemModel)itr.next(); 
+		  sales_item_insert=sales_item_insert+"('"+jewellerySalesItemModel.getSalesItemBNo()+"','"
+		  +jewellerySalesItemModel.getSalesItemCNo()+"','"
+		  +jewellerySalesItemModel.getSalesItemCname()+"','"
+		  +jewellerySalesItemModel.getSalesItemSNo()+"','"
+		  +jewellerySalesItemModel.getSalesItemSType()+"','"
+		  +jewellerySalesItemModel.getSalesItemSCount()+"','"
+		  +decimalFormat.format(Double.parseDouble(jewellerySalesItemModel.getSalesItemSWeight().toString()))+"','"
+		  +decimalFormat.format(Double.parseDouble(jewellerySalesItemModel.getSalesItemSMinus().toString()))+"','"
+		  +decimalFormat.format(Double.parseDouble(jewellerySalesItemModel.getSalesItemSNetWeight().toString()))+"','"
+		  +jewellerySalesItemModel.getSalesItemSWastage()+"','"
+		  +decimalFormat.format(Double.parseDouble(jewellerySalesItemModel.getSalesItemSPure().toString()))+"','OLD',now()),";
+
+	  }
+	  try {
+		  arrayListSales.clear();
+		  
+		  preparedStatement = connection.prepareStatement(sales_item_insert.substring(0, sales_item_insert.length()-1));
+			preparedStatement.execute();
+		
+	  } catch (SQLException e) {
+			e.printStackTrace();
+		} 
+		return true; 
+	}
+public HashMap<Integer, JewellerySalesItemModel> getSalesItemEditSearchPrint(JewellerySalesItemModel jewellerySalesItemModel) {
+	HashMap<Integer, JewellerySalesItemModel> jewellerySalesItemModelMap = new HashMap<Integer, JewellerySalesItemModel>();
+	try {
+		statement = connection.createStatement();
+		int flagValue = 0;
+		resultSet = statement.executeQuery(sales_item_editSearchPrint+" where salesItemBNo='"+jewellerySalesItemModel.getSalesItemBNo()+"'");
+		while (resultSet.next()) {
+			flagValue++;
+			jewellerySalesItemModelMap.put(flagValue, new JewellerySalesItemModel(
+					resultSet.getString(1),
+					resultSet.getString(2),
+					resultSet.getString(3),
+					resultSet.getString(4),
+					resultSet.getString(5),
+					resultSet.getString(6),
+					resultSet.getString(7),
+					resultSet.getString(8),
+					resultSet.getString(9),
+					resultSet.getString(10),
+					resultSet.getString(11),
+					resultSet.getString(12),
+					resultSet.getString(13),
+					resultSet.getString(14)));
+
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	return jewellerySalesItemModelMap;
+}
+public HashMap<Integer, JewellerySalesItemModel> getSalesItemEditSearchPrintAllData(JewellerySalesItemModel jewellerySalesItemModel) {
+	HashMap<Integer, JewellerySalesItemModel> jewellerySalesItemModelMap = new HashMap<Integer, JewellerySalesItemModel>();
+	try {
+		statement = connection.createStatement();
+		int flagValue = 0;
+		
+		resultSet = statement.executeQuery(sales_item_editSearchPrint+" where salesItemSTime between '"+jewellerySalesItemModel.getSalesItemSearchDateFrom()+" 00:00:00' and '"+jewellerySalesItemModel.getSalesItemSearchDateTo()+" 23:59:59' and salesItemBNo like'%"+idGenerator.getEmptyForNull(jewellerySalesItemModel.getSalesItemSearchBillNo())+"%' and salesItemCNo like '%"+idGenerator.getEmptyForNull(jewellerySalesItemModel.getSalesItemSearchCustNo())+"%' and salesItemCname like '%"+idGenerator.getEmptyForNull(jewellerySalesItemModel.getSalesItemSearchCustName())+"%'");
+		while (resultSet.next()) {
+			flagValue++;
+			jewellerySalesItemModelMap.put(flagValue, new JewellerySalesItemModel(
+					resultSet.getString(1),
+					resultSet.getString(2),
+					resultSet.getString(3),
+					resultSet.getString(4), 
+					resultSet.getString(5),
+					resultSet.getString(6),
+					resultSet.getString(7),
+					resultSet.getString(8), 
+					resultSet.getString(9),
+					resultSet.getString(10),
+					resultSet.getString(11),
+					resultSet.getString(12),
+					resultSet.getString(13),
+					resultSet.getString(14)));
+
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	return jewellerySalesItemModelMap;
+}
+
+
+
+
+public boolean getSalesItemReceiveInsert(ArrayList arrayListReceived){
+sales_receive_insert="insert into sales_receive(salesItemBNo,salesItemCNo,salesItemCname,salesItemRNo,salesItemRWeight,salesItemRResult,salesItemRCalc,salesItemRPure,salesItemRMode,salesItemRTime) values ";
+Iterator itr=arrayListReceived.iterator();  
+	  while(itr.hasNext()){  
+		  JewellerySalesItemModel jewellerySalesItemModel=(JewellerySalesItemModel)itr.next(); 
+		  sales_receive_insert=sales_receive_insert+"('"+jewellerySalesItemModel.getSalesItemBNo()+"','"
+		  +jewellerySalesItemModel.getSalesItemCNo()+"','"
+		  +jewellerySalesItemModel.getSalesItemCname()+"','"
+		  +jewellerySalesItemModel.getSalesItemRNo()+"','"
+		  +decimalFormat.format(Double.parseDouble(jewellerySalesItemModel.getSalesItemRWeight().toString()))+"','"
+		  +jewellerySalesItemModel.getSalesItemRResult()+"','"
+		  +jewellerySalesItemModel.getSalesItemRCalc()+"','"
+		  +decimalFormat.format(Double.parseDouble(jewellerySalesItemModel.getSalesItemRPure().toString()))+"','OLD',now()),";
+	  }
+	  try {
+		  arrayListReceived.clear();
+			preparedStatement = connection.prepareStatement(sales_receive_insert.substring(0, sales_receive_insert.length()-1));
+			preparedStatement.execute(); 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
+		return true; 
+	}
+
+public HashMap<Integer, JewellerySalesItemModel> getSalesItemReceiveEditSearchPrint(JewellerySalesItemModel jewellerySalesItemModel) {
+	HashMap<Integer, JewellerySalesItemModel> jewellerySalesItemReceiveModelMap = new HashMap<Integer, JewellerySalesItemModel>();
+	try {
+		statement = connection.createStatement();
+		int flagValue = 0;
+		resultSet = statement.executeQuery(sales_receive_editSearchPrint+" where salesItemBNo='"+jewellerySalesItemModel.getSalesItemBNo()+"'");
+		while (resultSet.next()) {
+			
+			flagValue++;
+			jewellerySalesItemReceiveModelMap.put(flagValue, new JewellerySalesItemModel(
+					resultSet.getString(1), 
+					resultSet.getString(2),
+					resultSet.getString(3),
+					resultSet.getString(4), 
+					resultSet.getString(5),
+					resultSet.getString(6),
+					resultSet.getString(7),
+					resultSet.getString(8),
+					resultSet.getString(9), 
+					resultSet.getString(10),
+					resultSet.getString(11)));
+
+		}
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
+	return jewellerySalesItemReceiveModelMap;
+}
+
+
+
+public boolean getJewellerySalesCashInsert(JewellerySalesItemModel jewellerySalesItemModel) {
+	try { 
+	
+		if (jewellerySalesItemModel.getSalesItemCHMode().equalsIgnoreCase("NEW")) {
+			
+			preparedStatement = connection.prepareStatement(sales_cash_insert);
+		} else {
+			preparedStatement = connection.prepareStatement(sales_cash_update + jewellerySalesItemModel.getSalesItemCHNo()+"'");
+			
+		} 
+		
+		preparedStatement.setString(1,jewellerySalesItemModel.getSalesItemBNo());
+		preparedStatement.setString(2,jewellerySalesItemModel.getSalesItemCNo());
+		preparedStatement.setString(3,jewellerySalesItemModel.getSalesItemCname());
+		preparedStatement.setString(4,jewellerySalesItemModel.getSalesItemCHNo());
+		preparedStatement.setString(5,jewellerySalesItemModel.getSalesItemCHCash());
+		preparedStatement.setString(6,jewellerySalesItemModel.getSalesItemCHRate());
+		preparedStatement.setString(7,decimalFormat.format(Double.parseDouble(jewellerySalesItemModel.getSalesItemCHPure().toString())));
+		preparedStatement.executeUpdate();
+		
+	} catch (SQLException e) {
+	e.printStackTrace();
+	}
+	return true;
+}
+
+
+public JewellerySalesItemModel getJewellerySalesCashEditBillNo(JewellerySalesItemModel jewellerySalesItemModel) {
+	try {  
+
+		statement = connection.createStatement();
+				resultSet = statement.executeQuery(sales_cash_editSearchPrint + " Where salesItemBNo='" + jewellerySalesItemModel.getSalesItemBNo()+"'");
+	
+		while (resultSet.next()) {
+
+			jewellerySalesItemModel = new JewellerySalesItemModel(resultSet.getString(1), resultSet.getString(2),
+					resultSet.getString(3), resultSet.getString(4), resultSet.getString(5), resultSet.getString(6),
+					resultSet.getString(7), resultSet.getString(8),resultSet.getString(9));
+
+		}
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	return jewellerySalesItemModel;
+}
+
+
+public boolean getJewelleryGoldRateInsert(JewelleryGoldRateModel jewelleryGoldRateModel) {
+	try { 
+		 
+			
+			preparedStatement = connection.prepareStatement(gold_rate_insert);
+		preparedStatement.setString(1,jewelleryGoldRateModel.getGoldBRate());
+		preparedStatement.setString(2,jewelleryGoldRateModel.getGoldSRate());
+		preparedStatement.executeUpdate();
+		
+	} catch (SQLException e) {
+	e.printStackTrace();
+	}
+
+	return true;
+
+}
+
+}
