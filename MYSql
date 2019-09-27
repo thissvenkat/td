@@ -1,0 +1,150 @@
+customer | CREATE TABLE `customer` (
+  `custCNo` varchar(10) DEFAULT NULL,
+  `custDate` datetime DEFAULT NULL,
+  `custName` varchar(100) DEFAULT NULL,
+  `custMobile` varchar(30) DEFAULT NULL,
+  `custAddress1` varchar(100) DEFAULT NULL,
+  `custAddress2` varchar(100) DEFAULT NULL,
+  `custCity` varchar(25) DEFAULT NULL,
+  `custState` varchar(30) DEFAULT NULL,
+  `custGSTNo` varchar(30) DEFAULT NULL,
+  `custPANNo` varchar(30) DEFAULT NULL,
+  `custCommand` varchar(100) DEFAULT NULL,
+  `custMbal` double DEFAULT NULL,
+  `custCbal` double DEFAULT NULL,
+  `custMode` varchar(10) DEFAULT NULL,
+  `custTime` datetime DEFAULT NULL,
+  `custOldMbal` double DEFAULT NULL,
+  `custOldCbal` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 |
+
+ gold_rate | CREATE TABLE `gold_rate` (
+  `GoldGno` int(10) NOT NULL AUTO_INCREMENT,
+  `GoldBRate` double DEFAULT NULL,
+  `GoldSRate` double DEFAULT NULL,
+  `GoldTime` datetime DEFAULT NULL,
+  PRIMARY KEY (`GoldGno`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1 |\
+
+
+ item_type | CREATE TABLE `item_type` (
+  `itemIno` varchar(10) DEFAULT NULL,
+  `itemDate` datetime DEFAULT NULL,
+  `itemType` varchar(50) DEFAULT NULL,
+  `itemPurchase` double DEFAULT NULL,
+  `itemSelling` double DEFAULT NULL,
+  `itemPStone` double DEFAULT NULL,
+  `itemSStone` double DEFAULT NULL,
+  `itemCommand` varchar(150) DEFAULT NULL,
+  `itemMode` varchar(10) DEFAULT NULL,
+  `itemTime` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 |
++-----------+----------------------------------
+
+
+ jewellery_purchase | CREATE TABLE `jewellery_purchase` (
+  `purchasePno` varchar(10) NOT NULL DEFAULT '',
+  `purchaseDate` datetime DEFAULT NULL,
+  `purchaseFrom` varchar(100) DEFAULT NULL,
+  `purchaseType` varchar(100) DEFAULT NULL,
+  `purchaseMelting` double DEFAULT NULL,
+  `purchaseWeight` double DEFAULT NULL,
+  `purchaseWastage` double DEFAULT NULL,
+  `purchaseKWastage` double DEFAULT NULL,
+  `purchaseCount` double DEFAULT NULL,
+  `purchasePure` double DEFAULT NULL,
+  `purchaseSettle` double DEFAULT NULL,
+  `purchaseLess` double DEFAULT NULL,
+  `purchaseCommand` varchar(150) DEFAULT NULL,
+  `purchaseMode` varchar(10) DEFAULT NULL,
+  `purchaseTime` datetime DEFAULT NULL,
+  PRIMARY KEY (`purchasePno`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 |
+
+ jewellery_users | CREATE TABLE `jewellery_users` (
+  `userUno` varchar(10) DEFAULT NULL,
+  `userDate` datetime DEFAULT NULL,
+  `userName` varchar(100) DEFAULT NULL,
+  `userPassword` varchar(25) DEFAULT NULL,
+  `userCommand` varchar(100) DEFAULT NULL,
+  `userMode` varchar(10) DEFAULT NULL,
+  `userTime` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 |
+
+sales_bill | CREATE TABLE `sales_bill` (
+  `salesItemBNo` varchar(10) DEFAULT NULL,
+  `salesItemBDate` datetime DEFAULT NULL,
+  `salesItemCNo` varchar(10) DEFAULT NULL,
+  `salesItemCname` varchar(100) DEFAULT NULL,
+  `salesItemCmobile` varchar(25) DEFAULT NULL,
+  `salesItemMbal` double DEFAULT NULL,
+  `salesItemCbal` double DEFAULT NULL,
+  `salesItemSNoTot` double DEFAULT NULL,
+  `salesItemSCountTot` double DEFAULT NULL,
+  `salesItemSNetWeightTot` double DEFAULT NULL,
+  `salesItemSPureTot` double DEFAULT NULL,
+  `salesItemRNoTot` double DEFAULT NULL,
+  `salesItemRWeightTot` double DEFAULT NULL,
+  `salesItemRPureTot` double DEFAULT NULL,
+  `salesItemBMode` varchar(10) DEFAULT NULL,
+  `salesItemCMode` varchar(10) DEFAULT NULL,
+  `salesItemBTime` datetime DEFAULT NULL,
+  `salesItemCHPure` double DEFAULT NULL,
+  `salesItemCHMode` varchar(10) DEFAULT NULL,
+  `salesItemOldMbal` double DEFAULT NULL,
+  `salesItemOldCbal` double DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 |
+
+sales_cash | CREATE TABLE `sales_cash` (
+  `salesItemBNo` varchar(10) DEFAULT NULL,
+  `salesItemCNo` varchar(10) DEFAULT NULL,
+  `salesItemCname` varchar(130) DEFAULT NULL,
+  `salesItemCHNo` int(10) NOT NULL AUTO_INCREMENT,
+  `salesItemCHCash` double DEFAULT NULL,
+  `salesItemCHRate` double DEFAULT NULL,
+  `salesItemCHPure` double DEFAULT NULL,
+  `salesItemCHMode` varchar(10) DEFAULT NULL,
+  `salesItemCHTime` datetime DEFAULT NULL,
+  PRIMARY KEY (`salesItemCHNo`)
+  
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 |
+
+
+
+
+ sales_item | CREATE TABLE `sales_item` (
+  `salesItemBNo` varchar(10) DEFAULT NULL,
+  `salesItemCNo` varchar(10) DEFAULT NULL,
+  `salesItemCname` varchar(150) DEFAULT NULL,
+  `salesItemSSNo` int(10) NOT NULL AUTO_INCREMENT,
+  `salesItemSNo` varchar(10) DEFAULT NULL,
+  `salesItemSType` varchar(50) DEFAULT NULL,
+  `salesItemSCount` double DEFAULT NULL,
+  `salesItemSWeight` double DEFAULT NULL,
+  `salesItemSMinus` double DEFAULT NULL,
+  `salesItemSNetWeight` double DEFAULT NULL,
+  `salesItemSWastage` double DEFAULT NULL,
+  `salesItemSPure` double DEFAULT NULL,
+  `salesItemSMode` varchar(10) DEFAULT NULL,
+  `salesItemSTime` datetime DEFAULT NULL,
+  PRIMARY KEY (`salesItemSSNo`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1 |
+
+ sales_receive | CREATE TABLE `sales_receive` (
+  `salesItemBNo` varchar(10) DEFAULT NULL,
+  `salesItemCNo` varchar(10) DEFAULT NULL,
+  `salesItemRRNo` int(10) NOT NULL AUTO_INCREMENT,
+  `salesItemRNo` varchar(10) DEFAULT NULL,
+  `salesItemRWeight` double DEFAULT NULL,
+  `salesItemRResult` double DEFAULT NULL,
+  `salesItemRCalc` double DEFAULT NULL,
+  `salesItemRPure` double DEFAULT NULL,
+  `salesItemRMode` varchar(10) DEFAULT NULL,
+  `salesItemRTime` datetime DEFAULT NULL,
+  `salesItemCname` varchar(120) DEFAULT NULL,
+  PRIMARY KEY (`salesItemRRNo`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1 |
+
+
+
+
