@@ -1,0 +1,158 @@
+package com.ntj.db;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashMap;
+
+
+import com.ntj.model.JewelleryPurchaseModel;
+import com.ntj.util.DBConnection;
+import com.ntj.util.IdGenerator;
+
+public class JewelleryPurchaseDB {
+	Connection connection = DBConnection.getDBConnection();
+	public Statement statement = null;
+	public ResultSet resultSet = null;
+	public PreparedStatement preparedStatement = null;
+	IdGenerator idGenerator = new IdGenerator();
+	JewelleryPurchaseModel jewelleryPurchaseModel = new JewelleryPurchaseModel();
+			
+	String jewellery_purchase_insert = "insert into jewellery_purchase(purchasePno,purchaseDate,purchaseFrom,purchaseType,purchaseMelting,purchaseWeight,purchaseWastage,purchaseKWastage,purchaseCount,purchasePure,purchaseSettle,purchaseLess,purchaseCommand,purchaseMode,purchaseTime)values(?,?,?,?,?,?,?,?,?,?,?,?,?,'OLD',now())";
+	String jewellery_purchase_update = "UPDATE jewellery_purchase SET  purchasePno=?,purchaseDate=?,purchaseFrom=?,purchaseType=?,purchaseMelting=?,purchaseWeight=?,purchaseWastage=?,purchaseKWastage=?,purchaseCount=?,purchasePure=?,purchaseSettle=?,purchaseLess=?,purchaseCommand=?,purchaseTime=now() WHERE purchasePno='";
+	String jewellery_purchase_editSearchPrint = "select purchasePno,purchaseDate,purchaseFrom,purchaseType,purchaseMelting,purchaseWeight,purchaseWastage,purchaseKWastage,purchaseCount,purchasePure,purchaseSettle,purchaseLess,purchaseCommand,purchaseMode,purchaseTime from jewellery_purchase";
+	String jewellery_purchase_Pno = "select max(purchasePno) from jewellery_purchase";
+	String jewellery_purchase_delete = "delete from jewellery_purchase where purchasePno='"; 
+
+	public boolean getJewelleryPurchaseInsertUpdate(JewelleryPurchaseModel jewelleryPurchaseModel) {
+		try {
+			
+			if (jewelleryPurchaseModel.getPurchaseMode().equalsIgnoreCase("NEW")) {
+				preparedStatement = connection.prepareStatement(jewellery_purchase_insert);
+			
+			} else {
+				preparedStatement = connection.prepareStatement(jewellery_purchase_update + jewelleryPurchaseModel.getPurchasePno()+"'");
+			
+			}
+			preparedStatement.setString(1, jewelleryPurchaseModel.getPurchasePno());
+			preparedStatement.setString(2, jewelleryPurchaseModel.getPurchaseDate());
+			preparedStatement.setString(3, jewelleryPurchaseModel.getPurchaseFrom());
+			preparedStatement.setString(4, jewelleryPurchaseModel.getPurchaseType());
+			preparedStatement.setString(5, jewelleryPurchaseModel.getPurchaseMelting());
+			preparedStatement.setString(6, jewelleryPurchaseModel.getPurchaseWeight());
+			preparedStatement.setString(7, jewelleryPurchaseModel.getPurchaseWastage());
+			preparedStatement.setString(8, jewelleryPurchaseModel.getPurchaseKWastage());
+			preparedStatement.setString(9, jewelleryPurchaseModel.getPurchaseCount());
+			preparedStatement.setString(10, jewelleryPurchaseModel.getPurchasePure());  
+			preparedStatement.setString(11, jewelleryPurchaseModel.getPurchaseSettle());
+			preparedStatement.setString(12, jewelleryPurchaseModel.getPurchaseLess());
+			preparedStatement.setString(13, jewelleryPurchaseModel.getPurchaseCommand());
+			preparedStatement.executeUpdate(); 
+
+		} catch (SQLException e) { 
+
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+
+		}
+
+		return true;
+
+	}
+
+	public JewelleryPurchaseModel getJewellerypurchasePno() {
+
+		try {
+			statement = connection.createStatement();
+
+			resultSet = statement.executeQuery(jewellery_purchase_Pno);
+			while (resultSet.next()) {
+			
+				
+				jewelleryPurchaseModel = new JewelleryPurchaseModel(idGenerator.getId(resultSet.getString(1)).toString(),"","","","92.00","0","0","0","0","0","0","0"," ","NEW","");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block 
+			e.printStackTrace(); 
+		} 
+		return jewelleryPurchaseModel;
+
+	} 
+	public JewelleryPurchaseModel getJewelleryPurchaseEditSearchPrint(JewelleryPurchaseModel jewelleryPurchaseModel) {
+
+		try { 
+
+			statement = connection.createStatement();
+			resultSet = statement.executeQuery(jewellery_purchase_editSearchPrint+" where purchasePno='"+jewelleryPurchaseModel.getPurchasePno()+"' order by purchasePno asc");
+			while (resultSet.next()) {
+				jewelleryPurchaseModel = new JewelleryPurchaseModel(
+						resultSet.getString(1),
+						resultSet.getString(2),
+						resultSet.getString(3),
+						resultSet.getString(4),
+						resultSet.getString(5),
+						resultSet.getString(6),
+						resultSet.getString(7),
+						resultSet.getString(8),
+						resultSet.getString(9),
+						resultSet.getString(10),
+						resultSet.getString(11),
+						resultSet.getString(12),
+						resultSet.getString(13),
+						resultSet.getString(14),
+						resultSet.getString(15));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jewelleryPurchaseModel;
+	}
+	
+	public HashMap<Integer, JewelleryPurchaseModel> getJewelleryPurchaseModelAllData() {
+		HashMap<Integer, JewelleryPurchaseModel> jewelleryPurchaseModelMap = new HashMap<Integer, JewelleryPurchaseModel>();
+		try {
+			statement = connection.createStatement();
+			int flagValue = 0;
+			resultSet = statement.executeQuery(jewellery_purchase_editSearchPrint+" order by purchaseDate desc");
+			while (resultSet.next()) {
+				flagValue++;
+				jewelleryPurchaseModelMap.put(flagValue, new JewelleryPurchaseModel(
+						resultSet.getString(1),
+						resultSet.getString(2),
+						resultSet.getString(3),
+						resultSet.getString(4),
+						resultSet.getString(5),
+						resultSet.getString(6),
+						resultSet.getString(7),
+						resultSet.getString(8),
+						resultSet.getString(9),
+						resultSet.getString(10),
+						resultSet.getString(11),
+						resultSet.getString(12),
+						resultSet.getString(13),
+						resultSet.getString(14),
+						resultSet.getString(15)));
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return jewelleryPurchaseModelMap;
+	}
+	  
+	public boolean getJewelleryPurchasePNoDelete(JewelleryPurchaseModel jewelleryPurchaseModel) {
+System.out.println("calling delete");
+		try {
+			preparedStatement = connection.prepareStatement(jewellery_purchase_delete+ jewelleryPurchaseModel.getPurchasePno()+"'");
+			preparedStatement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+}
