@@ -1,0 +1,138 @@
+package com.ntj.model;
+
+public class JewelleryOrderModel {
+
+
+	String orderOno,orderDate,orderParty,orderType,orderWeight,orderAMetal,orderAAmount,orderWastage,orderImage,orderMaker,orderCommand,orderMode,orderTime;
+
+	public JewelleryOrderModel() {
+		super();
+	
+	}
+
+	public JewelleryOrderModel(String orderOno, String orderDate, String orderParty, String orderType,
+			String orderWeight, String orderAMetal, String orderAAmount, String orderWastage, String orderImage,
+			String orderMaker, String orderCommand, String orderMode, String orderTime) {
+		super();
+		this.orderOno = orderOno;
+		this.orderDate = orderDate;
+		this.orderParty = orderParty;
+		this.orderType = orderType;
+		this.orderWeight = orderWeight;
+		this.orderAMetal = orderAMetal;
+		this.orderAAmount = orderAAmount;
+		this.orderWastage = orderWastage;
+		this.orderImage = orderImage;
+		this.orderMaker = orderMaker;
+		this.orderCommand = orderCommand;
+		this.orderMode = orderMode;
+		this.orderTime = orderTime;
+	}
+
+	public String getOrderOno() {
+		return orderOno;
+	}
+
+	public void setOrderOno(String orderOno) {
+		this.orderOno = orderOno;
+	}
+
+	public String getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(String orderDate) {
+		this.orderDate = orderDate;
+	}
+
+	public String getOrderParty() {
+		return orderParty;
+	}
+
+	public void setOrderParty(String orderParty) {
+		this.orderParty = orderParty;
+	}
+
+	public String getOrderType() {
+		return orderType;
+	}
+
+	public void setOrderType(String orderType) {
+		this.orderType = orderType;
+	}
+
+	public String getOrderWeight() {
+		return orderWeight;
+	}
+
+	public void setOrderWeight(String orderWeight) {
+		this.orderWeight = orderWeight;
+	}
+
+	public String getOrderAMetal() {
+		return orderAMetal;
+	}
+
+	public void setOrderAMetal(String orderAMetal) {
+		this.orderAMetal = orderAMetal;
+	}
+
+	public String getOrderAAmount() {
+		return orderAAmount;
+	}
+
+	public void setOrderAAmount(String orderAAmount) {
+		this.orderAAmount = orderAAmount;
+	}
+
+	public String getOrderWastage() {
+		return orderWastage;
+	}
+
+	public void setOrderWastage(String orderWastage) {
+		this.orderWastage = orderWastage;
+	}
+
+	public String getOrderImage() {
+		return orderImage;
+	}
+
+	public void setOrderImage(String orderImage) {
+		this.orderImage = orderImage;
+	}
+
+	public String getOrderMaker() {
+		return orderMaker;
+	}
+
+	public void setOrderMaker(String orderMaker) {
+		this.orderMaker = orderMaker;
+	}
+
+	public String getOrderCommand() {
+		return orderCommand;
+	}
+
+	public void setOrderCommand(String orderCommand) {
+		this.orderCommand = orderCommand;
+	}
+
+	public String getOrderMode() {
+		return orderMode;
+	}
+
+	public void setOrderMode(String orderMode) {
+		this.orderMode = orderMode;
+	}
+
+	public String getOrderTime() {
+		return orderTime;
+	}
+
+	public void setOrderTime(String orderTime) {
+		this.orderTime = orderTime;
+	}
+
+	
+
+}
