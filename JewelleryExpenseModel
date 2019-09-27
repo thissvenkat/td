@@ -1,0 +1,110 @@
+package com.ntj.model;
+
+public class JewelleryExpenseModel {
+
+
+	String expenseEno,expenseDate,expenseType,expenseATime,expenseParticular,expenseAmount,expenseMetal,expenseCommand,expenseMode,expenseTime;
+
+	public JewelleryExpenseModel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public JewelleryExpenseModel(String expenseEno, String expenseDate, String expenseType, String expenseATime,
+			String expenseParticular, String expenseAmount, String expenseMetal, String expenseCommand,
+			String expenseMode, String expenseTime) {
+		super();
+		this.expenseEno = expenseEno;
+		this.expenseDate = expenseDate;
+		this.expenseType = expenseType;
+		this.expenseATime = expenseATime;
+		this.expenseParticular = expenseParticular;
+		this.expenseAmount = expenseAmount;
+		this.expenseMetal = expenseMetal;
+		this.expenseCommand = expenseCommand;
+		this.expenseMode = expenseMode;
+		this.expenseTime = expenseTime;
+	}
+
+	public String getExpenseEno() {
+		return expenseEno;
+	}
+
+	public void setExpenseEno(String expenseEno) {
+		this.expenseEno = expenseEno;
+	}
+
+	public String getExpenseDate() {
+		return expenseDate;
+	}
+
+	public void setExpenseDate(String expenseDate) {
+		this.expenseDate = expenseDate;
+	}
+
+	public String getExpenseType() {
+		return expenseType;
+	}
+
+	public void setExpenseType(String expenseType) {
+		this.expenseType = expenseType;
+	}
+
+	public String getExpenseATime() {
+		return expenseATime;
+	}
+
+	public void setExpenseATime(String expenseATime) {
+		this.expenseATime = expenseATime;
+	}
+
+	public String getExpenseParticular() {
+		return expenseParticular;
+	}
+
+	public void setExpenseParticular(String expenseParticular) {
+		this.expenseParticular = expenseParticular;
+	}
+
+	public String getExpenseAmount() {
+		return expenseAmount;
+	}
+
+	public void setExpenseAmount(String expenseAmount) {
+		this.expenseAmount = expenseAmount;
+	}
+
+	public String getExpenseMetal() {
+		return expenseMetal;
+	}
+
+	public void setExpenseMetal(String expenseMetal) {
+		this.expenseMetal = expenseMetal;
+	}
+
+	public String getExpenseCommand() {
+		return expenseCommand;
+	}
+
+	public void setExpenseCommand(String expenseCommand) {
+		this.expenseCommand = expenseCommand;
+	}
+
+	public String getExpenseMode() {
+		return expenseMode;
+	}
+
+	public void setExpenseMode(String expenseMode) {
+		this.expenseMode = expenseMode;
+	}
+
+	public String getExpenseTime() {
+		return expenseTime;
+	}
+
+	public void setExpenseTime(String expenseTime) {
+		this.expenseTime = expenseTime;
+	}
+
+
+}
