@@ -1,0 +1,66 @@
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>.: JEWELLERY || LOGIN :.</title>
+	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<link href="assets/css/1Login-font-awesome.css" rel="stylesheet">
+	<link href="assets/css/Loginstyle.css" rel='stylesheet' type='text/css' />
+	
+</head>
+
+<body>
+	<h1>Login</h1>
+	<div class="clear-loading spinner">
+		<span></span>
+	</div>
+	<div class="w3ls-login box box--big">
+		<!-- form starts here -->
+		<form  method="post" action="JewelleryUsersController">
+			<div class="agile-field-txt">
+				<label><i class="fa fa-user" aria-hidden="true"></i> Username </label>
+				<input type="text" name="userName" id="userName" placeholder="Enter User Name" required="" autofocus="autofocus" />
+			</div>
+			<div class="agile-field-txt">
+				<label><i class="fa fa-unlock-alt" aria-hidden="true"></i> password </label>
+				<input type="password" name="userPassword" id="userPassword" placeholder="Enter Password" required="" id="myInput" />
+				<div class="agile_label">
+					<input id="check3" name="check3" type="checkbox" value="show password" onclick="myFunction()">
+					<label class="check" for="check3">Show password</label>
+				</div>
+				
+			</div>
+			<!-- script for show password -->
+			<script>
+				function myFunction() {
+					var x = document.getElementById("myInput");
+					if (x.type === "password") {
+						x.type = "text";
+					} else {
+						x.type = "password";
+					}
+				}
+			</script>
+			<!-- //end script -->
+				<input type="submit" name="submit" value="LOGIN">
+				
+		</form>
+	</div>
+	
+	<div class="copy-wthree">
+		<p>
+			Srii Akshayaa Jewellery
+		</p>
+	</div>
+	
+</body>
+</html>
