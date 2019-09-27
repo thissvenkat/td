@@ -1,0 +1,141 @@
+package com.ntj.controller;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.ntj.db.JewelleryCustomerDB;
+import com.ntj.db.JewellerySalesItemDB;
+import com.ntj.model.JewelleryCustomerModel;
+import com.ntj.model.JewelleryGoldRateModel;
+import com.ntj.model.JewellerySalesItemModel;
+import com.ntj.util.IdGenerator;
+
+@WebServlet("/JewellerySalesItemController")
+public class JewellerySalesItemController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	IdGenerator idGenerator = new IdGenerator(); 
+	JewellerySalesItemModel jewellerySalesItemModel = new JewellerySalesItemModel();
+	JewelleryCustomerModel jewelleryCustomerModel = new JewelleryCustomerModel();
+	JewelleryGoldRateModel jewelleryGoldRateModel=new JewelleryGoldRateModel(); 
+	JewellerySalesItemDB jewellerySalesItemDB = new JewellerySalesItemDB();
+	JewelleryCustomerDB jewelleryCustomerDB = new JewelleryCustomerDB();
+	public JewellerySalesItemController() {
+        super();   
+    }
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
+	}
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	PrintWriter out = response.getWriter();
+	int i;
+	
+
+	
+	
+	ArrayList<JewellerySalesItemModel> arrayListSales=new ArrayList<JewellerySalesItemModel>();
+	ArrayList<JewellerySalesItemModel> arrayListReceived=new ArrayList<JewellerySalesItemModel>();
+	
+	jewellerySalesItemModel.setSalesItemBNo(idGenerator.getZeroForNull(request.getParameter("salesItemBNo")));
+	jewellerySalesItemModel.setSalesItemCNo(idGenerator.getZeroForNull(request.getParameter("salesItemCNo")));
+	jewellerySalesItemModel.setSalesItemCname(idGenerator.getZeroForNull(request.getParameter("salesItemCname")));
+	jewellerySalesItemModel.setSalesItemCmobile(idGenerator.getZeroForNull(request.getParameter("salesItemCmobile")));
+	jewellerySalesItemModel.setSalesItemOldMbal(idGenerator.getZeroForNull(request.getParameter("salesItemMbal")));
+	jewellerySalesItemModel.setSalesItemOldCbal(idGenerator.getZeroForNull(request.getParameter("salesItemCbal")));
+	jewellerySalesItemModel.setSalesItemMbal(idGenerator.getZeroForNull(request.getParameter("salesItemNewMBal")));
+	jewellerySalesItemModel.setSalesItemCbal(idGenerator.getZeroForNull(request.getParameter("salesItemNewCBal")));
+	jewellerySalesItemModel.setSalesItemBDate(idGenerator.getZeroForNull(request.getParameter("salesItemBDate")));
+	jewellerySalesItemModel.setSalesItemSNoTot(idGenerator.getZeroForNull(request.getParameter("salesItemSNoTot")));
+	jewellerySalesItemModel.setSalesItemSCountTot(idGenerator.getZeroForNull(request.getParameter("salesItemSCountTot")));
+	jewellerySalesItemModel.setSalesItemSNetWeightTot(idGenerator.getZeroForNull(request.getParameter("salesItemSNetWeightTot")));
+	jewellerySalesItemModel.setSalesItemSPureTot(idGenerator.getZeroForNull(request.getParameter("salesItemSPureTot")));
+	jewellerySalesItemModel.setSalesItemRNoTot(idGenerator.getZeroForNull(request.getParameter("salesItemRNoTot")));
+	jewellerySalesItemModel.setSalesItemRWeightTot(idGenerator.getZeroForNull(request.getParameter("salesItemRWeightTot")));
+	jewellerySalesItemModel.setSalesItemCHPure(idGenerator.getZeroForNull(request.getParameter("salesItemCHPure")));
+	jewellerySalesItemModel.setSalesItemRPureTot(idGenerator.getZeroForNull(request.getParameter("salesItemRPureTot")));
+	jewellerySalesItemModel.setSalesItemBMode(idGenerator.getZeroForNull(request.getParameter("salesItemBMode")));
+	jewellerySalesItemModel.setSalesItemCMode(idGenerator.getZeroForNull(request.getParameter("salesItemCMode")));
+	jewellerySalesItemModel.setSalesItemBTime(idGenerator.getZeroForNull(request.getParameter("salesItemBTime")));
+	jewelleryCustomerModel.setCustCNo(idGenerator.getZeroForNull(request.getParameter("salesItemCNo")));
+	jewelleryCustomerModel.setCustDate(idGenerator.getZeroForNull(request.getParameter("salesItemBDate")));
+	jewelleryCustomerModel.setCustName(idGenerator.getZeroForNull(request.getParameter("salesItemCname")));
+	jewelleryCustomerModel.setCustMobile(idGenerator.getZeroForNull(request.getParameter("salesItemCmobile")));
+	jewelleryCustomerModel.setCustOldMbal(idGenerator.getZeroForNull(request.getParameter("salesItemMbal")));
+	jewelleryCustomerModel.setCustOldCbal(idGenerator.getZeroForNull(request.getParameter("salesItemCbal")));
+	jewelleryCustomerModel.setCustMbal(idGenerator.getZeroForNull(request.getParameter("salesItemNewMBal")));
+	jewelleryCustomerModel.setCustCbal(idGenerator.getZeroForNull(request.getParameter("salesItemNewCBal")));
+	jewelleryCustomerModel.setCustMode(idGenerator.getZeroForNull(request.getParameter("salesItemCMode")));
+	jewelleryCustomerModel.setCustTime(idGenerator.getZeroForNull(request.getParameter("custTime")));
+
+	if(request.getParameter("submit").toString().equalsIgnoreCase("SAVE")) { 
+		jewelleryCustomerDB.getJewelleryCustomerInsertUpdate(jewelleryCustomerModel);
+		jewellerySalesItemDB.getJewellerySalesItemInsert(jewellerySalesItemModel);
+	} 
+	if(Double.parseDouble(idGenerator.getZeroForNull(request.getParameter("salesItemSPureTot")))>0)
+	{
+		for(i=1;i<=Integer.parseInt(request.getParameter("salesItemSNoTot"));i++){
+			arrayListSales.add( 
+			new JewellerySalesItemModel(
+			idGenerator.getEmptyForNull(request.getParameter("salesItemBNo")),
+			idGenerator.getEmptyForNull(request.getParameter("salesItemCNo")),
+			idGenerator.getEmptyForNull(request.getParameter("salesItemCname")),
+			idGenerator.getEmptyForNull(request.getParameter("salesItemSSNo")),
+			idGenerator.getEmptyForNull(request.getParameter("salesItemSNo"+i)),
+			idGenerator.getEmptyForNull(request.getParameter("salesItemSType"+i)),
+			idGenerator.getEmptyForNull(request.getParameter("salesItemSCount"+i)),
+			idGenerator.getEmptyForNull(request.getParameter("salesItemSWeight"+i)),
+			idGenerator.getEmptyForNull(request.getParameter("salesItemSMinus"+i)),
+			idGenerator.getEmptyForNull(request.getParameter("salesItemSNetWeight"+i)),
+			idGenerator.getEmptyForNull(request.getParameter("salesItemSWastage"+i)),
+			idGenerator.getEmptyForNull(request.getParameter("salesItemSPure"+i)),
+			idGenerator.getEmptyForNull(request.getParameter("OLD")), 
+			idGenerator.getEmptyForNull(request.getParameter("now()"))));
+		}
+		jewellerySalesItemDB.getSalesItemInsert(arrayListSales);
+		arrayListSales.clear();
+	}
+	
+	  if(Double.parseDouble(idGenerator.getZeroForNull(request.getParameter("salesItemRPureTot")))>0){
+	  for (i=1;i<=Integer.parseInt(request.getParameter("salesItemRNoTot"));i++){
+			arrayListReceived.add( 
+					new JewellerySalesItemModel(
+					idGenerator.getEmptyForNull(request.getParameter("salesItemBNo")),
+					idGenerator.getEmptyForNull(request.getParameter("salesItemCNo")),	
+					idGenerator.getEmptyForNull(request.getParameter("salesItemCname")),
+					idGenerator.getEmptyForNull(request.getParameter("salesItemRRNo")),	
+					idGenerator.getEmptyForNull(request.getParameter("salesItemRNo"+i)),
+					idGenerator.getEmptyForNull(request.getParameter("salesItemRWeight"+i)),
+					idGenerator.getEmptyForNull(request.getParameter("salesItemRResult"+i)),
+					idGenerator.getEmptyForNull(request.getParameter("salesItemRCalc"+i)),
+					idGenerator.getEmptyForNull(request.getParameter("salesItemRPure"+i)),
+					idGenerator.getEmptyForNull(request.getParameter("OLD")),
+					idGenerator.getEmptyForNull(request.getParameter("now()"))));
+					}
+	  				jewellerySalesItemDB.getSalesItemReceiveInsert(arrayListReceived);
+	  				arrayListReceived.clear();
+	  }
+	  
+		jewellerySalesItemModel.setSalesItemBNo(idGenerator.getZeroForNull(request.getParameter("salesItemBNo")));
+		jewellerySalesItemModel.setSalesItemCNo(idGenerator.getZeroForNull(request.getParameter("salesItemCNo")));
+		jewellerySalesItemModel.setSalesItemCname(idGenerator.getZeroForNull(request.getParameter("salesItemCname")));
+		jewellerySalesItemModel.setSalesItemCHNo(idGenerator.getZeroForNull(request.getParameter("salesItemCHNo")));
+		jewellerySalesItemModel.setSalesItemCHCash(idGenerator.getZeroForNull(request.getParameter("salesItemCHCash")));
+		jewellerySalesItemModel.setSalesItemCHRate(idGenerator.getZeroForNull(request.getParameter("salesItemCHRate")));
+		jewellerySalesItemModel.setSalesItemCHPure(idGenerator.getZeroForNull(request.getParameter("salesItemCHPure")));
+		jewellerySalesItemModel.setSalesItemCHMode(idGenerator.getZeroForNull(request.getParameter("salesItemCHMode")));
+		jewellerySalesItemModel.setSalesItemCHTime(idGenerator.getZeroForNull(request.getParameter("salesItemCHTime")));
+	
+		if(Double.parseDouble(idGenerator.getZeroForNull(request.getParameter("salesItemCHPure")))>0){
+		jewellerySalesItemDB.getJewellerySalesCashInsert(jewellerySalesItemModel);	}
+		response.sendRedirect("JewellerySalesItemPage.jsp");
+	}	
+	}
+
+
