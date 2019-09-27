@@ -1,0 +1,156 @@
+package com.ntj.model;
+
+public class JewelleryPurchaseModel {
+
+
+	String purchasePno,purchaseDate,purchaseFrom,purchaseType,purchaseMelting,purchaseWeight,purchaseWastage,purchaseKWastage,purchaseCount,purchasePure,purchaseSettle,purchaseLess,purchaseCommand,purchaseMode,purchaseTime;
+
+	public JewelleryPurchaseModel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public JewelleryPurchaseModel(String purchasePno, String purchaseDate, String purchaseFrom, String purchaseType, String purchaseMelting,
+			String purchaseWeight, String purchaseWastage,String purchaseKWastage, String purchaseCount, String purchasePure,
+			String purchaseSettle,String purchaseLess, String purchaseCommand, String purchaseMode, String purchaseTime) {
+		super();
+		this.purchasePno = purchasePno;
+		this.purchaseDate = purchaseDate;
+		this.purchaseFrom = purchaseFrom;
+		this.purchaseType = purchaseType;
+		this.purchaseMelting = purchaseMelting;
+		this.purchaseWeight = purchaseWeight;
+		this.purchaseWastage = purchaseWastage;
+		this.purchaseKWastage = purchaseKWastage;
+		this.purchaseCount = purchaseCount;
+		this.purchasePure = purchasePure;
+		this.purchaseSettle = purchaseSettle;
+		this.purchaseLess=purchaseLess;
+		this.purchaseCommand=purchaseCommand;
+		this.purchaseMode = purchaseMode;
+		this.purchaseTime = purchaseTime;
+	}
+
+	
+	public String getPurchaseMelting() {
+		return purchaseMelting;
+	}
+
+	public void setPurchaseMelting(String purchaseMelting) {
+		this.purchaseMelting = purchaseMelting;
+	}
+
+	public String getPurchaseKWastage() {
+		return purchaseKWastage;
+	}
+
+	public void setPurchaseKWastage(String purchaseKWastage) {
+		this.purchaseKWastage = purchaseKWastage;
+	}
+
+	public String getPurchaseLess() {
+		return purchaseLess;
+	}
+
+	public void setPurchaseLess(String purchaseLess) {
+		this.purchaseLess = purchaseLess;
+	}
+
+	public String getPurchaseCommand() {
+		return purchaseCommand;
+	}
+
+	public void setPurchaseCommand(String purchaseCommand) {
+		this.purchaseCommand = purchaseCommand;
+	}
+
+	public String getPurchasePno() {
+		return purchasePno;
+	}
+
+	public void setPurchasePno(String purchasePno) {
+		this.purchasePno = purchasePno;
+	}
+
+	public String getPurchaseDate() {
+		return purchaseDate;
+	}
+
+	public void setPurchaseDate(String purchaseDate) {
+		this.purchaseDate = purchaseDate;
+	}
+
+	public String getPurchaseFrom() {
+		return purchaseFrom;
+	}
+
+	public void setPurchaseFrom(String purchaseFrom) {
+		this.purchaseFrom = purchaseFrom;
+	}
+
+	public String getPurchaseType() {
+		return purchaseType;
+	}
+
+	public void setPurchaseType(String purchaseType) {
+		this.purchaseType = purchaseType;
+	}
+
+	public String getPurchaseWeight() {
+		return purchaseWeight;
+	}
+
+	public void setPurchaseWeight(String purchaseWeight) {
+		this.purchaseWeight = purchaseWeight;
+	}
+
+	public String getPurchaseWastage() {
+		return purchaseWastage;
+	}
+
+	public void setPurchaseWastage(String purchaseWastage) {
+		this.purchaseWastage = purchaseWastage;
+	}
+
+	public String getPurchaseCount() {
+		return purchaseCount;
+	}
+
+	public void setPurchaseCount(String purchaseCount) {
+		this.purchaseCount = purchaseCount;
+	}
+
+	public String getPurchasePure() {
+		return purchasePure;
+	}
+
+	public void setPurchasePure(String purchasePure) {
+		this.purchasePure = purchasePure;
+	}
+
+	public String getPurchaseSettle() {
+		return purchaseSettle;
+	}
+
+	public void setPurchaseSettle(String purchaseSettle) {
+		this.purchaseSettle = purchaseSettle;
+	}
+
+	public String getPurchaseMode() {
+		return purchaseMode;
+	}
+
+	public void setPurchaseMode(String purchaseMode) {
+		this.purchaseMode = purchaseMode;
+	}
+
+	public String getPurchaseTime() {
+		return purchaseTime;
+	}
+
+	public void setPurchaseTime(String purchaseTime) {
+		this.purchaseTime = purchaseTime;
+	}
+	
+
+}
