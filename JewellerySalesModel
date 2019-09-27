@@ -1,0 +1,310 @@
+package com.ntj.model;
+
+public class JewellerySalesModel {
+
+	String salesBillNo,salesBillDate,salesBillMobile,salesBillName,salesBillDiscount,salesBillTotItems,salesBillTotWeight,salesBillMode,salesBillTime;
+	String salesItemNo,salesItemCode,salesItemType,salesItemCount,salesItemWeight,salesItemPurity,salesItemWastage,salesItemPure,salesItemMode,salesItemTime;
+	String salesMetalMno,salesMetalWeight,salesMetalResult,salesMetalPure,salesMetalMode,salesMetalTime;
+	String salesBillDateFrom,salesBillDateTo;
+
+public JewellerySalesModel() {
+		super(); 
+		}
+
+public JewellerySalesModel(String salesBillNo, String salesBillDate, String salesBillMobile, String salesBillName,
+			String salesBillDiscount, String salesBillTotItems, String salesBillTotWeight, String salesBillMode,
+			String salesBillTime, String salesItemNo, String salesItemCode, String salesItemType,String salesItemCount,
+			String salesItemWeight, String salesItemPurity, String salesItemWastage, String salesItemPure,
+			String salesItemMode, String salesItemTime,String salesMetalMno, String salesMetalWeight, String salesMetalResult,
+			String salesMetalPure,String salesMetalMode,String salesMetalTime) {
+		super();
+		this.salesBillNo = salesBillNo;
+		this.salesBillDate = salesBillDate;
+		this.salesBillMobile = salesBillMobile;
+		this.salesBillName = salesBillName;
+		this.salesBillDiscount = salesBillDiscount;
+		this.salesBillTotItems = salesBillTotItems;
+		this.salesBillTotWeight = salesBillTotWeight;
+		this.salesBillMode = salesBillMode;
+		this.salesBillTime = salesBillTime;
+		this.salesItemNo = salesItemNo;
+		this.salesItemCode = salesItemCode;
+		this.salesItemType = salesItemType;
+		this.salesItemCount = salesItemCount;
+		this.salesItemWeight = salesItemWeight;
+		this.salesItemPurity = salesItemPurity;
+		this.salesItemWastage = salesItemWastage;
+		this.salesItemPure = salesItemPure;
+		this.salesItemMode = salesItemMode;
+		this.salesItemTime = salesItemTime;
+		this.salesMetalMno = salesMetalMno;
+		this.salesMetalWeight = salesMetalWeight;
+		this.salesMetalResult = salesMetalResult;
+		this.salesMetalPure = salesMetalPure;
+		this.salesMetalMode = salesMetalMode;
+		this.salesMetalTime = salesMetalTime;
+		
+	}
+
+public JewellerySalesModel(String salesBillNo, String salesBillDate, String salesBillMobile, String salesBillName,
+			String salesBillDiscount, String salesBillTotItems, String salesBillTotWeight, String salesBillMode,
+			String salesBillTime) {
+		super();
+		this.salesBillNo = salesBillNo;
+		this.salesBillDate = salesBillDate;
+		this.salesBillMobile = salesBillMobile;
+		this.salesBillName = salesBillName;
+		this.salesBillDiscount = salesBillDiscount;
+		this.salesBillTotItems = salesBillTotItems;
+		this.salesBillTotWeight = salesBillTotWeight;
+		this.salesBillMode = salesBillMode;
+		this.salesBillTime = salesBillTime;
+	}
+
+public JewellerySalesModel(String salesBillNo, String salesItemNo, String salesItemCode, String salesItemType,String salesItemCount,
+			String salesItemWeight, String salesItemPurity, String salesItemWastage, String salesItemPure,
+			String salesItemMode, String salesItemTime) {
+		super();
+		this.salesBillNo = salesBillNo;
+		this.salesItemNo = salesItemNo;
+		this.salesItemCode = salesItemCode;
+		this.salesItemType = salesItemType;
+		this.salesItemCount = salesItemCount;
+		this.salesItemWeight = salesItemWeight;
+		this.salesItemPurity = salesItemPurity;
+		this.salesItemWastage = salesItemWastage;
+		this.salesItemPure = salesItemPure;
+		this.salesItemMode = salesItemMode;
+		this.salesItemTime = salesItemTime;
+	}
+
+	public JewellerySalesModel(String salesBillNo, String salesMetalMno, String salesMetalWeight, String salesMetalResult,
+		String salesMetalPure, String salesMetalMode, String salesMetalTime) {
+	super();
+	this.salesBillNo = salesBillNo;
+	this.salesMetalMno = salesMetalMno;
+	this.salesMetalWeight = salesMetalWeight;
+	this.salesMetalResult = salesMetalResult;
+	this.salesMetalPure = salesMetalPure;
+	this.salesMetalMode = salesMetalMode;
+	this.salesMetalTime = salesMetalTime;
+}
+
+	public String getSalesBillNo() {
+		return salesBillNo;
+	}
+
+	public void setSalesBillNo(String salesBillNo) {
+		this.salesBillNo = salesBillNo;
+	}
+
+	public String getSalesBillDate() {
+		return salesBillDate;
+	}
+
+	public void setSalesBillDate(String salesBillDate) {
+		this.salesBillDate = salesBillDate;
+	}
+
+	public String getSalesBillMobile() {
+		return salesBillMobile;
+	}
+
+	public void setSalesBillMobile(String salesBillMobile) {
+		this.salesBillMobile = salesBillMobile;
+	}
+
+	public String getSalesBillName() {
+		return salesBillName;
+	}
+
+	public void setSalesBillName(String salesBillName) {
+		this.salesBillName = salesBillName;
+	}
+
+	public String getSalesBillDiscount() {
+		return salesBillDiscount;
+	}
+
+	public void setSalesBillDiscount(String salesBillDiscount) {
+		this.salesBillDiscount = salesBillDiscount;
+	}
+
+	public String getSalesBillTotItems() {
+		return salesBillTotItems;
+	}
+
+	public void setSalesBillTotItems(String salesBillTotItems) {
+		this.salesBillTotItems = salesBillTotItems;
+	}
+
+	public String getSalesBillTotWeight() {
+		return salesBillTotWeight;
+	}
+
+	public void setSalesBillTotWeight(String salesBillTotWeight) {
+		this.salesBillTotWeight = salesBillTotWeight;
+	}
+
+	public String getSalesBillMode() {
+		return salesBillMode;
+	}
+
+	public void setSalesBillMode(String salesBillMode) {
+		this.salesBillMode = salesBillMode;
+	}
+
+	public String getSalesBillTime() {
+		return salesBillTime;
+	}
+
+	public void setSalesBillTime(String salesBillTime) {
+		this.salesBillTime = salesBillTime;
+	}
+
+	public String getSalesItemNo() {
+		return salesItemNo;
+	}
+
+	public void setSalesItemNo(String salesItemNo) {
+		this.salesItemNo = salesItemNo;
+	}
+
+	public String getSalesItemCode() {
+		return salesItemCode;
+	}
+
+	public void setSalesItemCode(String salesItemCode) {
+		this.salesItemCode = salesItemCode;
+	}
+
+	public String getSalesItemType() {
+		return salesItemType;
+	}
+
+	public void setSalesItemType(String salesItemType) {
+		this.salesItemType = salesItemType;
+	}
+
+	public String getSalesItemWeight() {
+		return salesItemWeight;
+	}
+
+	public void setSalesItemWeight(String salesItemWeight) {
+		this.salesItemWeight = salesItemWeight;
+	}
+
+	public String getSalesItemCount() {
+		return salesItemCount;
+	}
+
+	public void setSalesItemCount(String salesItemCount) {
+		this.salesItemCount = salesItemCount;
+	}
+
+	public String getSalesItemPurity() {
+		return salesItemPurity;
+	}
+
+	public void setSalesItemPurity(String salesItemPurity) {
+		this.salesItemPurity = salesItemPurity;
+	}
+
+	public String getSalesItemWastage() {
+		return salesItemWastage; 
+	}
+
+	public void setSalesItemWastage(String salesItemWastage) {
+		this.salesItemWastage = salesItemWastage;
+	}
+
+	public String getSalesItemPure() {
+		return salesItemPure;
+	}
+
+	public void setSalesItemPure(String salesItemPure) {
+		this.salesItemPure = salesItemPure;
+	}
+
+	public String getSalesItemMode() {
+		return salesItemMode;
+	}
+
+	public void setSalesItemMode(String salesItemMode) {
+		this.salesItemMode = salesItemMode;
+	}
+
+	public String getSalesItemTime() {
+		return salesItemTime;
+	}
+
+	public void setSalesItemTime(String salesItemTime) {
+		this.salesItemTime = salesItemTime;
+	}
+
+	public String getSalesMetalWeight() {
+		return salesMetalWeight;
+	}
+
+	public void setSalesMetalWeight(String salesMetalWeight) {
+		this.salesMetalWeight = salesMetalWeight;
+	}
+
+	public String getSalesMetalResult() {
+		return salesMetalResult;
+	}
+
+	public void setSalesMetalResult(String salesMetalResult) {
+		this.salesMetalResult = salesMetalResult;
+	}
+
+	public String getSalesMetalPure() {
+		return salesMetalPure;
+	}
+
+	public void setSalesMetalPure(String salesMetalPure) {
+		this.salesMetalPure = salesMetalPure;
+	}
+
+	public String getSalesBillDateFrom() {
+		return salesBillDateFrom;
+	}
+
+	public void setSalesBillDateFrom(String salesBillDateFrom) {
+		this.salesBillDateFrom = salesBillDateFrom;
+	}
+
+	public String getSalesBillDateTo() {
+		return salesBillDateTo;
+	}
+
+	public void setSalesBillDateTo(String salesBillDateTo) {
+		this.salesBillDateTo = salesBillDateTo;
+	}
+
+	public String getSalesMetalMno() {
+		return salesMetalMno;
+	}
+
+	public void setSalesMetalMno(String salesMetalMno) {
+		this.salesMetalMno = salesMetalMno;
+	}
+
+	public String getSalesMetalMode() {
+		return salesMetalMode;
+	}
+
+	public void setSalesMetalMode(String salesMetalMode) {
+		this.salesMetalMode = salesMetalMode;
+	}
+
+	public String getSalesMetalTime() {
+		return salesMetalTime;
+	}
+
+	public void setSalesMetalTime(String salesMetalTime) {
+		this.salesMetalTime = salesMetalTime;
+	}
+
+	
+}
