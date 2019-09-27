@@ -1,0 +1,128 @@
+package com.ntj.model;
+
+public class JewelleryMetalModel {
+
+
+	String metalMNo,metalDate,metalPRate,metalSRate,metalType,metalName,metalWeight,metalResult,metalPure,metalAmount,metalMode,metalTime;
+
+	public JewelleryMetalModel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public JewelleryMetalModel(String metalMNo, String metalDate, String metalPRate, String metalSRate,
+			String metalType, String metalName, String metalWeight, String metalResult, String metalPure,
+			String metalAmount, String metalMode, String metalTime) {
+		super();
+		this.metalMNo = metalMNo;
+		this.metalDate = metalDate;
+		this.metalPRate = metalPRate;
+		this.metalSRate = metalSRate;
+		this.metalType = metalType;
+		this.metalName = metalName;
+		this.metalWeight = metalWeight;
+		this.metalResult = metalResult;
+		this.metalPure = metalPure;
+		this.metalAmount = metalAmount;
+		this.metalMode = metalMode;
+		this.metalTime = metalTime;
+	}
+
+	public String getMetalMNo() {
+		return metalMNo;
+	}
+
+	public void setMetalMNo(String metalMNo) {
+		this.metalMNo = metalMNo;
+	}
+
+	public String getMetalDate() {
+		return metalDate;
+	}
+
+	public void setMetalDate(String metalDate) {
+		this.metalDate = metalDate;
+	}
+
+	public String getMetalPRate() {
+		return metalPRate;
+	}
+
+	public void setMetalPRate(String metalPRate) {
+		this.metalPRate = metalPRate;
+	}
+
+	public String getMetalSRate() {
+		return metalSRate;
+	}
+
+	public void setMetalSRate(String metalSRate) {
+		this.metalSRate = metalSRate;
+	}
+
+	public String getMetalType() {
+		return metalType;
+	}
+
+	public void setMetalType(String metalType) {
+		this.metalType = metalType;
+	}
+
+	public String getMetalName() {
+		return metalName;
+	}
+
+	public void setMetalName(String metalName) {
+		this.metalName = metalName;
+	}
+
+	public String getMetalWeight() {
+		return metalWeight;
+	}
+
+	public void setMetalWeight(String metalWeight) {
+		this.metalWeight = metalWeight;
+	}
+
+	public String getMetalResult() {
+		return metalResult;
+	}
+
+	public void setMetalResult(String metalResult) {
+		this.metalResult = metalResult;
+	}
+
+	public String getMetalPure() {
+		return metalPure;
+	}
+
+	public void setMetalPure(String metalPure) {
+		this.metalPure = metalPure;
+	}
+
+	public String getMetalAmount() {
+		return metalAmount;
+	}
+
+	public void setMetalAmount(String metalAmount) {
+		this.metalAmount = metalAmount;
+	}
+
+	public String getMetalMode() {
+		return metalMode;
+	}
+
+	public void setMetalMode(String metalMode) {
+		this.metalMode = metalMode;
+	}
+
+	public String getMetalTime() {
+		return metalTime;
+	}
+
+	public void setMetalTime(String metalTime) {
+		this.metalTime = metalTime;
+	}
+
+	
+}
