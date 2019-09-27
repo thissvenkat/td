@@ -1,0 +1,119 @@
+package com.ntj.model;
+
+public class JewelleryPartnersModel {
+
+
+	String partnerPNo,partnerDate,partnerName,partnerAmount,partnerMetal,partnerShareValue,partnerSharePercent,partnerDesigination,partnerCommand,partnerMode,partnerTime;
+
+	public JewelleryPartnersModel() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public JewelleryPartnersModel(String partnerPNo, String partnerDate, String partnerName, String partnerAmount,
+			String partnerMetal, String partnerShareValue, String partnerSharePercent, String partnerDesigination,
+			String partnerCommand, String partnerMode, String partnerTime) {
+		super();
+		this.partnerPNo = partnerPNo;
+		this.partnerDate = partnerDate;
+		this.partnerName = partnerName;
+		this.partnerAmount = partnerAmount;
+		this.partnerMetal = partnerMetal;
+		this.partnerShareValue = partnerShareValue;
+		this.partnerSharePercent = partnerSharePercent;
+		this.partnerDesigination = partnerDesigination;
+		this.partnerCommand = partnerCommand;
+		this.partnerMode = partnerMode;
+		this.partnerTime = partnerTime;
+	}
+
+	public String getPartnerPNo() {
+		return partnerPNo;
+	}
+
+	public void setPartnerPNo(String partnerPNo) {
+		this.partnerPNo = partnerPNo;
+	}
+
+	public String getPartnerDate() {
+		return partnerDate;
+	}
+
+	public void setPartnerDate(String partnerDate) {
+		this.partnerDate = partnerDate;
+	}
+
+	public String getPartnerName() {
+		return partnerName;
+	}
+
+	public void setPartnerName(String partnerName) {
+		this.partnerName = partnerName;
+	}
+
+	public String getPartnerAmount() {
+		return partnerAmount;
+	}
+
+	public void setPartnerAmount(String partnerAmount) {
+		this.partnerAmount = partnerAmount;
+	}
+
+	public String getPartnerMetal() {
+		return partnerMetal;
+	}
+
+	public void setPartnerMetal(String partnerMetal) {
+		this.partnerMetal = partnerMetal;
+	}
+
+	public String getPartnerShareValue() {
+		return partnerShareValue;
+	}
+
+	public void setPartnerShareValue(String partnerShareValue) {
+		this.partnerShareValue = partnerShareValue;
+	}
+
+	public String getPartnerSharePercent() {
+		return partnerSharePercent;
+	}
+
+	public void setPartnerSharePercent(String partnerSharePercent) {
+		this.partnerSharePercent = partnerSharePercent;
+	}
+
+	public String getPartnerDesigination() {
+		return partnerDesigination;
+	}
+
+	public void setPartnerDesigination(String partnerDesigination) {
+		this.partnerDesigination = partnerDesigination;
+	}
+
+	public String getPartnerCommand() {
+		return partnerCommand;
+	}
+
+	public void setPartnerCommand(String partnerCommand) {
+		this.partnerCommand = partnerCommand;
+	}
+
+	public String getPartnerMode() {
+		return partnerMode;
+	}
+
+	public void setPartnerMode(String partnerMode) {
+		this.partnerMode = partnerMode;
+	}
+
+	public String getPartnerTime() {
+		return partnerTime;
+	}
+
+	public void setPartnerTime(String partnerTime) {
+		this.partnerTime = partnerTime;
+	}
+
+	
+}
