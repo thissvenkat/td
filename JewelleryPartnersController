@@ -1,0 +1,60 @@
+package com.ntj.controller;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.ntj.db.JewelleryPartnersDB;
+import com.ntj.model.JewelleryPartnersModel;
+import com.ntj.util.IdGenerator;
+
+/**
+ * Servlet implementation class JewelleryPartnersController
+ */
+@WebServlet("/JewelleryPartnersController")
+			
+public class JewelleryPartnersController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	JewelleryPartnersModel jewelleryPartnersModel = new JewelleryPartnersModel();
+	JewelleryPartnersDB jewelleryPartnersDB = new JewelleryPartnersDB();
+	IdGenerator idGenerator = new IdGenerator(); 
+	
+    public JewelleryPartnersController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
+	}
+
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		jewelleryPartnersModel.setPartnerPNo(idGenerator.getEmptyForNull(request.getParameter("partnerPNo")));
+		jewelleryPartnersModel.setPartnerDate(idGenerator.getEmptyForNull(request.getParameter("partnerDate")));
+		jewelleryPartnersModel.setPartnerName(idGenerator.getEmptyForNull(request.getParameter("partnerName")));
+		jewelleryPartnersModel.setPartnerAmount(idGenerator.getEmptyForNull(request.getParameter("partnerAmount")));
+		jewelleryPartnersModel.setPartnerMetal(idGenerator.getEmptyForNull(request.getParameter("partnerMetal")));
+		jewelleryPartnersModel.setPartnerShareValue(idGenerator.getEmptyForNull(request.getParameter("partnerShareValue")));
+		jewelleryPartnersModel.setPartnerSharePercent(idGenerator.getEmptyForNull(request.getParameter("partnerSharePercent")));
+		jewelleryPartnersModel.setPartnerDesigination(idGenerator.getEmptyForNull(request.getParameter("partnerDesigination")));
+		jewelleryPartnersModel.setPartnerCommand(idGenerator.getEmptyForNull(request.getParameter("partnerCommand")));
+		jewelleryPartnersModel.setPartnerMode(idGenerator.getEmptyForNull(request.getParameter("partnerMode")));
+		jewelleryPartnersModel.setPartnerTime(idGenerator.getEmptyForNull(request.getParameter("partnerTime")));
+		
+		
+	if (request.getParameter("submit").toString().equalsIgnoreCase("SAVE")) { 
+		jewelleryPartnersDB.getJewelleryPartnersInsertUpdate(jewelleryPartnersModel);
+			response.sendRedirect("JewelleryPartnersPage.jsp");	
+		
+	}
+		
+	}
+
+}
