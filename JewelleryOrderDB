@@ -1,0 +1,158 @@
+package com.ntj.db;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashMap;
+
+
+import com.ntj.model.JewelleryOrderModel;
+import com.ntj.util.DBConnection;
+import com.ntj.util.IdGenerator;
+
+public class JewelleryOrderDB {
+	Connection connection = DBConnection.getDBConnection();
+	public Statement statement = null;
+	public ResultSet resultSet = null;
+	public PreparedStatement preparedStatement = null;
+	IdGenerator idGenerator = new IdGenerator();
+	JewelleryOrderModel jewelleryOrderModel = new JewelleryOrderModel();
+	
+		
+	String jewellery_order_insert = "insert into jewellery_order(orderOno,orderDate,orderParty,orderType,orderWeight,orderAMetal,orderAAmount,orderWastage,orderImage,orderMaker,orderCommand,orderMode,orderTime)values(?,?,?,?,?,?,?,?,?,?,?,'OLD',now())";
+	String jewellery_order_update = "UPDATE jewellery_order SET  orderOno=?,orderDate=?,orderParty=?,orderType=?,orderWeight=?,orderAMetal=?,orderAAmount=?,orderWastage=?,orderImage=?,orderMaker=?,orderCommand=?,orderTime=now() WHERE orderOno='";
+	String jewellery_order_editSearchPrint = "select orderOno,orderDate,orderParty,orderType,orderWeight,orderAMetal,orderAAmount,orderWastage,orderImage,orderMaker,orderCommand,orderMode,orderTime from jewellery_order";
+	String jewellery_order_Ono = "select max(orderOno) from jewellery_order";
+	String jewellery_order_delete = "delete from jewellery_order where orderOno='"; 
+
+	public boolean getJewelleryOrderInsertUpdate(JewelleryOrderModel jewelleryOrderModel) {
+		try {
+			
+			if (jewelleryOrderModel.getOrderMode().equalsIgnoreCase("NEW")) {
+			
+				preparedStatement = connection.prepareStatement(jewellery_order_insert);
+			
+			} else {
+				preparedStatement = connection.prepareStatement(jewellery_order_update + jewelleryOrderModel.getOrderOno()+"'");
+			
+			}
+			preparedStatement.setString(1, jewelleryOrderModel.getOrderOno());
+			preparedStatement.setString(2, jewelleryOrderModel.getOrderDate());
+			preparedStatement.setString(3, jewelleryOrderModel.getOrderParty());
+			preparedStatement.setString(4, jewelleryOrderModel.getOrderType());
+			preparedStatement.setString(5, jewelleryOrderModel.getOrderWeight());
+			preparedStatement.setString(6, jewelleryOrderModel.getOrderAMetal());
+			preparedStatement.setString(7, jewelleryOrderModel.getOrderAAmount());
+			preparedStatement.setString(8, jewelleryOrderModel.getOrderWastage());  
+			preparedStatement.setString(9, jewelleryOrderModel.getOrderImage());  
+			preparedStatement.setString(10, jewelleryOrderModel.getOrderMaker());  
+			preparedStatement.setString(11, jewelleryOrderModel.getOrderCommand());  
+			  
+			
+			preparedStatement.executeUpdate(); 
+
+		} catch (SQLException e) { 
+
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+
+		}
+
+		return true;
+
+	}
+
+	public JewelleryOrderModel getJewelleryOrderOno() {
+
+		try {
+			statement = connection.createStatement();
+
+			resultSet = statement.executeQuery(jewellery_order_Ono);
+			while (resultSet.next()) {
+			
+				
+				jewelleryOrderModel = new JewelleryOrderModel(idGenerator.getId(resultSet.getString(1)).toString(),"","","","","","","","","","","NEW","");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace(); 
+		} 
+		return jewelleryOrderModel;
+
+	} 
+	public JewelleryOrderModel getJewelleryOrderEditSearchPrint(JewelleryOrderModel jewelleryOrderModel) {
+
+		try {
+
+			statement = connection.createStatement();
+
+			resultSet = statement.executeQuery(jewellery_order_editSearchPrint+" where orderOno='"+jewelleryOrderModel.getOrderOno()+"' order by orderOno asc");
+
+			while (resultSet.next()) {
+
+				jewelleryOrderModel = new JewelleryOrderModel(
+						resultSet.getString(1),
+						resultSet.getString(2),
+						resultSet.getString(3),
+						resultSet.getString(4),
+						resultSet.getString(5),
+						resultSet.getString(6),
+						resultSet.getString(7),
+						resultSet.getString(8),
+						resultSet.getString(9),
+						resultSet.getString(10),
+						resultSet.getString(11),
+						resultSet.getString(12),
+						resultSet.getString(13));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jewelleryOrderModel;
+	}
+	
+	public HashMap<Integer, JewelleryOrderModel> getJewelleryOrderAllData() {
+		HashMap<Integer, JewelleryOrderModel> jewelleryOrderModelMap = new HashMap<Integer, JewelleryOrderModel>();
+		try {
+			statement = connection.createStatement();
+			int flagValue = 0;
+			resultSet = statement.executeQuery(jewellery_order_editSearchPrint);
+			while (resultSet.next()) {
+				flagValue++;
+				jewelleryOrderModelMap.put(flagValue, new JewelleryOrderModel(
+						resultSet.getString(1),
+						resultSet.getString(2),
+						resultSet.getString(3),
+						resultSet.getString(4),
+						resultSet.getString(5),
+						resultSet.getString(6),
+						resultSet.getString(7),
+						resultSet.getString(8),
+						resultSet.getString(9),
+						resultSet.getString(10),
+						resultSet.getString(11),
+						resultSet.getString(12),
+						resultSet.getString(13)));
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return jewelleryOrderModelMap;
+	}
+	  
+	public boolean getJewelleryOrderONoDelete(JewelleryOrderModel jewelleryOrderModel) {
+		try {
+			preparedStatement = connection.prepareStatement(jewellery_order_delete+ jewelleryOrderModel.getOrderOno()+"'");
+			preparedStatement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return true; 
+	}
+}
