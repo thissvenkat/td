@@ -1,0 +1,142 @@
+package com.ntj.db;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashMap;
+
+
+import com.ntj.model.JewelleryCreditModel;
+import com.ntj.util.DBConnection;
+import com.ntj.util.IdGenerator;
+
+public class JewelleryCreditDB {
+	Connection connection = DBConnection.getDBConnection();
+	public Statement statement = null;
+	public ResultSet resultSet = null;
+	public PreparedStatement preparedStatement = null;
+	IdGenerator idGenerator = new IdGenerator();
+	JewelleryCreditModel jewelleryCreditModel = new JewelleryCreditModel();
+	
+		
+	String jewellery_credit_insert = "insert into jewellery_credit(creditCno,creditDate,creditName,creditWeight,creditAmount,creditCommand,creditMode,creditTime)values(?,?,?,?,?,?,'OLD',now())";
+	String jewellery_credit_update = "UPDATE jewellery_credit SET  creditCno=?,creditDate=?,creditName=?,creditWeight=?,creditAmount=?,creditCommand=?,creditTime=now() WHERE creditCno='";
+	String jewellery_credit_editSearchPrint = "select creditCno,creditDate,creditName,creditWeight,creditAmount,creditCommand,creditMode,creditTime from jewellery_credit";
+	String jewellery_credit_Cno = "select max(creditCno) from jewellery_credit";
+	String jewellery_credit_delete = "delete from jewellery_credit where creditCno='"; 
+
+	public boolean getJewelleryCreditInsertUpdate(JewelleryCreditModel jewelleryCreditModel) {
+		try {
+			
+			if (jewelleryCreditModel.getCreditMode().equalsIgnoreCase("NEW")) {
+				preparedStatement = connection.prepareStatement(jewellery_credit_insert);
+			
+			} else {
+				preparedStatement = connection.prepareStatement(jewellery_credit_update + jewelleryCreditModel.getCreditCno()+"'");
+			
+			}
+			preparedStatement.setString(1, jewelleryCreditModel.getCreditCno());
+			preparedStatement.setString(2, jewelleryCreditModel.getCreditDate());
+			preparedStatement.setString(3, jewelleryCreditModel.getCreditName());
+			preparedStatement.setString(4, jewelleryCreditModel.getCreditWeight());
+			preparedStatement.setString(5, jewelleryCreditModel.getCreditAmount());
+			preparedStatement.setString(6, jewelleryCreditModel.getCreditCommand());
+		
+			
+			preparedStatement.executeUpdate(); 
+
+		} catch (SQLException e) { 
+
+			// TODO Auto-generated catch block
+
+			e.printStackTrace();
+
+		}
+
+		return true;
+
+	}
+
+	public JewelleryCreditModel getJewelleryCreditCno() {
+
+		try {
+			statement = connection.createStatement();
+
+			resultSet = statement.executeQuery(jewellery_credit_Cno);
+			while (resultSet.next()) {
+			
+				
+				jewelleryCreditModel = new JewelleryCreditModel(idGenerator.getId(resultSet.getString(1)).toString(),"","","","","","NEW","");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace(); 
+		} 
+		return jewelleryCreditModel;
+
+	} 
+	public JewelleryCreditModel getJewelleryCreditEditSearchPrint(JewelleryCreditModel jewelleryCreditModel) {
+
+		try {
+
+			statement = connection.createStatement();
+
+			resultSet = statement.executeQuery(jewellery_credit_editSearchPrint+" where creditCno='"+jewelleryCreditModel.getCreditCno()+"' order by creditCno asc");
+
+			while (resultSet.next()) {
+
+				jewelleryCreditModel = new JewelleryCreditModel(
+						resultSet.getString(1),
+						resultSet.getString(2),
+						resultSet.getString(3),
+						resultSet.getString(4),
+						resultSet.getString(5),
+						resultSet.getString(6),
+						resultSet.getString(7),
+						resultSet.getString(8));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return jewelleryCreditModel;
+	}
+	
+	public HashMap<Integer, JewelleryCreditModel> getJewelleryCreditAllData() {
+		HashMap<Integer, JewelleryCreditModel> jewelleryCreditModelMap = new HashMap<Integer, JewelleryCreditModel>();
+		try {
+			statement = connection.createStatement();
+			int flagValue = 0;
+			resultSet = statement.executeQuery(jewellery_credit_editSearchPrint);
+			while (resultSet.next()) {
+				flagValue++;
+				jewelleryCreditModelMap.put(flagValue, new JewelleryCreditModel(
+						resultSet.getString(1),
+						resultSet.getString(2),
+						resultSet.getString(3),
+						resultSet.getString(4),
+						resultSet.getString(5),
+						resultSet.getString(6),
+						resultSet.getString(7),
+						resultSet.getString(8)));
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return jewelleryCreditModelMap;
+	}
+	  
+	public boolean getJewelleryCreditCNoDelete(JewelleryCreditModel jewelleryCreditModel) {
+		try {
+			preparedStatement = connection.prepareStatement(jewellery_credit_delete+ jewelleryCreditModel.getCreditCno()+"'");
+			preparedStatement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
+}
