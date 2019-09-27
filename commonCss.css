@@ -1,0 +1,97 @@
+.textboxCss,.textboxCssNvisible,.textboxNumCss,.textboxNumCssNvisible,.textboxCssSCount,.textboxCssSWeight,.textboxCssSPure,.textboxCssRWeight,.textboxCssRPure
+{
+	display: inline-block;
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box; 
+	padding: 6px 10px 08px;
+	border: 2px solid #b7b7b7;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	font: normal normal bold 12px/normal Verdana, Geneva, sans-serif;
+	color: rgba(183, 12, 12, 1);
+	-o-text-overflow: clip;
+	text-overflow: clip;
+	background: rgba(196, 255, 22, 1);
+	-webkit-box-shadow: 4px 2px 2px 0 rgba(0, 0, 0, 0.2) inset;
+	box-shadow: 4px 2px 2px 0 rgba(0, 0, 0, 0.2) inset;
+	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.66);
+	-webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+	-moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+	-o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+	transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+
+.textboxCss:focus { 
+ padding: 6px 4px 10px 6px;
+  background: rgba(62,249,234,1);
+}
+
+
+.textboxNumCss:focus {
+   padding: 6px 4px 10px 6px;
+  background: rgba(62,249,234,1);
+}
+
+
+
+.buttonCss {
+  cursor: pointer;
+  padding: 01px 40px;
+  border: 2px solid #018dc4;
+  -webkit-border-radius: 22px;
+  border-radius: 22px;
+  font: normal 34px/normal "Times New Roman", Times, serif;
+  color: rgba(5,5,4,0.9);
+
+  background: rgba(25,234,196,1);
+
+}
+
+.buttonCss:focus {
+  background: #FF1493;
+}
+.resultTable {
+font-size:12px;
+	text-align: center; 
+}    
+
+table.resultTable {
+	border-collapse: collapse;
+}
+
+.resultTable td, table.resultTable th {
+
+	border-bottom: 1px solid #bbff00;
+}
+
+.textBoxSearch {
+  display: inline-block;
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  padding: 10px 20px;
+  border: 1px solid #b7b7b7;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  color: rgba(9,10,10,1);
+  -o-text-overflow: clip;
+  text-overflow: clip;
+  background: rgba(155,240,255,1);
+  -webkit-box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.2) inset;
+  box-shadow: 2px 2px 2px 0 rgba(0,0,0,0.2) inset;
+  text-shadow: 1px 1px 0 rgba(255,255,255,0.66) ;
+  -webkit-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+  -moz-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+  -o-transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+  transition: all 200ms cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+.textBoxSearch:hover {
+  background: rgba(198,250,255,1);
+}
+
+.textBoxSearch:focus {
+  background: rgba(252,191,238,1);
+}
