@@ -1,0 +1,54 @@
+package com.ntj.controller;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.ntj.db.JewelleryExpenseDB;
+import com.ntj.model.JewelleryExpenseModel;
+import com.ntj.util.IdGenerator;
+
+/**
+ * Servlet implementation class JewelleryExpenseController
+ */
+@WebServlet("/JewelleryExpenseController")
+public class JewelleryExpenseController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	JewelleryExpenseModel jewelleryExpenseModel = new JewelleryExpenseModel();
+	JewelleryExpenseDB jewelleryExpenseDB = new JewelleryExpenseDB();
+	IdGenerator idGenerator = new IdGenerator();  
+   
+    public JewelleryExpenseController() {
+        super();
+       
+    }
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);	
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		jewelleryExpenseModel.setExpenseEno(idGenerator.getEmptyForNull(request.getParameter("expenseEno")));
+		jewelleryExpenseModel.setExpenseDate(idGenerator.getEmptyForNull(request.getParameter("expenseDate")));
+		jewelleryExpenseModel.setExpenseType(idGenerator.getEmptyForNull(request.getParameter("expenseType")));
+		jewelleryExpenseModel.setExpenseATime(idGenerator.getEmptyForNull(request.getParameter("expenseATime")));
+		jewelleryExpenseModel.setExpenseParticular(idGenerator.getEmptyForNull(request.getParameter("expenseParticular")));
+		jewelleryExpenseModel.setExpenseAmount(idGenerator.getEmptyForNull(request.getParameter("expenseAmount")));
+		jewelleryExpenseModel.setExpenseMetal(idGenerator.getEmptyForNull(request.getParameter("expenseMetal")));
+		jewelleryExpenseModel.setExpenseCommand(idGenerator.getEmptyForNull(request.getParameter("expenseCommand")));
+		jewelleryExpenseModel.setExpenseMode(idGenerator.getEmptyForNull(request.getParameter("expenseMode")));
+		jewelleryExpenseModel.setExpenseTime(idGenerator.getEmptyForNull(request.getParameter("expenseTime")));
+
+		if (request.getParameter("submit").toString().equalsIgnoreCase("SAVE")) { 
+			
+			jewelleryExpenseDB.getJewelleryExpenseInsertUpdate(jewelleryExpenseModel);
+			response.sendRedirect("JewelleryExpensePage.jsp");	
+		
+	}}
+
+}
