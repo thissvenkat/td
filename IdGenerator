@@ -1,0 +1,186 @@
+package com.ntj.util;
+
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class IdGenerator {
+String valtest="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    
+    public String getId(String idNum){
+    	
+		 if(idNum==null || idNum.isEmpty() || idNum=="NULL"){
+			 
+					 idNum="A0001";    
+		 } 
+		 else if(idNum.substring(1,5).equalsIgnoreCase("9999")){  
+			 
+			 idNum=valtest.charAt(valtest.indexOf(idNum.charAt(0)+1))+"0001";  
+					 }
+		 else { 
+			 
+			 idNum=idNum.substring(0,1)+ String.format("%04d",(Integer.valueOf(idNum.substring(1, 5))+1));
+		 }
+	  
+	 return idNum; 
+	 
+    }
+    
+    public String getInvoiceNo(String idNum){
+    	
+		 if(idNum==null || idNum.isEmpty() || idNum=="NULL"){
+			 
+					 idNum="IN0001";    
+		 } 
+		 else if(idNum.substring(2,6).equalsIgnoreCase("9999")){ 
+			 
+			 idNum=valtest.charAt(valtest.indexOf(idNum.charAt(1)+1))+"0001";  
+					 }
+		 else { 
+			 
+			 idNum=idNum.substring(0,2)+ String.format("%04d",(Integer.valueOf(idNum.substring(2, 6))+1));
+		 }
+	  
+	 return idNum; 
+	 
+   }
+   
+    
+    public String getIdForNull(String idNum){
+    	
+    	 if(idNum == null|| idNum.isEmpty() || idNum=="NULL"){ 
+			 
+					 idNum="A0001";    
+		 } 
+		 else{
+			 idNum=idNum;
+		 }
+		
+    	
+    	return idNum;
+    
+   }
+    
+    
+    public String getModeInvoiceNull(String idNum){
+    	
+      	 if(idNum == null|| idNum.isEmpty() || idNum=="NULL"){ 
+   			 
+   					 idNum="NEW";    
+   		 } 
+   		 else{
+   			 idNum=idNum;
+   		 }
+   		
+      	
+      	return idNum;
+      
+     }
+    
+    public String getIdForInvoiceNull(String idNum){
+    	
+   	 if(idNum == null|| idNum.isEmpty() || idNum=="NULL"){ 
+			 
+					 idNum="IA0001";    
+		 } 
+		 else{
+			 idNum=idNum;
+		 }
+		
+   	
+   	return idNum;
+   
+  }
+   
+    public String getEmptyForNull(String resultVal){
+    	 if(resultVal == null|| resultVal=="NULL"){ 
+    		 resultVal=" ";
+    	 }else{
+    		 resultVal=resultVal;
+    	 }
+		return resultVal;
+    } 
+    public String getZeroForNull(String resultVal){
+   	 if(resultVal == null|| resultVal=="NULL"){ 
+   		 resultVal="0.00";
+   	 }else{
+   		 resultVal=resultVal;
+   	 }
+		return resultVal;
+   }
+ public String getCustIdJobId(String idNum){
+	
+	 if(idNum==null || idNum.isEmpty() || idNum=="NULL"){
+		
+		 idNum="A0001";    
+} 
+
+else if(idNum.substring(2,6).equalsIgnoreCase("9999")){ 
+	
+	 idNum=valtest.charAt(valtest.indexOf(idNum.charAt(1)+1))+"0001";  
+			 }
+else { 
+	
+	 idNum=idNum.substring(1,2)+ String.format("%04d",(Integer.valueOf(idNum.substring(2, 6))+1));
+}
+
+return idNum; 
+    	
+    }
+
+ public String getItemid(String idNum){
+	if(idNum==null || idNum.isEmpty() || idNum=="NULL"){
+		idNum="1";
+	}
+	else{
+		idNum=String.valueOf(Integer.parseInt(idNum)+1);
+	}
+	 
+	 return idNum;
+ }
+ 
+ public String getInvoiceId(String idNum){
+		
+	 if(idNum==null || idNum.isEmpty() || idNum=="NULL"){
+		
+		 idNum="A0001";    
+} 
+
+else if(idNum.substring(2,6).equalsIgnoreCase("9999")){ 
+	
+	 idNum=valtest.charAt(valtest.indexOf(idNum.charAt(1)+1))+"0001";  
+			 }
+else { 
+	
+	 idNum=idNum.substring(1,2)+ String.format("%04d",(Integer.valueOf(idNum.substring(2, 6))));
+}
+
+return idNum; 
+    	
+    }
+
+ 
+ public String getTwoDigitValue(String value){
+		if(value==""||value==null){
+			value="0.00";
+			}
+		return (new DecimalFormat("00.00").format(new BigDecimal(value).setScale(2, BigDecimal.ROUND_DOWN))).toString();
+	}
+
+	public String getThreeDigitValue(String value){
+		if(value==""||value==null){
+			value="0.00";
+			}
+		return (new DecimalFormat("0.000").format(new BigDecimal(value).setScale(2, BigDecimal.ROUND_DOWN))).toString();
+	}
+ 
+ public String getUserDateFormat(String originalDateFormat)  throws Exception{
+	 SimpleDateFormat sdfSource = new SimpleDateFormat("yyyy-MM-dd");
+	    Date date = sdfSource.parse(originalDateFormat);
+	    SimpleDateFormat sdfDestination = new SimpleDateFormat("dd-MM-yyyy");
+	    return sdfDestination.format(date);
+ }
+ 
+}
