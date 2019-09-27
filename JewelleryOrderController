@@ -1,0 +1,58 @@
+package com.ntj.controller;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.ntj.db.JewelleryOrderDB;
+import com.ntj.model.JewelleryOrderModel;
+import com.ntj.util.IdGenerator;
+
+@WebServlet("/JewelleryOrderController")
+public class JewelleryOrderController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	JewelleryOrderModel jewelleryOrderModel = new JewelleryOrderModel();
+	JewelleryOrderDB jewelleryOrderDB = new JewelleryOrderDB();
+	IdGenerator idGenerator = new IdGenerator(); 
+   
+    public JewelleryOrderController() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		jewelleryOrderModel.setOrderOno(idGenerator.getEmptyForNull(request.getParameter("orderOno")));
+		jewelleryOrderModel.setOrderDate(idGenerator.getEmptyForNull(request.getParameter("orderDate")));
+		jewelleryOrderModel.setOrderParty(idGenerator.getEmptyForNull(request.getParameter("orderParty")));
+		jewelleryOrderModel.setOrderType(idGenerator.getEmptyForNull(request.getParameter("orderType")));
+		jewelleryOrderModel.setOrderWeight(idGenerator.getEmptyForNull(request.getParameter("orderWeight")));
+		jewelleryOrderModel.setOrderAMetal(idGenerator.getEmptyForNull(request.getParameter("orderAMetal")));
+		jewelleryOrderModel.setOrderAAmount(idGenerator.getEmptyForNull(request.getParameter("orderAAmount")));
+		jewelleryOrderModel.setOrderWastage(idGenerator.getEmptyForNull(request.getParameter("orderWastage")));
+		jewelleryOrderModel.setOrderImage(idGenerator.getEmptyForNull(request.getParameter("orderImage")));
+		
+		jewelleryOrderModel.setOrderMaker(idGenerator.getEmptyForNull(request.getParameter("orderMaker")));
+		jewelleryOrderModel.setOrderCommand(idGenerator.getEmptyForNull(request.getParameter("orderCommand")));
+		jewelleryOrderModel.setOrderMode(idGenerator.getEmptyForNull(request.getParameter("orderMode")));
+		
+		jewelleryOrderModel.setOrderTime(idGenerator.getEmptyForNull(request.getParameter("orderTime")));
+
+		if (request.getParameter("submit").toString().equalsIgnoreCase("SAVE")) { 
+			
+			jewelleryOrderDB.getJewelleryOrderInsertUpdate(jewelleryOrderModel);
+			 
+			response.sendRedirect("JewelleryOrderPage.jsp");	
+		
+	}
+	}
+
+}
